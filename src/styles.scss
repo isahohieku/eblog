@@ -9,6 +9,7 @@ body {
 // Variables
 $primary-color: #8050fa;
 $secondary-color: #888888;
+$secondary-color-2: #777777;
 $dark-color: #222222;
 
 .w-100 {
@@ -209,6 +210,10 @@ $dark-color: #222222;
     border-radius: 5px;
 }
 
+.widget-wrapper {
+    border: 1px solid $secondary-color-2;
+}
+
 .lnr {
     display: inline-block;
     fill: currentColor;
@@ -226,4 +231,18 @@ $dark-color: #222222;
     padding: 0 30px;
     font-size: 12px;
     font-weight: 500;
+}
+
+a,
+a:active,
+a:focus,
+a:link {
+    text-decoration: none;
+    color: black;
+}
+
+h3 {
+    a:hover {
+        color: $primary-color;
+    }
 }

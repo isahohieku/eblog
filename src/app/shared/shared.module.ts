@@ -5,13 +5,15 @@ import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { PostMetaCardComponent } from './components/cards/post-meta-card/post-meta-card.component';
 import { PostCardComponent } from './components/cards/post-card/post-card.component';
+import { AuthorComponent } from './components/widgets/author/author.component';
 // import { AuthInterceptor } from '../auth-interceptor/http-interceptor';
 
 
 @NgModule({
   declarations: [
     PostMetaCardComponent,
-    PostCardComponent
+    PostCardComponent,
+    AuthorComponent
   ],
   imports: [
     CommonModule,
