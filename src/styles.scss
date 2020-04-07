@@ -195,3 +195,16 @@ $dark-color: #222222;
 .opacity {
     @include opacity((10));
 }
+
+.wrapper {
+    background: #fff;
+    border-radius: 5px;
+}
+
+.lnr {
+    display: inline-block;
+    fill: currentColor;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.05em;
+  }
