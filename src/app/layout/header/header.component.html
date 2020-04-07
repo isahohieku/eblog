@@ -1,1 +1,26 @@
-<p>header works!</p>
+<nav class="bg-primary opacity-9 position-absolute w-100 d-flex align-items-center" style="height: 90px;">
+    <div class="w-100">
+        <div class="container-1 mx-auto">
+            <div class="row">
+                <div class="col d-flex justify-content-between">
+                    <!-- Favicon -->
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <img src="assets/img/lion.png" class="d-inline-block" alt="Lion head Favicon" height="50">
+                        </div>
+                        <h4 class="ml-2 mb-0 text-white text-uppercase">Eblog</h4>
+                    </div>
+
+                    <!-- Links -->
+                    <div class="d-flex align-items-center">
+                        <ul>
+                            <li *ngFor="let item of routes">
+                                <a class="text-white text-uppercase text-small font-weight-bold">{{ item.title }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

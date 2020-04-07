@@ -7,6 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  routes = [
+    {
+      title: 'Home'
+    },
+    {
+      title: 'Pages'
+    },
+    {
+      title: 'Blog'
+    },
+    {
+      title: 'Contact'
+    }
+  ];
+
   constructor() { }
 
   ngOnInit() {

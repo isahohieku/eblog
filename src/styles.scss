@@ -1,10 +1,156 @@
-/* You can add global styles to this file, and also import other style files */
+// Fonts
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap");
+body {
+    font-family: "Roboto", "Open Sans", sans-serif !important;
+}
+// Bootstrap
+@import "assets/scss/bootstrap.scss";
 
 // Variables
 $primary-color: #8050fa;
 $secondary-color: #888888;
 $dark-color: #222222;
 
+.w-100 {
+    width: 100% !important;
+}
+.w-90 {
+    width: 90% !important;
+}
+.w-80 {
+    width: 80% !important;
+}
+.w-75 {
+    width: 75% !important;
+}
+.w-70 {
+    width: 70% !important;
+}
+.w-60 {
+    width: 60% !important;
+}
+.w-50 {
+    width: 50% !important;
+}
+.w-40 {
+    width: 40% !important;
+}
+.w-25 {
+    width: 25% !important;
+}
+.w-20 {
+    width: 20% !important;
+}
+
+@media (min-width: 576px) {
+    .w-sm-100 {
+        width: 100% !important;
+    }
+    .w-sm-80 {
+        width: 80% !important;
+    }
+    .w-sm-75 {
+        width: 75% !important;
+    }
+    .w-sm-60 {
+        width: 60% !important;
+    }
+    .w-sm-50 {
+        width: 50% !important;
+    }
+    .w-sm-40 {
+        width: 40% !important;
+    }
+    .w-sm-25 {
+        width: 25% !important;
+    }
+    .w-sm-20 {
+        width: 20% !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .w-md-100 {
+        width: 100% !important;
+    }
+    .w-md-80 {
+        width: 80% !important;
+    }
+    .w-md-75 {
+        width: 75% !important;
+    }
+    .w-md-60 {
+        width: 60% !important;
+    }
+    .w-md-50 {
+        width: 50% !important;
+    }
+    .w-md-40 {
+        width: 40% !important;
+    }
+    .w-md-25 {
+        width: 25% !important;
+    }
+    .w-md-20 {
+        width: 20% !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .w-lg-100 {
+        width: 100% !important;
+    }
+    .w-lg-80 {
+        width: 80% !important;
+    }
+    .w-lg-75 {
+        width: 75% !important;
+    }
+    .w-lg-60 {
+        width: 60% !important;
+    }
+    .w-lg-50 {
+        width: 50% !important;
+    }
+    .w-lg-40 {
+        width: 40% !important;
+    }
+    .w-lg-25 {
+        width: 25% !important;
+    }
+    .w-lg-20 {
+        width: 20% !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .w-xl-100 {
+        width: 100% !important;
+    }
+    .w-xl-80 {
+        width: 80% !important;
+    }
+    .w-xl-75 {
+        width: 75% !important;
+    }
+    .w-xl-60 {
+        width: 60% !important;
+    }
+    .w-xl-50 {
+        width: 50% !important;
+    }
+    .w-xl-40 {
+        width: 40% !important;
+    }
+    .w-xl-25 {
+        width: 25% !important;
+    }
+    .w-xl-20 {
+        width: 20% !important;
+    }
+}
+
+// Text
 .text- {
     &primary {
         color: $primary-color !important;
@@ -12,4 +158,40 @@ $dark-color: #222222;
     &secondary {
         color: $secondary-color !important;
     }
+
+    &small {
+        font-size: 12px;
+    }
+}
+
+// Background
+.bg- {
+    &primary {
+        background-color: $primary-color !important;
+    }
+    &secondary {
+        background-color: $secondary-color !important;
+    }
+    &dark {
+        background-color: $dark-color !important;
+    }
+}
+
+// Container
+.container {
+    &-1 {
+        max-width: 1170px !important;
+    }
+}
+
+// Opacity
+@mixin opacity($op) {
+    @for $opac from 1 through $op {
+        &-#{$opac} {
+            opacity: $opac / 10;
+        }
+    }
+}
+.opacity {
+    @include opacity((10));
 }
