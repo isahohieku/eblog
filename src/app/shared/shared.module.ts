@@ -35,7 +35,8 @@ import { AuthorComponent } from './components/widgets/author/author.component';
 
     // Components
     PostMetaCardComponent,
-    PostCardComponent
+    PostCardComponent,
+    AuthorComponent
   ]
 })
 export class SharedModule {
