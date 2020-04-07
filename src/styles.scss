@@ -1,11 +1,5 @@
 // Fonts
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap");
-body {
-    font-family: "Roboto", "Open Sans", sans-serif !important;
-    p {
-        line-height: 24px;
-    }
-}
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:300,400,500,700&family=Roboto:300,400,500,700&display=swap");
 // Bootstrap
 @import "assets/scss/bootstrap.scss";
 
@@ -15,6 +9,34 @@ $secondary-color: #888888;
 $secondary-color-2: #eee;
 $secondary-color-3: #dddddd;
 $dark-color: #222222;
+
+body {
+    font-family: "Roboto", "Open Sans", sans-serif !important;
+    p {
+        line-height: 24px;
+    }
+}
+
+@font-face {
+    font-family: Playfair;
+    src: url(./assets/font/PlayfairDisplay-Regular.otf) format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Playfair;
+    src: url(./assets/font/PlayfairDisplay-Black.otf) format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Playfair;
+    src: url(./assets/font/PlayfairDisplay-Bold.otf) format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
 
 .w-100 {
     width: 100% !important;
@@ -181,6 +203,10 @@ $dark-color: #222222;
 
     &-large {
         font-size: 18px;
+    }
+
+    &playfair {
+        font-family: Playfair;
     }
 }
 
