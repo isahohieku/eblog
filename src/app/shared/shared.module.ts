@@ -26,4 +26,10 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
     HttpClientModule,
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule
+    };
+  }
+}
