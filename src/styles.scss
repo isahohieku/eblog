@@ -42,6 +42,10 @@ $dark-color: #222222;
     width: 20% !important;
 }
 
+.w-15 {
+    width: 15% !important;
+}
+
 @media (min-width: 576px) {
     .w-sm-100 {
         width: 100% !important;
@@ -162,6 +166,10 @@ $dark-color: #222222;
     &small {
         font-size: 12px;
     }
+
+    &semi-small {
+        font-size: 14px;
+    }
 }
 
 // Background
@@ -207,4 +215,15 @@ $dark-color: #222222;
     width: 1em;
     height: 1em;
     vertical-align: -0.05em;
-  }
+}
+
+// Buttons
+.btn {
+    border-radius: 100px;
+    border: 1px solid #e9e9e9;
+    background-color: #f9f9ff;
+    line-height: 38px;
+    padding: 0 30px;
+    font-size: 12px;
+    font-weight: 500;
+}
