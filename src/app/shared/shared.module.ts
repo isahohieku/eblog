@@ -8,6 +8,8 @@ import { PostCardComponent } from './components/cards/post-card/post-card.compon
 import { AuthorComponent } from './components/widgets/author/author.component';
 import { PopularPostsComponent } from './components/widgets/popular-posts/popular-posts.component';
 import { PopularPostsCardComponent } from './components/cards/popular-posts-card/popular-posts-card.component';
+import { PopularCategoriesComponent } from './components/widgets/popular-categories/popular-categories.component';
+import { PostCategoriesItemCardComponent } from './components/misc/post-categories-item-card/post-categories-item-card.component';
 // import { AuthInterceptor } from '../auth-interceptor/http-interceptor';
 
 
@@ -17,7 +19,9 @@ import { PopularPostsCardComponent } from './components/cards/popular-posts-card
     PostCardComponent,
     AuthorComponent,
     PopularPostsComponent,
-    PopularPostsCardComponent
+    PopularPostsCardComponent,
+    PopularCategoriesComponent,
+    PostCategoriesItemCardComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +46,9 @@ import { PopularPostsCardComponent } from './components/cards/popular-posts-card
     PostCardComponent,
     AuthorComponent,
     PopularPostsComponent,
-    PopularPostsCardComponent
+    PopularPostsCardComponent,
+    PopularCategoriesComponent,
+    PostCategoriesItemCardComponent
 
   ]
 })
