@@ -6,6 +6,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { PostMetaCardComponent } from './components/cards/post-meta-card/post-meta-card.component';
 import { PostCardComponent } from './components/cards/post-card/post-card.component';
 import { AuthorComponent } from './components/widgets/author/author.component';
+import { PopularPostsComponent } from './components/widgets/popular-posts/popular-posts.component';
+import { PopularPostsCardComponent } from './components/cards/popular-posts-card/popular-posts-card.component';
 // import { AuthInterceptor } from '../auth-interceptor/http-interceptor';
 
 
@@ -13,7 +15,9 @@ import { AuthorComponent } from './components/widgets/author/author.component';
   declarations: [
     PostMetaCardComponent,
     PostCardComponent,
-    AuthorComponent
+    AuthorComponent,
+    PopularPostsComponent,
+    PopularPostsCardComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +40,10 @@ import { AuthorComponent } from './components/widgets/author/author.component';
     // Components
     PostMetaCardComponent,
     PostCardComponent,
-    AuthorComponent
+    AuthorComponent,
+    PopularPostsComponent,
+    PopularPostsCardComponent
+
   ]
 })
 export class SharedModule {
