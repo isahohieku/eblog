@@ -10,6 +10,7 @@ import { PopularPostsComponent } from './components/widgets/popular-posts/popula
 import { PopularPostsCardComponent } from './components/cards/popular-posts-card/popular-posts-card.component';
 import { PopularCategoriesComponent } from './components/widgets/popular-categories/popular-categories.component';
 import { PostCategoriesItemCardComponent } from './components/misc/post-categories-item-card/post-categories-item-card.component';
+import { FormControlComponent } from './components/forms/form-control/form-control.component';
 // import { AuthInterceptor } from '../auth-interceptor/http-interceptor';
 
 
@@ -21,7 +22,8 @@ import { PostCategoriesItemCardComponent } from './components/misc/post-categori
     PopularPostsComponent,
     PopularPostsCardComponent,
     PopularCategoriesComponent,
-    PostCategoriesItemCardComponent
+    PostCategoriesItemCardComponent,
+    FormControlComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +50,8 @@ import { PostCategoriesItemCardComponent } from './components/misc/post-categori
     PopularPostsComponent,
     PopularPostsCardComponent,
     PopularCategoriesComponent,
-    PostCategoriesItemCardComponent
+    PostCategoriesItemCardComponent,
+    FormControlComponent
 
   ]
 })
