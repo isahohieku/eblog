@@ -1,0 +1,18 @@
+<div class="form-control-wrapper">
+    <input class="form-control border-0" [type]="type" #input (input)="onChange($event.target.value)" (blur)="onTouched()"
+        [disabled]="disabled" [placeholder]="placeholder" [ngClass]="customClass">
+
+    <div class="d-flex" *ngIf="isRequired">
+        <span class="v" *ngIf="(isRequired && controlDir && controlDir.control.valid &&
+            controlDir.control.touched) || !isRequired && input.value.length > 0">
+            <i class="fas fa-check"></i>
+        </span>
+
+        <label class="mr-auto">{{label}}
+            <span class="required" *ngIf="isRequired">*</span>
+        </label>
+
+        <span class="error" *ngIf="controlDir && !controlDir.control.valid 
+             && controlDir.control.touched">{{errorMsg}}</span>
+    </div>
+</div>
