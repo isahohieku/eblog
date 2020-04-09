@@ -8,26 +8,32 @@
         <!-- The form -->
         <div class="w-50 h-100 bg-primary2 d-flex align-items-center justify-content-center">
             <div class="wrap w-60">
-                <h4 class="text-center text-uppercase text-white mb-5">Sign in</h4>
+                <h4 class="text-center text-uppercase text-white mb-5">Sign up</h4>
 
                 <form>
                     <div class="input-wrapper">
-                        <app-form-control [type]="'text'" [placeholder]="'Enter email address'" ngModel name="email"
+                        <app-form-control [type]="'username'" [placeholder]="'Username'" ngModel name="email"
                             [customClass]="'input-style w-100 bg-white'"></app-form-control>
                     </div>
 
                     <div class="input-wrapper mt-4">
-                        <app-form-control [type]="'password'" [placeholder]="'Enter password'" ngModel name="email"
+                        <app-form-control [type]="'email'" [placeholder]="'Email address'" ngModel name="email"
+                            [customClass]="'input-style w-100 bg-white'"></app-form-control>
+                    </div>
+
+                    <div class="input-wrapper mt-4">
+                        <app-form-control [type]="'password'" [placeholder]="'Password'" ngModel name="email"
                             [customClass]="'input-style w-100 bg-white'"></app-form-control>
                     </div>
 
                     <div class="btn-wrap d-flex justify-content-end">
-                        <a class="text-white mt-2 ml-auto">Forgot Password?</a>
+                        <span class="text-white mt-2">Have an account?</span>
+                        <a [routerLink]="['/login']" class="text-white mt-2 ml-2 text-underline"> Sign in</a>
                     </div>
 
                     <div class="btn-wrap d-flex justify-content-center">
                         <button
-                            class="btn bg-primary text-white border-0 mt-5 mx-auto text-uppercase w-50">Login</button>
+                            class="btn bg-primary text-white border-0 mt-5 mx-auto text-uppercase w-50">Sign up</button>
                     </div>
                 </form>
             </div>

@@ -6,12 +6,14 @@ import { routes } from './routes';
 
 import { HomeComponent } from '../home/home.component';
 import { LoginComponent } from '../auth/login/login.component';
+import { SignupComponent } from '../auth/signup/signup.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     SharedModule,
