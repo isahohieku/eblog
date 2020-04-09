@@ -65,7 +65,7 @@ import { StickyTopDirective } from './directives/sticky-top.directive';
   ]
 })
 export class SharedModule {
-  static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule
     };
