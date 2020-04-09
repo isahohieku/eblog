@@ -5,11 +5,13 @@ import { SharedModule } from '../shared/shared.module';
 import { routes } from './routes';
 
 import { HomeComponent } from '../home/home.component';
+import { LoginComponent } from '../auth/login/login.component';
 
 
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     SharedModule,

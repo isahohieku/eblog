@@ -1,0 +1,39 @@
+.wrapper {
+    height: 100vh;
+    height: 100vh;
+    background-color: #eee;
+}
+
+.container-1 {
+    height: 80%;
+    width: 1170px;
+    box-shadow: 1px 18px 50px -17px rgba(0, 0, 0, 0.63);
+}
+
+.input-wrapper {
+    border: 1px solid #eee;
+    background: #f9f9ff;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.bg-primary2 {
+    background-color: #a594f9;
+}
+
+.btn {
+    box-shadow: 1px 18px 50px -17px rgba(0, 0, 0, 0.8);
+
+    &:hover,
+    &:active,
+    &:focus {
+        background-color: #8050fa !important;
+    }
+}
+
+.left-pane {
+    background: linear-gradient(0deg, rgba(128, 80, 250, 0.8), rgba(128, 80, 250, 0.8)),
+        url(../../../assets/img/blog.jpg) no-repeat center;
+    height: 100vh;
+    background-size: cover;
+}
