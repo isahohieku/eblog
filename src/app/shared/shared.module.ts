@@ -13,6 +13,7 @@ import { PostCategoriesItemCardComponent } from './components/misc/post-categori
 import { FormControlComponent } from './components/forms/form-control/form-control.component';
 import { SearchWidgetComponent } from './components/widgets/search-widget/search-widget.component';
 import { StickyTopDirective } from './directives/sticky-top.directive';
+import { LoaderComponent } from './components/misc/loader/loader.component';
 // import { AuthInterceptor } from '../auth-interceptor/http-interceptor';
 
 
@@ -29,7 +30,9 @@ import { StickyTopDirective } from './directives/sticky-top.directive';
     SearchWidgetComponent,
 
     // Directives
-    StickyTopDirective
+    StickyTopDirective,
+
+    LoaderComponent
   ],
   imports: [
     CommonModule,
