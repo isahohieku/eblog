@@ -28,11 +28,11 @@ import { LoaderComponent } from './components/misc/loader/loader.component';
     PostCategoriesItemCardComponent,
     FormControlComponent,
     SearchWidgetComponent,
+    LoaderComponent,
 
     // Directives
     StickyTopDirective,
 
-    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -62,6 +62,7 @@ import { LoaderComponent } from './components/misc/loader/loader.component';
     PostCategoriesItemCardComponent,
     FormControlComponent,
     SearchWidgetComponent,
+    LoaderComponent,
 
     // Directives
     StickyTopDirective
