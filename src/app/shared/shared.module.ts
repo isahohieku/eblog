@@ -12,6 +12,7 @@ import { PopularCategoriesComponent } from './components/widgets/popular-categor
 import { PostCategoriesItemCardComponent } from './components/misc/post-categories-item-card/post-categories-item-card.component';
 import { FormControlComponent } from './components/forms/form-control/form-control.component';
 import { SearchWidgetComponent } from './components/widgets/search-widget/search-widget.component';
+import { StickyTopDirective } from './directives/sticky-top.directive';
 // import { AuthInterceptor } from '../auth-interceptor/http-interceptor';
 
 
@@ -25,7 +26,10 @@ import { SearchWidgetComponent } from './components/widgets/search-widget/search
     PopularCategoriesComponent,
     PostCategoriesItemCardComponent,
     FormControlComponent,
-    SearchWidgetComponent
+    SearchWidgetComponent,
+
+    // Directives
+    StickyTopDirective
   ],
   imports: [
     CommonModule,
@@ -54,7 +58,10 @@ import { SearchWidgetComponent } from './components/widgets/search-widget/search
     PopularCategoriesComponent,
     PostCategoriesItemCardComponent,
     FormControlComponent,
-    SearchWidgetComponent
+    SearchWidgetComponent,
+
+    // Directives
+    StickyTopDirective
   ]
 })
 export class SharedModule {

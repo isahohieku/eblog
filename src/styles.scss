@@ -320,3 +320,12 @@ h3 {
         color: $primary-color;
     }
 }
+
+.sticky {
+    top: 0;
+    left: 0;
+    background: rgba(128, 80, 250, 0.9);
+    transition: all 0.5s;
+    position: fixed !important;
+    z-index: 1000;
+}
