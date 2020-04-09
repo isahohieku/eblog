@@ -10,20 +10,22 @@
             <div class="wrap w-60">
                 <h4 class="text-center text-uppercase text-white mb-5">Sign up</h4>
 
-                <form [formGroup]="signupForm" (ngSubmit)="signUp">
+                <form #f="ngForm" (ngSubmit)="signUp(f)">
                     <div class="input-wrapper">
-                        <app-form-control [type]="'username'" [placeholder]="'Username'" [formControlName]="username" name="username"
-                            [customClass]="'input-style w-100 bg-white'"></app-form-control>
+                        <app-form-control [type]="'username'" [isRequired]="true" [placeholder]="'Username'" ngModel
+                            name="username" [pattern]="usernamePattern" [customClass]="'input-style w-100 bg-white'">
+                        </app-form-control>
                     </div>
 
                     <div class="input-wrapper mt-4">
-                        <app-form-control [type]="'email'" [placeholder]="'Email address'" [formControlName]="email" name="email"
-                            [customClass]="'input-style w-100 bg-white'"></app-form-control>
+                        <app-form-control [type]="'email'" [isRequired]="true" [placeholder]="'Email address'" ngModel
+                            name="email" [pattern]="emailPattern" [customClass]="'input-style w-100 bg-white'">
+                        </app-form-control>
                     </div>
 
                     <div class="input-wrapper mt-4">
-                        <app-form-control [type]="'password'" [placeholder]="'Password'" [formControlName]="password" name="password"
-                            [customClass]="'input-style w-100 bg-white'"></app-form-control>
+                        <app-form-control [type]="'password'" [isRequired]="true" [placeholder]="'Password'" ngModel
+                            name="password" [customClass]="'input-style w-100 bg-white'"></app-form-control>
                     </div>
 
                     <div class="btn-wrap d-flex justify-content-end">
@@ -32,8 +34,8 @@
                     </div>
 
                     <div class="btn-wrap d-flex justify-content-center">
-                        <button
-                            class="btn bg-primary text-white border-0 mt-5 mx-auto text-uppercase w-50 py-1">Sign up <app-loader></app-loader></button>
+                        <button [disabled]="loading" class="btn bg-primary text-white border-0 mt-5 mx-auto text-uppercase w-50 py-1">Sign up
+                            <app-loader *ngIf="loading"></app-loader></button>
                     </div>
                 </form>
             </div>
