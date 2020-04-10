@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { UtilService } from '../shared/services/util.service';
+import { UtilService } from '../core/services/util.service';
 import { Router } from '@angular/router';
 
 @Injectable({
