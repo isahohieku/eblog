@@ -15,7 +15,7 @@
                     <div class="d-flex align-items-center">
                         <ul>
                             <li *ngFor="let item of routes">
-                                <a class="text-white text-uppercase text-small font-weight-bold">{{ item.title }}</a>
+                                <a class="text-white text-uppercase text-small font-weight-bold" [routerLink]="[item?.route]" routerLinkActive="router-link-active" >{{ item.title }}</a>
                             </li>
                             <!-- Login -->
                             <li class="mr-1" *ngIf="!isLogin">

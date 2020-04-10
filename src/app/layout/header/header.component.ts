@@ -11,16 +11,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   routes = [
     {
-      title: 'Home'
+      title: 'Home',
+      route: '/'
     },
     {
-      title: 'Pages'
+      title: 'Articles',
+      route: '/articles'
     },
     {
-      title: 'Blog'
+      title: 'Blog',
+      route: '/'
     },
     {
-      title: 'Contact'
+      title: 'Contact',
+      route: '/'
     }
   ];
 

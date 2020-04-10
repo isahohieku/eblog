@@ -7,13 +7,15 @@ import { routes } from './routes';
 import { HomeComponent } from '../home/home.component';
 import { LoginComponent } from '../auth/login/login.component';
 import { SignupComponent } from '../auth/signup/signup.component';
+import { ArticleComponent } from '../article/article.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ArticleComponent
   ],
   imports: [
     SharedModule,

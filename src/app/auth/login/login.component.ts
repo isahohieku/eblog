@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UtilService } from 'src/app/shared/services/util.service';
-import { CrudService } from 'src/app/shared/services/crud.service';
+import { UtilService } from 'src/app/core/services/util.service';
+import { CrudService } from 'src/app/core/services/crud.service';
 import { Router } from '@angular/router';
 
 import UserResponse from '../../core/models/user';
