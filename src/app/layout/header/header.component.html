@@ -30,7 +30,7 @@
                             <!-- After sign in -->
                             <li *ngIf="isLogin">
                                 <!-- Add article -->
-                                <a class="text-white text-uppercase text-small font-weight-bold">
+                                <a class="text-white text-uppercase text-small font-weight-bold" [routerLink]="['/editor']" routerLinkActive="router-link-active" >
                                     Add Article
                                 </a>
                             </li>
@@ -62,3 +62,10 @@
         </div>
     </div>
 </nav>
+
+<!-- Jumbotron -->
+<div class="jumbo w-100 d-flex justify-content-center" [ngClass]="{'resize': resizeJumbo}">
+    <div class="w-75 align-self-center">
+        <h1 class="text-center text-capitalize text-white text-playfair">The beautiful art of blogging</h1>
+    </div>
+</div>

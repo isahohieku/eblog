@@ -8,6 +8,7 @@ import { HomeComponent } from '../home/home.component';
 import { LoginComponent } from '../auth/login/login.component';
 import { SignupComponent } from '../auth/signup/signup.component';
 import { ArticleComponent } from '../article/article.component';
+import { EditorComponent } from '../editor/editor.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ArticleComponent } from '../article/article.component';
     HomeComponent,
     LoginComponent,
     SignupComponent,
-    ArticleComponent
+    ArticleComponent,
+    EditorComponent
   ],
   imports: [
     SharedModule,

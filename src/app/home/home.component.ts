@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 
@@ -7,7 +7,7 @@ import { AuthService } from '../auth/auth.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   isLogin = false;
   loginStatusSubscription: Subscription;
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
 
   }
 
-  ngDestroy() {
+  ngOnDestroy() {
     this.loginStatusSubscription.unsubscribe();
   }
 
