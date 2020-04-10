@@ -18,15 +18,15 @@
                                 <a class="text-white text-uppercase text-small font-weight-bold">{{ item.title }}</a>
                             </li>
                             <!-- Login -->
-                            <li class="mr-1">
+                            <li class="mr-1" *ngIf="!isLogin">
                                 <button type="button" class="btn cta-1 text-small text-uppercase font-weight-bold" [routerLink]="['/login']">Login</button>
                             </li>
                             <!-- Signup -->
-                            <li class="mx-1">
+                            <li class="mx-1" *ngIf="!isLogin">
                                 <button type="button" class="btn cta-2 text-small text-uppercase font-weight-bold" [routerLink]="['/signup']">Sign up</button>
                             </li>
                             <!-- After sign in -->
-                            <li class="d-none">
+                            <li *ngIf="isLogin">
                                 <div class="dropdown">
                                     <a class="btn transparent-btn p-2 text-white text-semi-small" role="button" id="dropdownMenuLink"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -36,9 +36,10 @@
                                     </a>
 
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <span class="dropdown-menu-arrow"></span>
+                                        <a class="dropdown-item text-small text-primary" href="#">Action</a>
+                                        <a class="dropdown-item text-small text-primary" href="#">Another action</a>
+                                        <a class="dropdown-item text-small text-primary" href="#">Something else here</a>
                                     </div>
                                 </div>
                             </li>

@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { UtilService } from 'src/app/shared/services/util.service';
 import { CrudService } from 'src/app/shared/services/crud.service';
 import { Router } from '@angular/router';
+import UserResponse from 'src/app/core/models/user';
 
 @Component({
   selector: 'app-signup',
@@ -40,7 +41,8 @@ export class SignupComponent implements OnInit {
     };
 
     this.crud.postResource(url, data)
-      .subscribe(res => { this.loading = false; this.router.navigateByUrl('/login'); }, e => { this.loading = false; console.log(e); });
+      .subscribe((res: UserResponse) => { this.loading = false; this.router.navigateByUrl('/login'); }
+        , e => { this.loading = false; console.log(e); });
   }
 
 }

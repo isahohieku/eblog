@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  isLogin = false;
+  loginStatusSubscription: Subscription;
+
+  constructor(private auth: AuthService) {
+    this.loginStatusSubscription = this.auth.listenToLoginStatus().subscribe((res: boolean) => this.isLogin = res);
+  }
 
   ngOnInit() {
+
+  }
+
+  ngDestroy() {
+    this.loginStatusSubscription.unsubscribe();
   }
 
 }

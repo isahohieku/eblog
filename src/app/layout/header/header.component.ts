@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   routes = [
     {
@@ -22,9 +24,17 @@ export class HeaderComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  isLogin = false;
+  loginStatusSubscription: Subscription;
 
-  ngOnInit() {
+  constructor(private auth: AuthService) {
+    this.loginStatusSubscription = this.auth.listenToLoginStatus().subscribe((res: boolean) => this.isLogin = res);
+  }
+
+  ngOnInit() {}
+
+  ngOnDestroy() {
+    this.loginStatusSubscription.unsubscribe();
   }
 
 }
