@@ -48,10 +48,16 @@
 
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                         <span class="dropdown-menu-arrow"></span>
-                                        <a class="dropdown-item text-small text-primary" href="#">Action</a>
-                                        <a class="dropdown-item text-small text-primary" href="#">Another action</a>
-                                        <a class="dropdown-item text-small text-primary" href="#">Something else
-                                            here</a>
+                                        <a class="dropdown-item text-small text-primary" href="#">
+                                            <svg class="lnr lnr-cog">
+                                                <use xlink:href="#lnr-cog"></use>
+                                            </svg> Settings
+                                        </a>
+                                        <a class="dropdown-item text-small text-primary mousePointer" (click)="logout()">
+                                            <svg class="lnr lnr-power-switch">
+                                                <use xlink:href="#lnr-power-switch"></use>
+                                            </svg> Logout
+                                        </a>
                                     </div>
                                 </div>
                             </li>
