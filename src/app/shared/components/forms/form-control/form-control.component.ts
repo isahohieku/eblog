@@ -16,6 +16,7 @@ export class FormControlComponent implements OnInit, ControlValueAccessor {
 
   @Input() type = 'text';
   @Input() isRequired = false;
+  @Input() textarea = false;
   @Input() pattern = '';
   @Input() label: string;
   @Input() placeholder: string;

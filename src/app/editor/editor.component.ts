@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-editor',
@@ -12,4 +13,7 @@ export class EditorComponent implements OnInit {
   ngOnInit() {
   }
 
+  addArticle(form: NgForm) {
+    console.log(form.value);
+  }
 }

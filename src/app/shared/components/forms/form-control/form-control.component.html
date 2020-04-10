@@ -1,6 +1,9 @@
 <div class="form-control-wrapper">
     <input class="form-control border-0" [type]="type" #input (input)="onChange($event.target.value)" (blur)="onTouched()"
-        [disabled]="disabled" [placeholder]="placeholder" [ngClass]="customClass">
+        [disabled]="disabled" [placeholder]="placeholder" [ngClass]="customClass" *ngIf="!textarea">
+
+        <textarea class="form-control border-0" #input (input)="onChange($event.target.value)" (blur)="onTouched()"
+        [disabled]="disabled" [placeholder]="placeholder" [ngClass]="customClass" *ngIf="textarea"></textarea>
 
         <!-- d-flex -->
     <div class="d-none">
