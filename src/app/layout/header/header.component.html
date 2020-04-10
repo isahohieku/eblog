@@ -19,17 +19,28 @@
                             </li>
                             <!-- Login -->
                             <li class="mr-1" *ngIf="!isLogin">
-                                <button type="button" class="btn cta-1 text-small text-uppercase font-weight-bold" [routerLink]="['/login']">Login</button>
+                                <button type="button" class="btn cta-1 text-small text-uppercase font-weight-bold"
+                                    [routerLink]="['/login']">Login</button>
                             </li>
                             <!-- Signup -->
                             <li class="mx-1" *ngIf="!isLogin">
-                                <button type="button" class="btn cta-2 text-small text-uppercase font-weight-bold" [routerLink]="['/signup']">Sign up</button>
+                                <button type="button" class="btn cta-2 text-small text-uppercase font-weight-bold"
+                                    [routerLink]="['/signup']">Sign up</button>
                             </li>
                             <!-- After sign in -->
                             <li *ngIf="isLogin">
-                                <div class="dropdown">
-                                    <a class="btn transparent-btn p-2 text-white text-semi-small" role="button" id="dropdownMenuLink"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <!-- Add article -->
+                                <a class="text-white text-uppercase text-small font-weight-bold">
+                                    Add Article
+                                </a>
+                            </li>
+
+                            <li *ngIf="isLogin">
+                                <!-- User Dropdown -->
+                                <div class="dropdown mousePointer">
+                                    <a class="btn transparent-btn p-2 text-white text-semi-small" role="button"
+                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
                                         <svg class="lnr lnr-user">
                                             <use xlink:href="#lnr-user"></use>
                                         </svg>
@@ -39,7 +50,8 @@
                                         <span class="dropdown-menu-arrow"></span>
                                         <a class="dropdown-item text-small text-primary" href="#">Action</a>
                                         <a class="dropdown-item text-small text-primary" href="#">Another action</a>
-                                        <a class="dropdown-item text-small text-primary" href="#">Something else here</a>
+                                        <a class="dropdown-item text-small text-primary" href="#">Something else
+                                            here</a>
                                     </div>
                                 </div>
                             </li>

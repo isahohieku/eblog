@@ -15,6 +15,10 @@ body {
     }
 }
 
+.mousePointer {
+    cursor: pointer;
+}
+
 @font-face {
     font-family: Playfair;
     src: url(./assets/font/PlayfairDisplay-Regular.otf) format("truetype");
