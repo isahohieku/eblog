@@ -14,7 +14,9 @@ import { FormControlComponent } from './components/forms/form-control/form-contr
 import { SearchWidgetComponent } from './components/widgets/search-widget/search-widget.component';
 import { StickyTopDirective } from './directives/sticky-top.directive';
 import { LoaderComponent } from './components/misc/loader/loader.component';
-// import { AuthInterceptor } from '../auth-interceptor/http-interceptor';
+import { AuthInterceptor } from '../auth/auth-interceptor/http-interceptor';
+import { TextareaComponent } from './components/forms/textarea/textarea.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 
 @NgModule({
@@ -26,12 +28,16 @@ import { LoaderComponent } from './components/misc/loader/loader.component';
     PopularPostsCardComponent,
     PopularCategoriesComponent,
     PostCategoriesItemCardComponent,
+    TextareaComponent,
     FormControlComponent,
     SearchWidgetComponent,
     LoaderComponent,
+    PaginationComponent,
 
     // Directives
     StickyTopDirective,
+
+
 
   ],
   imports: [
@@ -42,7 +48,7 @@ import { LoaderComponent } from './components/misc/loader/loader.component';
     HttpClientModule
   ],
   providers: [
-    // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   exports: [
     // Modules
@@ -60,9 +66,11 @@ import { LoaderComponent } from './components/misc/loader/loader.component';
     PopularPostsCardComponent,
     PopularCategoriesComponent,
     PostCategoriesItemCardComponent,
+    TextareaComponent,
     FormControlComponent,
     SearchWidgetComponent,
     LoaderComponent,
+    PaginationComponent,
 
     // Directives
     StickyTopDirective

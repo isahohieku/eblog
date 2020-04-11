@@ -9,6 +9,7 @@ import { LoginComponent } from '../auth/login/login.component';
 import { SignupComponent } from '../auth/signup/signup.component';
 import { ArticleComponent } from '../article/article.component';
 import { EditorComponent } from '../editor/editor.component';
+import { SettingsComponent } from '../settings/settings.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { EditorComponent } from '../editor/editor.component';
     LoginComponent,
     SignupComponent,
     ArticleComponent,
-    EditorComponent
+    EditorComponent,
+    SettingsComponent
   ],
   imports: [
     SharedModule,

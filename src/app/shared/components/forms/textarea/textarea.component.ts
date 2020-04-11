@@ -5,18 +5,17 @@ import {
 } from '@angular/forms';
 
 @Component({
-  selector: 'app-form-control',
-  templateUrl: './form-control.component.html',
-  styleUrls: ['./form-control.component.scss']
+  selector: 'app-textarea',
+  templateUrl: './textarea.component.html',
+  styleUrls: ['./textarea.component.scss']
 })
-export class FormControlComponent implements OnInit, ControlValueAccessor {
+export class TextareaComponent implements OnInit, ControlValueAccessor {
 
   @ViewChild('input', { static: false }) input: ElementRef;
   disabled;
 
-  @Input() type = 'text';
   @Input() isRequired = false;
-  @Input() pattern = '';
+  @Input() textarea = false;
   @Input() label: string;
   @Input() placeholder: string;
   @Input() errorMsg: string;
@@ -32,9 +31,6 @@ export class FormControlComponent implements OnInit, ControlValueAccessor {
     const validators: ValidatorFn[] = this.control.validator ? [this.control.validator] : [];
     if (this.isRequired) {
       validators.push(Validators.required);
-    }
-    if (this.pattern) {
-      validators.push(Validators.pattern(this.pattern));
     }
 
     this.control.setValidators(validators);

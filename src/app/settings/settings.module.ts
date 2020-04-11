@@ -1,18 +1,17 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared/shared.module';
-import { EditorComponent } from './editor.component';
+import { SettingsComponent } from './settings.component';
 import { routes } from './routes';
+import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 
 
+
 @NgModule({
-  declarations: [EditorComponent],
+  declarations: [SettingsComponent],
   imports: [
     SharedModule,
     RouterModule.forChild(routes)
   ],
-  exports: [
-    RouterModule
-  ]
+  exports: [RouterModule]
 })
-export class EditorModule { }
+export class SettingsModule { }

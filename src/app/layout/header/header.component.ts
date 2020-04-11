@@ -30,6 +30,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   ];
 
+  noJumboUrls = ['/settings'];
+
+  noJumbo = false;
+
   isLogin = false;
   loginStatusSubscription: Subscription;
   routerSubscription: Subscription;
@@ -39,11 +43,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.loginStatusSubscription = this.auth.listenToLoginStatus().subscribe((res: boolean) => this.isLogin = res);
     this.routerSubscription = this.router.events.subscribe(res => {
       if ((res instanceof NavigationEnd)) {
-        if (res.url !== '/') {
+        if (!this.noJumboUrls.includes(res.url) && !(res.url === '/')) {
           this.resizeJumbo = true;
-        } else {
-          this.resizeJumbo = false;
+          this.noJumbo = false;
+          return;
         }
+
+        if (res.url === '/') {
+          this.resizeJumbo = false;
+          this.noJumbo = false;
+          return;
+        }
+
+        if (this.noJumboUrls.includes(res.url)) {
+          this.noJumbo = true;
+          this.resizeJumbo = false;
+          return;
+        }
+
+        this.resizeJumbo = false;
+
       }
     });
   }

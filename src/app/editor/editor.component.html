@@ -11,12 +11,12 @@
 
                 <div class="input-wrapper mt-4">
                     <app-form-control [isRequired]="true" [type]="'text'" [placeholder]="'Enter what article is about'"
-                        ngModel name="about" [customClass]="'input-style w-100 bg-white'"></app-form-control>
+                        ngModel name="description" [customClass]="'input-style w-100 bg-white'"></app-form-control>
                 </div>
 
                 <div class="input-wrapper-2 mt-4">
-                    <app-form-control [isRequired]="true" [textarea]="true" [placeholder]="'Enter article markdown'"
-                        ngModel name="markdown" [customClass]="'input-style w-100 bg-white tex'"></app-form-control>
+                    <app-textarea [isRequired]="true" [placeholder]="'Enter article markdown'"
+                        ngModel name="body" [customClass]="'input-style w-100 bg-white tex'"></app-textarea>
                 </div>
 
                 <div class="input-wrapper mt-4">

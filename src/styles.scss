@@ -287,6 +287,10 @@ a:link {
     color: black;
 }
 
+a.bg-primary:focus, a.bg-primary:hover, button.bg-primary:focus, button.bg-primary:hover {
+    background-color: $primary-color !important;
+}
+
 h3 {
     a:hover {
         color: $primary-color;
