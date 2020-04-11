@@ -25,6 +25,10 @@ export class CrudService {
     return this.http.get(`${this.util.baseUrl}${url}`, this.header).pipe(share());
   }
 
+  getFile(url): Observable<any> {
+    return this.http.get(url, {responseType: 'text'}).pipe(share());
+  }
+
   postResource(url, data): Observable<any> {
     return this.http.post(`${this.util.baseUrl}${url}`, data, this.header).pipe(share());
   }

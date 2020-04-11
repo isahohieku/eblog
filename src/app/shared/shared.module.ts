@@ -17,6 +17,9 @@ import { LoaderComponent } from './components/misc/loader/loader.component';
 import { AuthInterceptor } from '../auth/auth-interceptor/http-interceptor';
 import { TextareaComponent } from './components/forms/textarea/textarea.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { TagListComponent } from './components/cards/tag-list/tag-list.component';
+import { AuthorSmallComponent } from './components/cards/author-small/author-small.component';
+import { ParsedMdComponent } from './components/cards/parsed-md/parsed-md.component';
 
 
 @NgModule({
@@ -33,6 +36,9 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     SearchWidgetComponent,
     LoaderComponent,
     PaginationComponent,
+    TagListComponent,
+    AuthorSmallComponent,
+    ParsedMdComponent,
 
     // Directives
     StickyTopDirective,
@@ -71,6 +77,9 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     SearchWidgetComponent,
     LoaderComponent,
     PaginationComponent,
+    TagListComponent,
+    AuthorSmallComponent,
+    ParsedMdComponent,
 
     // Directives
     StickyTopDirective

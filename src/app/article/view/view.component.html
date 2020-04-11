@@ -1,1 +1,41 @@
+<!-- Main body -->
+<main class="my-5">
+    <div class="container container-1 mt-5">
+        <div class="row mt-5">
+            <div class="col-8">
+                <!-- Figure -->
+                <div class="wrapper post-figure"></div>
+                <!-- title -->
+                <h2 class="w-75 text-playfair mt-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi </h2>
+                <!-- Taglist and author small card -->
+                <div class="container mt-4">
+                    <div class="row">
+                        <div class="col pl-0">
+                            <!-- Tag list -->
+                            <app-tag-list></app-tag-list>
+                        </div>
+                        <div class="col d-flex justify-content-end">
+                            <!-- Author card -->
+                            <app-author-small></app-author-small>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="container mt-4">
+                    <div class="row">
+                        <div class="col">
+                            <app-parsed-md></app-parsed-md>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col">
+                <app-search-widget></app-search-widget>
+                <app-author></app-author>
+                <app-popular-posts></app-popular-posts>
+                <app-popular-categories></app-popular-categories>
+            </div>
+        </div>
+    </div>
+</main>
