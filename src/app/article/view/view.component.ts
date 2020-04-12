@@ -5,6 +5,7 @@ import { ArticleResponse, Article } from 'src/app/core/models/article';
 import { Tag } from 'src/app/core/models/tags';
 import { UtilService } from 'src/app/core/services/util.service';
 import { User } from 'src/app/core/models/user';
+import { Comment, CommentsResponse } from 'src/app/core/models/comment';
 
 @Component({
   selector: 'app-view',
@@ -19,6 +20,8 @@ export class ViewComponent implements OnInit {
   tags: Tag[];
   userObj: User;
   deleteLoading: boolean;
+  getCommentsLoading: boolean;
+  comments: Comment[] = [];
 
   constructor(private route: ActivatedRoute, private crud: CrudService, private util: UtilService, private router: Router) {
     this.route.params.subscribe((res: Params) => this.slug = res.slug);
@@ -27,6 +30,7 @@ export class ViewComponent implements OnInit {
   ngOnInit() {
     this.getUserObject();
     this.getArticle();
+    this.getComments();
   }
 
   getUserObject() {
@@ -44,6 +48,48 @@ export class ViewComponent implements OnInit {
         this.tags = res.article.tagList;
       },
         e => { this.loading = false; console.log(e); });
+  }
+
+  getComments() {
+    const url = `articles/${this.slug}/comments`;
+
+    this.getCommentsLoading = true;
+    this.crud.getResource(url)
+      .subscribe((res: CommentsResponse) => {
+        this.getCommentsLoading = false;
+        this.comments = res.comments;
+      },
+        e => { this.getCommentsLoading = false; console.log(e); });
+  }
+
+  favouriteArticle() {
+    const url = `articles/${this.slug}/favourite`;
+
+    !this.article.favorited ?
+      this.article.favorited = true : this.article.favorited = !this.article.favorited;
+
+    const data = { article: this.article };
+
+
+    this.article.favorited ?
+      this.crud.postResource(url, data)
+        .subscribe((res: CommentsResponse) => {
+          console.log(res);
+        },
+          e => { console.log(e); }) :
+      this.crud.deleteResource(url)
+        .subscribe((res: CommentsResponse) => {
+          console.log(res);
+        },
+          e => { console.log(e); });
+  }
+
+  commentAdded(comment: Comment) {
+    this.comments.push(comment);
+  }
+
+  deleteComment(index: number) {
+    this.comments.splice(index, 1);
   }
 
   deleteArticle() {

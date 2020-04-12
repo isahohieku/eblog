@@ -1,9 +1,14 @@
-.post-figure {
-    height: 350px;
+.avatar {
+    height: 60px;
+    width: 60px;
     overflow: hidden;
-    background-image: url(../../../assets/img/jumbotron.jpg);
+    background-image: url(../../../../../assets/img/avatar.jpg);
     background-size: cover;
     background-position: center;
+}
+
+.text-wrapper {
+    width: calc(100% - 60px);
 }
 
 .icon {
@@ -13,15 +18,10 @@
     height: 40px;
     width: 40px;
     padding: 0;
-    transition: all 0.3s;
+    transition: all .3s;
 
     &:hover {
         background-color: #8050fa !important;
         color: white !important;
     }
-}
-
-.favourite {
-    background-color: #8050fa !important;
-    color: white !important;
 }

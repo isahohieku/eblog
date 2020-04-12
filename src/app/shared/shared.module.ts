@@ -21,6 +21,8 @@ import { TagListComponent } from './components/cards/tag-list/tag-list.component
 import { AuthorSmallComponent } from './components/cards/author-small/author-small.component';
 import { ParsedMdComponent } from './components/cards/parsed-md/parsed-md.component';
 import { TagItemComponent } from './components/misc/tag-item/tag-item.component';
+import { CommentFormComponent } from './components/forms/comment-form/comment-form.component';
+import { CommentComponent } from './components/cards/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { TagItemComponent } from './components/misc/tag-item/tag-item.component'
     AuthorSmallComponent,
     ParsedMdComponent,
     TagItemComponent,
+    CommentFormComponent,
+    CommentComponent,
 
     // Directives
     StickyTopDirective,
@@ -81,6 +85,8 @@ import { TagItemComponent } from './components/misc/tag-item/tag-item.component'
     AuthorSmallComponent,
     ParsedMdComponent,
     TagItemComponent,
+    CommentFormComponent,
+    CommentComponent,
 
     // Directives
     StickyTopDirective,

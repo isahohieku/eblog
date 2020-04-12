@@ -6,10 +6,20 @@
                 <!-- Delete or modify -->
                 <div class="row" *ngIf="article?.author?.username === userObj?.username">
                     <div class="col d-flex justify-content-end">
-                        <a class="btn text-primary icon mousePointer" [routerLink]="['/editor/', article?.slug]">
-                            <span class="lnr lnr-pencil"></span> 
+                        <!-- Favourite Article -->
+                        <button [disabled]="favouriteLoading" type="button"
+                            class="btn text-primary icon mousePointer ml-2" [ngClass]="{'favourite': article?.favorited}"
+                            (click)="favouriteArticle()">
+                            <span class="lnr lnr-heart"></span>
+                        </button>
+                        <!-- Edit Article -->
+                        <a class="btn text-primary icon mousePointer ml-2" *ngIf="article?.slug"
+                            [routerLink]="['/editor/', article?.slug]">
+                            <span class="lnr lnr-pencil"></span>
                         </a>
-                        <button [disabled]="deleteLoading" type="button" class="btn text-primary icon mousePointer ml-2" (click)="deleteArticle()">
+                        <!-- Delete Article -->
+                        <button [disabled]="deleteLoading" type="button" class="btn text-primary icon mousePointer ml-2"
+                            (click)="deleteArticle()">
                             <span class="lnr lnr-trash" *ngIf="!deleteLoading"></span>
                             <i *ngIf="deleteLoading" class="fas fa-spinner fa-spin"></i>
                         </button>
@@ -33,10 +43,26 @@
                     </div>
                 </div>
 
+                <!-- Parsed article body -->
                 <div class="container mt-4">
                     <div class="row">
-                        <div class="col">
+                        <div class="col px-0">
                             <app-parsed-md *ngIf="article" [article]="article"></app-parsed-md>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comments -->
+                <div class="mt-4" *ngIf="userObj?.username">
+                    <app-comment *ngFor="let comment of comments; let i = index" [comment]="comment"
+                        (commentDeleted)="deleteComment(i)"></app-comment>
+                </div>
+
+                <!-- Comment form -->
+                <div class="container mt-4" *ngIf="userObj?.username">
+                    <div class="row">
+                        <div class="col px-0">
+                            <app-comment-form [slug]="slug" (commentAdded)="commentAdded($event)"></app-comment-form>
                         </div>
                     </div>
                 </div>
