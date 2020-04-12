@@ -14,7 +14,7 @@ export const routes: Routes = [
             { path: '', component: HomeComponent },
             { path: 'articles', component: ArticleComponent, loadChildren: '../article/article.module#ArticleModule' },
             { path: 'editor', component: EditorComponent },
-            { path: 'editor/:id', component: EditorComponent },
+            { path: 'editor/:slug', component: EditorComponent },
             { path: 'settings', component: SettingsComponent }
         ]
     },

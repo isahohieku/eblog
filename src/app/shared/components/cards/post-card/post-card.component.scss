@@ -2,11 +2,22 @@
     height: 350px;
     overflow: hidden;
     background-image: url(../../../../../assets/img/jumbotron.jpg);
-    background-size: cover;
+    background-size: 100%;
     background-position: center;
+    transition: all .3s;
 }
 
 .meta-card {
     top: 40%;
     left: -70px;
+}
+
+.post-card:hover > .btn {
+    background: #8050fa;
+    color: #fff;
+    border-color: #8050fa;
+}
+
+.post-card:hover > .post-figure {
+    background-size: 150%;
 }

@@ -20,7 +20,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { TagListComponent } from './components/cards/tag-list/tag-list.component';
 import { AuthorSmallComponent } from './components/cards/author-small/author-small.component';
 import { ParsedMdComponent } from './components/cards/parsed-md/parsed-md.component';
-
+import { TagItemComponent } from './components/misc/tag-item/tag-item.component';
 
 @NgModule({
   declarations: [
@@ -39,10 +39,10 @@ import { ParsedMdComponent } from './components/cards/parsed-md/parsed-md.compon
     TagListComponent,
     AuthorSmallComponent,
     ParsedMdComponent,
+    TagItemComponent,
 
     // Directives
     StickyTopDirective,
-
 
 
   ],
@@ -80,9 +80,11 @@ import { ParsedMdComponent } from './components/cards/parsed-md/parsed-md.compon
     TagListComponent,
     AuthorSmallComponent,
     ParsedMdComponent,
+    TagItemComponent,
 
     // Directives
-    StickyTopDirective
+    StickyTopDirective,
+
   ]
 })
 export class SharedModule {
