@@ -11,9 +11,11 @@
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                    <app-post-card></app-post-card>
-                    <app-post-card></app-post-card>
-                    <app-post-card></app-post-card>
+                    <app-post-card *ngFor="let article of articles" [article]="article"></app-post-card>
+
+                    <div *ngIf="loading" class="d-flex justify-content-center align-items-center p-5 my-5">
+                        <app-loader [primary]="true"></app-loader>
+                    </div>
 
                     <!-- Pagination -->
                     <div class="d-flex justify-content-center mb-5">

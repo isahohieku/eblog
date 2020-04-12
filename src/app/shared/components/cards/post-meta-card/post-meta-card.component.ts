@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Author } from 'src/app/core/models/author';
 
 @Component({
   selector: 'app-post-meta-card',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post-meta-card.component.scss']
 })
 export class PostMetaCardComponent implements OnInit {
-
+  @Input() author: Author;
   constructor() { }
 
   ngOnInit() {

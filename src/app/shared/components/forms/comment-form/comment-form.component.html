@@ -1,0 +1,18 @@
+<div class="container container-1">
+    <div class="row">
+        <div class="col px-0">
+            <form #f="ngForm" (ngSubmit)="addComment()">
+                <div class="input-wrapper-2 mt-4">
+                    <app-textarea [isRequired]="true" [placeholder]="'Enter comment'" ngModel
+                        name="body" [customClass]="'input-style w-100 bg-white comment-tex'"></app-textarea>
+                </div>
+
+                <div class="btn-wrap d-flex justify-content-end">
+                    <button [disabled]="loading"
+                        class="btn bg-primary text-white border-0 mt-3 text-uppercase">Comment
+                        <app-loader *ngIf="loading"></app-loader></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

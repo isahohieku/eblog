@@ -1,21 +1,18 @@
-<div class="wrapper position-relative mb-5 pb-5">
+<div class="wrapper position-relative mb-5 pb-5 post-card">
     <!-- Figure -->
     <div class="wrapper post-figure"></div>
 
     <!-- Topic -->
-    <h4 class="mt-3 text-playfair"><a href="#">Hello World, Look what I found</a></h4>
+    <h4 class="mt-3 text-playfair"><a href="#">{{ article?.title }}</a></h4>
 
     <!-- snippet -->
-    <p class="mt-3 mb-0 text-semi-small text-secondary">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt sint, earum distinctio sequi quo quos libero
-        maxime neque explicabo animi velit praesentium repellat dolorum sed atque iure nisi minus error!
-    </p>
+    <p class="mt-3 mb-0 text-semi-small text-secondary">{{ article?.description }}</p>
 
     <!-- Continue button -->
-    <a class="btn text-uppercase font-weight-bold mt-3">Continue Reading</a>
+    <a *ngIf="article" class="btn text-uppercase font-weight-bold mt-3" [routerLink]="['/articles', article.slug]">Continue Reading</a>
 
     <!-- Post card meta card -->
     <div class="position-absolute meta-card w-100">
-        <app-post-meta-card></app-post-meta-card>
+        <app-post-meta-card [author]="article?.author"></app-post-meta-card>
     </div>
 </div>

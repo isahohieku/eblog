@@ -15,6 +15,7 @@ export class SettingsComponent implements OnInit {
   email: string;
   bio: string;
   image: string;
+  token: string;
   loading: boolean;
 
   constructor(private util: UtilService, private crud: CrudService) { }
@@ -24,6 +25,8 @@ export class SettingsComponent implements OnInit {
     this.username = this.userObj.username;
     this.email = this.userObj.email;
     this.bio = this.userObj.bio;
+    this.token = this.userObj.token;
+    this.image = this.userObj.image;
   }
 
   getUserObject() {
@@ -37,7 +40,6 @@ export class SettingsComponent implements OnInit {
 
     this.userObj.bio = this.bio;
     this.userObj.image = this.image;
-    delete this.userObj.token;
 
     const url = 'users';
     const data = { user: this.userObj };

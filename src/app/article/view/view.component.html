@@ -3,28 +3,66 @@
     <div class="container container-1 mt-5">
         <div class="row mt-5">
             <div class="col-8">
+                <!-- Delete or modify -->
+                <div class="row" *ngIf="article?.author?.username === userObj?.username">
+                    <div class="col d-flex justify-content-end">
+                        <!-- Favourite Article -->
+                        <button [disabled]="favouriteLoading" type="button"
+                            class="btn text-primary icon mousePointer ml-2" [ngClass]="{'favourite': article?.favorited}"
+                            (click)="favouriteArticle()">
+                            <span class="lnr lnr-heart"></span>
+                        </button>
+                        <!-- Edit Article -->
+                        <a class="btn text-primary icon mousePointer ml-2" *ngIf="article?.slug"
+                            [routerLink]="['/editor/', article?.slug]">
+                            <span class="lnr lnr-pencil"></span>
+                        </a>
+                        <!-- Delete Article -->
+                        <button [disabled]="deleteLoading" type="button" class="btn text-primary icon mousePointer ml-2"
+                            (click)="deleteArticle()">
+                            <span class="lnr lnr-trash" *ngIf="!deleteLoading"></span>
+                            <i *ngIf="deleteLoading" class="fas fa-spinner fa-spin"></i>
+                        </button>
+                    </div>
+                </div>
                 <!-- Figure -->
                 <div class="wrapper post-figure"></div>
                 <!-- title -->
-                <h2 class="w-75 text-playfair mt-2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi </h2>
+                <h2 class="w-75 text-playfair mt-2">{{ article?.title }}</h2>
                 <!-- Taglist and author small card -->
                 <div class="container mt-4">
                     <div class="row">
                         <div class="col pl-0">
                             <!-- Tag list -->
-                            <app-tag-list></app-tag-list>
+                            <app-tag-list *ngIf="tags?.length" [tags]="tags"></app-tag-list>
                         </div>
                         <div class="col d-flex justify-content-end">
                             <!-- Author card -->
-                            <app-author-small></app-author-small>
+                            <app-author-small [date]="article?.createdAt" [author]="article?.author"></app-author-small>
                         </div>
                     </div>
                 </div>
 
+                <!-- Parsed article body -->
                 <div class="container mt-4">
                     <div class="row">
-                        <div class="col">
-                            <app-parsed-md></app-parsed-md>
+                        <div class="col px-0">
+                            <app-parsed-md *ngIf="article" [article]="article"></app-parsed-md>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comments -->
+                <div class="mt-4" *ngIf="userObj?.username">
+                    <app-comment *ngFor="let comment of comments; let i = index" [comment]="comment"
+                        (commentDeleted)="deleteComment(i)"></app-comment>
+                </div>
+
+                <!-- Comment form -->
+                <div class="container mt-4" *ngIf="userObj?.username">
+                    <div class="row">
+                        <div class="col px-0">
+                            <app-comment-form [slug]="slug" (commentAdded)="commentAdded($event)"></app-comment-form>
                         </div>
                     </div>
                 </div>
