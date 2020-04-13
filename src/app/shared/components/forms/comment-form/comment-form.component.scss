@@ -1,3 +1,10 @@
-.texs {
-    background-color: yellow !important;
+.btn:hover {
+    color: #8050fa !important;
+    border: 1px solid #8050fa !important;
+    background-color: white !important;
+}
+
+.btn {
+    border: 1px solid #8050fa !important;
+    transition: all .3s !important;
 }

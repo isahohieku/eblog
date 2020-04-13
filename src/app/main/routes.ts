@@ -6,6 +6,7 @@ import { SignupComponent } from '../auth/signup/signup.component';
 import { ArticleComponent } from '../article/article.component';
 import { EditorComponent } from '../editor/editor.component';
 import { SettingsComponent } from '../settings/settings.component';
+import { ProfileComponent } from '../profile/profile.component';
 
 export const routes: Routes = [
     {
@@ -15,7 +16,8 @@ export const routes: Routes = [
             { path: 'articles', component: ArticleComponent, loadChildren: '../article/article.module#ArticleModule' },
             { path: 'editor', component: EditorComponent },
             { path: 'editor/:slug', component: EditorComponent },
-            { path: 'settings', component: SettingsComponent }
+            { path: 'settings', component: SettingsComponent },
+            { path: 'profile/:username', component: ProfileComponent }
         ]
     },
     { path: 'login', component: LoginComponent},

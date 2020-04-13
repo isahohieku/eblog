@@ -2,10 +2,11 @@
     <div class="row">
         <div class="col d-flex justify-content-end">
             <div class="text-wrapper mr-2">
-                <h6 class="text-playfair text-right text-capitalize mb-0 text-semi-small">{{ author?.username }}</h6>
+                <h6 class="text-playfair text-right text-capitalize mb-0 text-semi-small mousePointer"
+                    [routerLink]="['/profile/', author?.username]">{{ author?.username }}</h6>
                 <p class="text-secondary text-right text-small mb-0 mt-1">{{ formatedDate }}</p>
             </div>
-            <div class="avatar"></div>
+            <div class="avatar mousePointer" [routerLink]="['/profile/', author?.username]"></div>
         </div>
     </div>
 </div>

@@ -41,7 +41,9 @@ export class SettingsComponent implements OnInit {
     this.userObj.bio = this.bio;
     this.userObj.image = this.image;
 
-    const url = 'users';
+    delete this.userObj.email;
+
+    const url = 'user';
     const data = { user: this.userObj };
 
     this.loading = true;

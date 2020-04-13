@@ -46,6 +46,9 @@
 
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                         <span class="dropdown-menu-arrow"></span>
+                                        <a class="dropdown-item text-small text-primary" [routerLink]="['/profile', userObj?.username]">
+                                            <span class="lnr lnr-user"></span> Profile
+                                        </a>
                                         <a class="dropdown-item text-small text-primary" [routerLink]="['/settings']">
                                             <span class="lnr lnr-cog"></span> Settings
                                         </a>

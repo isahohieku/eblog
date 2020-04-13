@@ -4,7 +4,7 @@
         <div class="row mt-5">
             <div class="col-8">
                 <!-- Delete or modify -->
-                <div class="row" *ngIf="article?.author?.username === userObj?.username">
+                <div class="row" *ngIf="userObj?.username">
                     <div class="col d-flex justify-content-end">
                         <!-- Favourite Article -->
                         <button [disabled]="favouriteLoading" type="button"
@@ -13,13 +13,13 @@
                             <span class="lnr lnr-heart"></span>
                         </button>
                         <!-- Edit Article -->
-                        <a class="btn text-primary icon mousePointer ml-2" *ngIf="article?.slug"
+                        <a class="btn text-primary icon mousePointer ml-2" *ngIf="(article?.author?.username === userObj?.username) && article?.slug"
                             [routerLink]="['/editor/', article?.slug]">
                             <span class="lnr lnr-pencil"></span>
                         </a>
                         <!-- Delete Article -->
                         <button [disabled]="deleteLoading" type="button" class="btn text-primary icon mousePointer ml-2"
-                            (click)="deleteArticle()">
+                            (click)="deleteArticle()" *ngIf="article?.author?.username === userObj?.username">
                             <span class="lnr lnr-trash" *ngIf="!deleteLoading"></span>
                             <i *ngIf="deleteLoading" class="fas fa-spinner fa-spin"></i>
                         </button>

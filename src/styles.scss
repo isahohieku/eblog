@@ -285,9 +285,13 @@ a:focus,
 a:link {
     text-decoration: none;
     color: black;
+    outline: none;
 }
 
-a.bg-primary:focus, a.bg-primary:hover, button.bg-primary:focus, button.bg-primary:hover {
+a.bg-primary:focus,
+a.bg-primary:hover,
+button.bg-primary:focus,
+button.bg-primary:hover {
     background-color: $primary-color !important;
 }
 
@@ -307,7 +311,8 @@ h3 {
     box-shadow: none;
 }
 
-.tex, .comment-tex {
+.tex,
+.comment-tex {
     border-radius: 10px;
     height: 300px !important;
 }
@@ -346,4 +351,98 @@ h3 {
     background: rgba(128, 80, 250, 0.9) !important;
     position: fixed !important;
     z-index: 1000;
+}
+
+.nav-tabs {
+    border: 0;
+}
+
+.nav-link {
+    padding-left: 50px;
+    padding-right: 50px;
+    transition: all 0.3s;
+    text-transform: uppercase;
+}
+
+.nav-tabs .nav-link {
+    border-radius: 50px !important;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    color: white;
+    background-color: $primary-color;
+    border: 0;
+}
+
+.ngx-pagination a,
+.ngx-pagination button, .ngx-pagination button:active {
+    border: 0;
+    color: $secondary-color !important;
+    box-shadow: none !important;
+}
+
+.ngx-pagination .current {
+    background-color: $primary-color !important;
+    color: white !important;
+}
+
+.ngx-pagination .current:hover {
+    background-color: $primary-color;
+    color: white;
+}
+
+.ngx-pagination .pagination-previous a::before,
+.ngx-pagination .pagination-previous.disabled::before {
+    content: "\e879" !important;
+    display: inline-block;
+    fill: currentColor;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.05em;
+    font-family: Linearicons-Free;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    margin-right: 0 !important;
+}
+
+.ngx-pagination .pagination-next a::after,
+.ngx-pagination .pagination-next.disabled::after {
+    content: "\e87a" !important;
+    display: inline-block;
+    fill: currentColor;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.05em;
+    font-family: Linearicons-Free;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    margin-left: 0 !important;
+}
+
+.ngx-pagination a:hover,
+.ngx-pagination button:hover {
+    background-color: $primary-color !important;
+    color: white !important;
+    text-decoration: none !important;
+    outline: none !important;
+}
+
+.ngx-pagination a,
+.ngx-pagination button:active {
+    box-shadow: none !important;
+}
+
+.ngx-pagination li:focus {
+    outline: none !important;
 }

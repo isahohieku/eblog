@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Article } from 'src/app/core/models/article';
 
 @Component({
   selector: 'app-pagination',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pagination.component.scss']
 })
 export class PaginationComponent implements OnInit {
-
+  p = 1;
+  @Input() items: Article[];
   constructor() { }
 
   ngOnInit() {
+  }
+
+  pageChanged(page) {
+    this.p = page;
   }
 
 }

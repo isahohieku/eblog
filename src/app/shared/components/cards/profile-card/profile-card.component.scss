@@ -1,0 +1,13 @@
+.avatar {
+    background: url(../../../../../assets/img/avatar.jpg) no-repeat center;
+    height: 400px;
+    background-size: cover;
+    background-position-y: 30%;
+}
+
+.wrapper {
+    -webkit-box-shadow: 0px 0px 21px -1px rgba(0, 0, 0, 0.52);
+    -moz-box-shadow: 0px 0px 21px -1px rgba(0, 0, 0, 0.52);
+    box-shadow: 0px 0px 21px -1px rgba(0, 0, 0, 0.52);
+    margin-top: -150px;
+}

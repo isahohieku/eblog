@@ -10,8 +10,11 @@
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                    <app-post-card *ngFor="let article of articles" [article]="article"></app-post-card>
+                <div class="tab-pane fade show active pt-5" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <!-- Global -->
+                    <app-post-card
+                        *ngFor="let article of articles | paginate: { itemsPerPage: 5, currentPage: pageArticles, id: 'global' }"
+                        [article]="article"></app-post-card>
 
                     <div *ngIf="loading" class="d-flex justify-content-center align-items-center p-5 my-5">
                         <app-loader [primary]="true"></app-loader>
@@ -19,13 +22,29 @@
 
                     <!-- Pagination -->
                     <div class="d-flex justify-content-center mb-5">
-                        <app-pagination></app-pagination>
+                        <pagination-controls (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
+                            autoHide="true" responsive="true" screenReaderPaginationLabel="Pagination" previousLabel="" nextLabel=""
+                            screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page" id="global">
+                        </pagination-controls>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                    <app-post-card></app-post-card>
-                    <app-post-card></app-post-card>
-                    <app-post-card></app-post-card>
+                <div class="tab-pane fade pt-5" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <!-- Feed -->
+                    <app-post-card
+                        *ngFor="let article of articlesFeed | paginate: { itemsPerPage: 5, currentPage: pageFeed, id: 'feed' }"
+                        [article]="article"></app-post-card>
+
+                    <div *ngIf="loading" class="d-flex justify-content-center align-items-center p-5 my-5">
+                        <app-loader [primary]="true"></app-loader>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="d-flex justify-content-center mb-5">
+                        <pagination-controls (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
+                            autoHide="true" responsive="true" screenReaderPaginationLabel="Pagination" previousLabel="" nextLabel=""
+                            screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page" id="feed">
+                        </pagination-controls>
+                    </div>
                 </div>
             </div>
         </div>

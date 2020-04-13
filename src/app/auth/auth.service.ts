@@ -33,6 +33,6 @@ export class AuthService {
   logout() {
     localStorage.clear();
     this.setLoginStatus(false);
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/login');
   }
 }

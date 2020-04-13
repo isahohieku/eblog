@@ -2,16 +2,57 @@
 <main class="my-5">
     <div class="container container-1 mt-5">
         <div class="row">
-            <div class="col-8">
-                <app-post-card *ngFor="let article of articles" [article]="article"></app-post-card>
+            <div class="col-8 pt-5">
+                <div *ngIf="userObj">
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
+                                role="tab" aria-controls="nav-home" aria-selected="true">Feed</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                                role="tab" aria-controls="nav-profile" aria-selected="false">Global</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active pt-5" id="nav-home" role="tabpanel"
+                            aria-labelledby="nav-home-tab">
+                            <app-post-card *ngFor="let article of articlesFeed" [article]="article"></app-post-card>
 
-                <div *ngIf="loading" class="d-flex justify-content-center align-items-center p-5 my-5">
-                    <app-loader [primary]="true"></app-loader>
+                            <div *ngIf="feedLoading" class="d-flex justify-content-center align-items-center p-5 my-5">
+                                <app-loader [primary]="true"></app-loader>
+                            </div>
+
+                            <!-- Pagination -->
+                            <div *ngIf="!feedLoading" class="d-flex justify-content-center mb-5">
+                                <app-pagination [items]="articlesFeed"></app-pagination>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade pt-5" id="nav-profile" role="tabpanel"
+                            aria-labelledby="nav-profile-tab">
+                            <app-post-card *ngFor="let article of articles" [article]="article"></app-post-card>
+
+                            <div *ngIf="loading" class="d-flex justify-content-center align-items-center p-5 my-5">
+                                <app-loader [primary]="true"></app-loader>
+                            </div>
+
+                            <!-- Pagination -->
+                            <div *ngIf="!loading" class="d-flex justify-content-center mb-5">
+                                <app-pagination [items]="articles"></app-pagination>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Pagination -->
-                <div class="d-flex justify-content-center mb-5">
-                    <app-pagination></app-pagination>
+                <div *ngIf="!userObj">
+                    <app-post-card *ngFor="let article of articlesFeed" [article]="article"></app-post-card>
+
+                    <div *ngIf="feedLoading" class="d-flex justify-content-center align-items-center p-5 my-5">
+                        <app-loader [primary]="true"></app-loader>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div *ngIf="!feedLoading" class="d-flex justify-content-center mb-5">
+                        <app-pagination></app-pagination>
+                    </div>
                 </div>
             </div>
             <div class="col">

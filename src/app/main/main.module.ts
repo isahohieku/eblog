@@ -10,6 +10,7 @@ import { SignupComponent } from '../auth/signup/signup.component';
 import { ArticleComponent } from '../article/article.component';
 import { EditorComponent } from '../editor/editor.component';
 import { SettingsComponent } from '../settings/settings.component';
+import { ProfileComponent } from '../profile/profile.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { SettingsComponent } from '../settings/settings.component';
     SignupComponent,
     ArticleComponent,
     EditorComponent,
-    SettingsComponent
+    SettingsComponent,
+    ProfileComponent
   ],
   imports: [
     SharedModule,

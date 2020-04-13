@@ -63,7 +63,7 @@ export class ViewComponent implements OnInit {
   }
 
   favouriteArticle() {
-    const url = `articles/${this.slug}/favourite`;
+    const url = `articles/${this.slug}/favorite`;
 
     !this.article.favorited ?
       this.article.favorited = true : this.article.favorited = !this.article.favorited;

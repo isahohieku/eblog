@@ -17,11 +17,9 @@ export class AuthorSmallComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    setTimeout(() => {
       const date = new Date(this.date);
       const time = getTime(date);
       this.formatedDate = `${date.getDate()} ${getMonth(date.getMonth())}, ${date.getFullYear()} ${time}`;
-    }, 1000);
   }
 
 }
