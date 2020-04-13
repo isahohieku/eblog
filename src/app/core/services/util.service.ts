@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class UtilService {
 
   getUserObject() {
     if (localStorage.getItem('userObj')) {
-      return JSON.parse(localStorage.getItem('userObj'));
+      return JSON.parse(localStorage.getItem('userObj')) as User;
     }
     return null;
   }

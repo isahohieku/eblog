@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/core/models/user';
 import { CrudService } from 'src/app/core/services/crud.service';
 import ProfileResponse from 'src/app/core/models/profile';
+import { UtilService } from 'src/app/core/services/util.service';
 
 @Component({
   selector: 'app-profile-card',
@@ -11,9 +12,16 @@ import ProfileResponse from 'src/app/core/models/profile';
 export class ProfileCardComponent implements OnInit {
   @Input() user: User;
   followLoading: boolean;
-  constructor(private crud: CrudService) { }
+  userObj: User;
+  constructor(private crud: CrudService, private util: UtilService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getUserObject();
+  }
+
+  getUserObject() {
+    this.userObj = this.util.getUserObject();
+  }
 
   follow() {
     const url = `profiles/${this.user.username}/follow`;

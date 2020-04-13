@@ -2,7 +2,7 @@
     <div class="avatar d-flex justify-content-center align-items-end">
 
         <!-- Follow -->
-        <button [disabled]="followLoading" class="btn bg-primary w-80 border-0 text-white mb-3 text-semi-small text-uppercase"
+        <button *ngIf="userObj?.username !== user?.username" [disabled]="followLoading" class="btn bg-primary w-80 border-0 text-white mb-3 text-semi-small text-uppercase"
             (click)="follow()">{{ user?.following ? 'Unfollow ' : 'Follow '}}
         <i class="fas fa-spinner fa-spin" *ngIf="followLoading"></i></button>
     </div>

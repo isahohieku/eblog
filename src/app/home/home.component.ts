@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   articlesFeed: Article[] = [];
   loginStatusSubscription: Subscription;
   userObj: User;
+  page = 1;
 
   constructor(private auth: AuthService, private crud: CrudService, private util: UtilService) {
     this.loginStatusSubscription = this.auth.listenToLoginStatus().subscribe((res: boolean) => this.isLogin = res);
@@ -46,6 +47,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.crud.getResource(url)
       .subscribe((res: ArticlesResponse) => { this.loading = false; this.articles = res.articles; },
         e => {this.loading = false; console.log(e); });
+  }
+
+  pageChanged(e) {
+    this.page = e;
   }
 
   getFeeds() {
