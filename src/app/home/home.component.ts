@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getObject();
     this.getArticles();
-    if (this.userObj.username) {
+    if (this.userObj !== null) {
       setTimeout(() => {
         this.getFeeds();
       }, 100);

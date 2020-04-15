@@ -1,13 +1,25 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, Self } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, forwardRef } from '@angular/core';
 import {
   ControlValueAccessor, AbstractControl,
-  ValidatorFn, Validators, NgControl
+  ValidatorFn, Validators, ValidationErrors, NG_VALUE_ACCESSOR, NG_VALIDATORS
 } from '@angular/forms';
 
 @Component({
   selector: 'app-textarea',
   templateUrl: './textarea.component.html',
-  styleUrls: ['./textarea.component.scss']
+  styleUrls: ['./textarea.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => TextareaComponent),
+      multi: true
+    },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: TextareaComponent,
+      multi: true
+    }
+  ]
 })
 export class TextareaComponent implements OnInit, ControlValueAccessor {
 
@@ -22,20 +34,9 @@ export class TextareaComponent implements OnInit, ControlValueAccessor {
   @Input() customClass: string;
   control: AbstractControl;
 
-  constructor(@Self() public controlDir: NgControl) {
-    this.controlDir.valueAccessor = this;
-  }
+  constructor() { }
 
-  ngOnInit() {
-    this.control = this.controlDir.control;
-    const validators: ValidatorFn[] = this.control.validator ? [this.control.validator] : [];
-    if (this.isRequired) {
-      validators.push(Validators.required);
-    }
-
-    this.control.setValidators(validators);
-    this.control.updateValueAndValidity();
-  }
+  ngOnInit() { }
 
   onChange(event) { }
 
@@ -55,6 +56,15 @@ export class TextareaComponent implements OnInit, ControlValueAccessor {
 
   setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  validate(c: AbstractControl): ValidationErrors {
+    const validators: ValidatorFn[] = [];
+    if (this.isRequired) {
+      validators.push(Validators.required);
+    }
+
+    return validators;
   }
 
 }

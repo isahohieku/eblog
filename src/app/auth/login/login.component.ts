@@ -17,6 +17,9 @@ export class LoginComponent implements OnInit {
   emailPattern: string;
   loading: boolean;
 
+  email = '';
+  password = '';
+
   @ViewChild('f', { static: false }) form: NgForm;
 
   constructor(
@@ -38,8 +41,8 @@ export class LoginComponent implements OnInit {
 
     const data = {
       user: {
-        email: this.form.controls.email.value,
-        password: this.form.controls.password.value
+        email: this.email,
+        password: this.password
       }
     };
 

@@ -1,13 +1,13 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, Self } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Self, forwardRef } from '@angular/core';
 import {
   ControlValueAccessor, AbstractControl,
-  ValidatorFn, Validators, NgControl
+  ValidatorFn, Validators, NgControl, NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, ValidationErrors
 } from '@angular/forms';
 
 @Component({
   selector: 'app-form-control',
   templateUrl: './form-control.component.html',
-  styleUrls: ['./form-control.component.scss']
+  styleUrls: ['./form-control.component.scss'],
 })
 export class FormControlComponent implements OnInit, ControlValueAccessor {
 
@@ -23,13 +23,13 @@ export class FormControlComponent implements OnInit, ControlValueAccessor {
   @Input() customClass: string;
   control: AbstractControl;
 
-  constructor(@Self() public controlDir: NgControl) {
+  constructor(@Self() private controlDir: NgControl) {
     this.controlDir.valueAccessor = this;
   }
 
   ngOnInit() {
-    this.control = this.controlDir.control;
-    const validators: ValidatorFn[] = this.control.validator ? [this.control.validator] : [];
+    const control = this.controlDir.control;
+    const validators: ValidatorFn[] = control.validator ? [control.validator] : [];
     if (this.isRequired) {
       validators.push(Validators.required);
     }
@@ -37,11 +37,12 @@ export class FormControlComponent implements OnInit, ControlValueAccessor {
       validators.push(Validators.pattern(this.pattern));
     }
 
-    this.control.setValidators(validators);
-    this.control.updateValueAndValidity();
-  }
+    control.setValidators(validators);
+    control.updateValueAndValidity();
+   }
 
-  onChange(event) { }
+  onChange(event) {
+  }
 
   onTouched() { }
 
@@ -60,5 +61,4 @@ export class FormControlComponent implements OnInit, ControlValueAccessor {
   setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
-
 }

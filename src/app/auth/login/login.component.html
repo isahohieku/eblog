@@ -12,12 +12,12 @@
 
                 <form #f="ngForm" (ngSubmit)="login()">
                     <div class="input-wrapper">
-                        <app-form-control [type]="'email'" [placeholder]="'Enter email address'" ngModel name="email"
+                        <app-form-control [type]="'email'" [placeholder]="'Enter email address'" [(ngModel)]="email" name="email"
                             [pattern]="emailPattern" [customClass]="'input-style w-100 bg-white'"></app-form-control>
                     </div>
 
                     <div class="input-wrapper mt-4">
-                        <app-form-control [type]="'password'" [placeholder]="'Enter password'" ngModel name="password"
+                        <app-form-control [type]="'password'" [placeholder]="'Enter password'" [(ngModel)]="password" name="password"
                             [customClass]="'input-style w-100 bg-white'"></app-form-control>
                     </div>
 

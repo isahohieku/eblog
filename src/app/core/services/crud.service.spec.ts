@@ -1,12 +1,22 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { CrudService } from './crud.service';
 
 describe('CrudService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+  let httpTestingController: HttpTestingController;
+  let crud: CrudService;
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [CrudService]
+    });
+
+    httpTestingController = TestBed.get(HttpTestingController);
+    crud = TestBed.get(CrudService);
+  });
 
   it('should be created', () => {
-    const service: CrudService = TestBed.get(CrudService);
-    expect(service).toBeTruthy();
+    expect(crud).toBeTruthy();
   });
 });

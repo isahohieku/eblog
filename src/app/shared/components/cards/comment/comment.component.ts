@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Comment, CommentsResponse, CommentResponse } from 'src/app/core/models/comment';
+import { Comment, CommentResponse } from 'src/app/core/models/comment';
 import getTime from '../../../util/time';
 import getMonth from '../../../util/month';
 import { User } from 'src/app/core/models/user';
@@ -22,9 +22,11 @@ export class CommentComponent implements OnInit {
 
   ngOnInit() {
     this.getUserObject();
-    const date = new Date(this.comment.createdAt);
-    const time = getTime(date);
-    this.formatedDate = `${date.getDate()} ${getMonth(date.getMonth())}, ${date.getFullYear()} ${time}`;
+    if (this.comment && this.comment.author.username) {
+      const date = new Date(this.comment.createdAt);
+      const time = getTime(date);
+      this.formatedDate = `${date.getDate()} ${getMonth(date.getMonth())}, ${date.getFullYear()} ${time}`;
+    }
   }
 
   getUserObject() {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UtilService } from '../core/services/util.service';
 import UserResponse, { User } from '../core/models/user';
 import { NgForm } from '@angular/forms';
@@ -18,6 +18,8 @@ export class SettingsComponent implements OnInit {
   token: string;
   loading: boolean;
 
+  @ViewChild('f', { static: false }) form: NgForm;
+
   constructor(private util: UtilService, private crud: CrudService) { }
 
   ngOnInit() {
@@ -33,8 +35,8 @@ export class SettingsComponent implements OnInit {
     this.userObj = this.util.getUserObject();
   }
 
-  updateData(form: NgForm) {
-    if (form.invalid) {
+  updateData() {
+    if (this.form.invalid) {
       return;
     }
 
@@ -49,7 +51,8 @@ export class SettingsComponent implements OnInit {
     this.loading = true;
     this.crud.updateResource(url, data)
       .subscribe((res: UserResponse) => {
-        console.log(res);
+        this.userObj = res.user;
+        this.util.setUserObject(this.userObj);
         this.loading = false;
       }, e => { this.loading = false; console.log(e); });
     console.log(this.userObj);

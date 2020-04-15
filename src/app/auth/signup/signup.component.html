@@ -12,19 +12,19 @@
 
                 <form #f="ngForm" (ngSubmit)="signUp(f)">
                     <div class="input-wrapper">
-                        <app-form-control [type]="'username'" [isRequired]="true" [placeholder]="'Username'" ngModel
+                        <app-form-control [type]="'username'" [isRequired]="true" [placeholder]="'Username'" [(ngModel)]="username"
                             name="username" [pattern]="usernamePattern" [customClass]="'input-style w-100 bg-white'">
                         </app-form-control>
                     </div>
 
                     <div class="input-wrapper mt-4">
-                        <app-form-control [type]="'email'" [isRequired]="true" [placeholder]="'Email address'" ngModel
+                        <app-form-control [type]="'email'" [isRequired]="true" [placeholder]="'Email address'" [(ngModel)]="email"
                             name="email" [pattern]="emailPattern" [customClass]="'input-style w-100 bg-white'">
                         </app-form-control>
                     </div>
 
                     <div class="input-wrapper mt-4">
-                        <app-form-control [type]="'password'" [isRequired]="true" [placeholder]="'Password'" ngModel
+                        <app-form-control [type]="'password'" [isRequired]="true" [placeholder]="'Password'" [(ngModel)]="password"
                             name="password" [customClass]="'input-style w-100 bg-white'"></app-form-control>
                     </div>
 

@@ -14,6 +14,9 @@ export class SignupComponent implements OnInit {
   emailPattern: string;
   usernamePattern: string;
   loading: boolean;
+  username = '';
+  email = '';
+  password = '';
 
   @ViewChild('f', { static: false }) form: NgForm;
 
@@ -34,9 +37,9 @@ export class SignupComponent implements OnInit {
 
     const data = {
       user: {
-        username: this.form.controls.username.value,
-        email: this.form.controls.email.value,
-        password: this.form.controls.password.value
+        username: this.username,
+        email: this.email,
+        password: this.password
       }
     };
 
