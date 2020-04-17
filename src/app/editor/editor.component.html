@@ -1,30 +1,35 @@
 <div class="container container-1 mt-5">
     <div class="row">
         <div class="col">
-            <h3 class="mt-5 text-playfair text-center">Start writing your Article</h3>
+            <h3 *ngIf="!loading" class="mt-5 text-playfair text-center">Start {{ slug ? 'modifying' : 'writing' }} your
+                Article</h3>
+            <h3 *ngIf="loading" class="mt-5 text-playfair text-center">Fetching Article...</h3>
 
             <form #f="ngForm" (ngSubmit)="addArticle(f)" class="form mx-auto my-5">
                 <div class="input-wrapper">
                     <app-form-control [isRequired]="true" [type]="'text'" [placeholder]="'Enter article title'"
-                        [(ngModel)]="title" name="title" [customClass]="'input-style w-100 bg-white'">
+                        [(ngModel)]="title" name="title" [customClass]="'input-style w-100 bg-white'"
+                        [disabled]="disabled">
                     </app-form-control>
                 </div>
 
                 <div class="input-wrapper mt-4">
                     <app-form-control [isRequired]="true" [type]="'text'" [placeholder]="'Enter what article is about'"
-                        [(ngModel)]="description" name="description" [customClass]="'input-style w-100 bg-white'">
+                        [(ngModel)]="description" name="description" [customClass]="'input-style w-100 bg-white'"
+                        [disabled]="disabled">
                     </app-form-control>
                 </div>
 
                 <div class="input-wrapper-2 mt-4">
                     <app-textarea [isRequired]="true" [placeholder]="'Enter article markdown'" [(ngModel)]="body"
-                        name="body" [customClass]="'input-style w-100 bg-white tex'"></app-textarea>
+                        name="body" [customClass]="'input-style w-100 bg-white tex'" [disabled]="disabled"
+                        ></app-textarea>
                 </div>
 
                 <div class="input-wrapper mt-4">
                     <app-form-control [type]="'text'" (keydown.enter)="addTag($event);"
                         [placeholder]="'Enter a tag and hit enter to add'" [(ngModel)]="tag" name="tag"
-                        [customClass]="'input-style w-100 bg-white'"></app-form-control>
+                        [customClass]="'input-style w-100 bg-white'" [disabled]="disabled"></app-form-control>
                 </div>
 
                 <div class="wrapper mt-4">
@@ -32,12 +37,13 @@
                     </app-tag-item>
                 </div>
 
-                <div class="btn-wrap d-flex justify-content-center">
+                <div *ngIf="!loading" class="btn-wrap d-flex justify-content-center">
                     <button type="button"
                         class="btn bg-primary text-white border-0 mt-5 mx-auto text-uppercase w-40">Preview</button>
-                    <button [disabled]="loading"
-                        class="btn bg-primary text-white border-0 mt-5 mx-auto text-uppercase w-40">{{ slug ? 'Update' : 'Publish'}} article
-                        <app-loader *ngIf="loading"></app-loader></button>
+                    <button [disabled]="addingLoading"
+                        class="btn bg-primary text-white border-0 mt-5 mx-auto text-uppercase w-40">{{ slug ? 'Update' : 'Publish'}}
+                        article
+                        <app-loader *ngIf="addingLoading"></app-loader></button>
                 </div>
             </form>
         </div>

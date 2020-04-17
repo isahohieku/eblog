@@ -1,14 +1,12 @@
 <div class="widget-wrapper p-4">
     <!-- Avatar -->
-    <div class="wrapper avatar"></div>
+    <div class="wrapper avatar" [ngStyle]="author && {'background-image': 'url(' + userAvatar + ')'}"></div>
     <!-- Name -->
-    <h5 class="text-large mt-3 text-playfair">Isah Ohieku</h5>
+    <h5 class="text-large mt-3 text-playfair">{{ username }}</h5>
     <!-- Occupation -->
     <p class="text-semi-small text-secondary text-uppercase">Senior Frontend developer</p>
     <!-- Bio -->
-    <p class="text-semi-small text-secondary mt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas provident cum
-        possimus illum neque dolor suscipit ab, aut ex laboriosam. At animi consequuntur nisi magni nemo, doloremque
-        voluptatum aliquid voluptatibus.
+    <p class="text-semi-small text-secondary mt-3">{{ bio }}
     </p>
 
     <nav class="mt-3">

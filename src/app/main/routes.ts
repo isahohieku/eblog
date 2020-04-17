@@ -7,6 +7,8 @@ import { ArticleComponent } from '../article/article.component';
 import { EditorComponent } from '../editor/editor.component';
 import { SettingsComponent } from '../settings/settings.component';
 import { ProfileComponent } from '../profile/profile.component';
+import { AuthGuard } from '../auth/auth.guard';
+import { ErrorComponent } from '../shared/components/error/error.component';
 
 export const routes: Routes = [
     {
@@ -14,12 +16,13 @@ export const routes: Routes = [
         children: [
             { path: '', component: HomeComponent },
             { path: 'articles', component: ArticleComponent, loadChildren: '../article/article.module#ArticleModule' },
-            { path: 'editor', component: EditorComponent },
-            { path: 'editor/:slug', component: EditorComponent },
-            { path: 'settings', component: SettingsComponent },
+            { path: 'editor', component: EditorComponent, canActivate: [AuthGuard] },
+            { path: 'editor/:slug', component: EditorComponent, canActivate: [AuthGuard] },
+            { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
             { path: 'profile/:username', component: ProfileComponent }
         ]
     },
     { path: 'login', component: LoginComponent},
     { path: 'signup', component: SignupComponent},
+    { path: '**', component: ErrorComponent }
 ];

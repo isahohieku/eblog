@@ -11,8 +11,7 @@ import { ArticleService } from '../article.service';
   styleUrls: ['./articles.component.scss']
 })
 export class ArticlesComponent implements OnInit {
-  pageArticles = 1;
-  pageFeed = 1;
+  page = 1;
   articles: Article[] = [];
   articlesFeed: Article[] = [];
   loading: boolean;
@@ -52,7 +51,7 @@ export class ArticlesComponent implements OnInit {
   }
 
   pageChanged(e) {
-    this.pageArticles = e;
+    this.page = e;
   }
 
 }

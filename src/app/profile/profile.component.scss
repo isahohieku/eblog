@@ -1,12 +1,8 @@
 .header {
-    background: linear-gradient(0deg, rgba(128, 80, 250, 0.7), rgba(128, 80, 250, 0.7)),
-        url(../../assets/img/avatar.jpg) no-repeat center;
+    // background: linear-gradient(0deg, rgba(128, 80, 250, 0.7), rgba(128, 80, 250, 0.7)),
+    //     url(../../assets/img/avatar.jpg) no-repeat center;
     height: 300px;
-    background-size: cover;
-    background-position-y: 30%;
-    transition: all 0.3s;
-}
-
-.text-white {
-    color: #f4efef !important;
+    background-size: cover !important;
+    background-position-y: 30% !important;
+    transition: all 0.3s !important;
 }

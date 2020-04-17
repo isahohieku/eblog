@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   loading: boolean;
   user: User;
   articles: Article[];
+  header = 'assets/img/avatar-icon.jpg';
 
   constructor(private route: ActivatedRoute, private router: Router, private crud: CrudService, private article: ArticleService) {
     this.routeSubscription = this.route.params.subscribe((res: Params) => {
@@ -42,6 +43,7 @@ export class ProfileComponent implements OnInit {
       .subscribe((res: ProfileResponse) => {
         this.loading = false;
         this.user = res.profile;
+        this.header = this.user.image;
       },
         e => { this.loading = false; console.log(e); });
   }

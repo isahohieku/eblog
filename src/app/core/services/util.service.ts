@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../models/user';
+declare var $: any;
 
 @Injectable({
   providedIn: 'root'
@@ -27,15 +28,14 @@ export class UtilService {
   }
 
   setToken(data: string): void {
-    localStorage.setItem('token', JSON.stringify(data));
+    localStorage.setItem('token', data);
     this.token.next(data);
   }
 
   getToken(): string {
     let token;
-    token = this.token.value;
     if (localStorage.getItem('token')) {
-      token = localStorage.getItem('token').split('"')[1];
+      token = localStorage.getItem('token');
     }
     return token;
   }

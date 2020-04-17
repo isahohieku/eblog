@@ -1,32 +1,20 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, forwardRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Self, ElementRef, forwardRef } from '@angular/core';
 import {
   ControlValueAccessor, AbstractControl,
-  ValidatorFn, Validators, ValidationErrors, NG_VALUE_ACCESSOR, NG_VALIDATORS
+  ValidatorFn, Validators, ValidationErrors, NG_VALUE_ACCESSOR, NG_VALIDATORS, NgControl
 } from '@angular/forms';
 
 @Component({
   selector: 'app-textarea',
   templateUrl: './textarea.component.html',
-  styleUrls: ['./textarea.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => TextareaComponent),
-      multi: true
-    },
-    {
-      provide: NG_VALIDATORS,
-      useExisting: TextareaComponent,
-      multi: true
-    }
-  ]
+  styleUrls: ['./textarea.component.scss']
 })
 export class TextareaComponent implements OnInit, ControlValueAccessor {
 
   @ViewChild('input', { static: false }) input: ElementRef;
-  disabled;
+  @Input() disabled = false;
 
-  @Input() isRequired = false;
+  @Input() isRequired = true;
   @Input() textarea = false;
   @Input() label: string;
   @Input() placeholder: string;
@@ -34,9 +22,19 @@ export class TextareaComponent implements OnInit, ControlValueAccessor {
   @Input() customClass: string;
   control: AbstractControl;
 
-  constructor() { }
+  constructor(@Self() private controlDir: NgControl) {
+    this.controlDir.valueAccessor = this;
+  }
+  ngOnInit() {
+    const control = this.controlDir.control;
+    const validators: ValidatorFn[] = control.validator ? [control.validator] : [];
+    if (this.isRequired) {
+      validators.push(Validators.required);
+    }
 
-  ngOnInit() { }
+    control.setValidators(validators);
+    control.updateValueAndValidity();
+  }
 
   onChange(event) { }
 
@@ -56,15 +54,6 @@ export class TextareaComponent implements OnInit, ControlValueAccessor {
 
   setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
-  }
-
-  validate(c: AbstractControl): ValidationErrors {
-    const validators: ValidatorFn[] = [];
-    if (this.isRequired) {
-      validators.push(Validators.required);
-    }
-
-    return validators;
   }
 
 }

@@ -24,6 +24,14 @@
                                 <app-loader [primary]="true"></app-loader>
                             </div>
 
+                            <div class="container" *ngIf="!feedLoading && !articlesFeed?.length">
+                                <div class="row">
+                                    <div class="col py-5">
+                                        <h6 class="text-center text-secondary">No Articles found</h6>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Pagination -->
                             <div class="d-flex justify-content-center mb-5" *ngIf="!feedLoading">
                                 <pagination-controls (pageChange)="pageChanged($event)" maxSize="9"
@@ -42,6 +50,14 @@
 
                             <div *ngIf="loading" class="d-flex justify-content-center align-items-center p-5 my-5">
                                 <app-loader [primary]="true"></app-loader>
+                            </div>
+
+                            <div class="container" *ngIf="!loading && !articles?.length">
+                                <div class="row">
+                                    <div class="col py-5">
+                                        <h6 class="text-center text-secondary">No Articles found</h6>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Pagination -->
@@ -65,6 +81,14 @@
                         <app-loader [primary]="true"></app-loader>
                     </div>
 
+                    <div class="container" *ngIf="!loading && !articles?.length">
+                        <div class="row">
+                            <div class="col py-5">
+                                <h6 class="text-center text-secondary">No Articles found</h6>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Pagination -->
                     <div class="d-flex justify-content-center mb-5" *ngIf="!feedLoading">
                         <pagination-controls (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
@@ -78,7 +102,7 @@
             <div class="col">
                 <app-search-widget></app-search-widget>
                 <app-author></app-author>
-                <app-popular-posts></app-popular-posts>
+                <!-- <app-popular-posts></app-popular-posts> -->
                 <app-popular-categories></app-popular-categories>
             </div>
         </div>

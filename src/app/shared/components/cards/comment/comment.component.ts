@@ -17,6 +17,8 @@ export class CommentComponent implements OnInit {
   formatedDate: string;
   userObj: User;
   deleteLoading: boolean;
+  userAvatar = 'assets/img/avatar-icon.jpg';
+
 
   constructor(private util: UtilService, private crud: CrudService) { }
 
@@ -24,6 +26,9 @@ export class CommentComponent implements OnInit {
     this.getUserObject();
     if (this.comment && this.comment.author.username) {
       const date = new Date(this.comment.createdAt);
+      if (this.comment.author.image) {
+        this.userAvatar = this.comment.author.image;
+      }
       const time = getTime(date);
       this.formatedDate = `${date.getDate()} ${getMonth(date.getMonth())}, ${date.getFullYear()} ${time}`;
     }

@@ -4,7 +4,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { UtilService } from 'src/app/core/services/util.service';
 import { User } from 'src/app/core/models/user';
-
+declare var $: any;
 
 @Component({
   selector: 'app-header',
@@ -23,16 +23,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
       route: '/articles'
     },
     {
-      title: 'Blog',
-      route: '/'
-    },
-    {
       title: 'Contact',
       route: '/'
     }
   ];
 
-  noJumboUrls = ['/settings', '/profile'];
+  noJumboUrls = ['/settings'];
 
   noJumbo = false;
 
@@ -41,12 +37,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
   routerSubscription: Subscription;
   resizeJumbo: boolean;
   userObj: User;
+  userAvatar = 'assets/img/avatar-icon.jpg';
 
   constructor(private auth: AuthService, private router: Router, private util: UtilService) {
     this.loginStatusSubscription = this.auth.listenToLoginStatus().subscribe((res: boolean) => this.isLogin = res);
     this.routerSubscription = this.router.events.subscribe(res => {
       if ((res instanceof NavigationEnd)) {
-        if (!this.noJumboUrls.includes(res.url) && !(res.url === '/')) {
+        const body = $('html, body');
+        body.stop().animate({ scrollTop: 0 }, 500, 'swing');
+
+        if (!this.noJumboUrls.includes(res.url) && !this.findIfContainsProfile(res.url) && !(res.url === '/')) {
           this.resizeJumbo = true;
           this.noJumbo = false;
           return;
@@ -58,13 +58,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
           return;
         }
 
-        if (this.noJumboUrls.includes(res.url) || this.findIfContainsProfile()) {
+        if (this.noJumboUrls.includes(res.url) || this.findIfContainsProfile(res.url)) {
           this.noJumbo = true;
           this.resizeJumbo = false;
           return;
         }
-
-        this.resizeJumbo = false;
 
       }
     });
@@ -74,9 +72,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.getUserObject();
   }
 
-  findIfContainsProfile() {
-    const result = this.noJumboUrls.some(item => item.includes('profile'));
-    console.log(result);
+  findIfContainsProfile(url: string) {
+    return url.includes('profile');
   }
 
   logout() {
@@ -85,6 +82,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   getUserObject() {
     this.userObj = this.util.getUserObject();
+    if (this.userObj && (this.userObj.image !== '')) {
+      this.userAvatar = this.userObj.image;
+    }
   }
 
   ngOnDestroy() {

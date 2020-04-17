@@ -30,7 +30,9 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    this.getFeeds();
+    setTimeout(() => {
+      this.getFeeds();
+    });
 
   }
 

@@ -1,0 +1,28 @@
+<!-- <div class="imageListWrapper position-relative mr-3 overflow-hidden" style="height: 110px" (click)="img.click()">
+  <img [src]="imagePreview" alt="" class="w-100">
+  <div class="loader_overlay position-absolute w-100 h-100"
+    *ngIf="uploadPercentageProgress > 0 && uploadPercentageProgress < 100"></div>
+</div> -->
+
+<a class="btn text-primary icon mousePointer ml-2 position-absolute" (click)="img.click()">
+  <span class="lnr lnr-pencil"></span>
+</a>
+
+
+
+<div *ngIf="uploadPercentageProgress > 0 && uploadPercentageProgress < 100"
+  class="pie-wrapper progress-95 style-2 position-absolute progress_wrapper">
+  <!-- <span class="label">95<span class="smaller">%</span></span> -->
+  <div class="pie" [ngClass]="uploadPercentageProgress <= 50? 'pie_clip_part' : ''">
+    <div class="left-side half-circle" [ngStyle]="{'transform': 'rotate(' + uploadPercentageProgress * 3.6 + 'deg)'}">
+    </div>
+    <div class="half-circle"
+      [ngStyle]="{'transform': uploadEndStatus || cloudinaryResponseStatus? 'rotate(180deg)': ''}"
+      [ngClass]="uploadPercentageProgress <= 50 ? 'right-side_torched' : 'right-side_torched2'"></div>
+  </div>
+  <div class="shadow"></div>
+</div>
+
+<input type="file" accept="image/*" hidden id="inputField" #img (change)="uploadInitiated($event)" />
+
+<!-- <div class="isLoading"></div> -->

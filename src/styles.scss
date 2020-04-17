@@ -306,7 +306,7 @@ h3 {
     padding: 13px 20px;
     font-size: 14px;
     border: none;
-    width: 80%;
+    width: 90%;
     background: transparent;
     box-shadow: none;
 }
@@ -337,11 +337,22 @@ h3 {
         border: 1px solid white;
         background-color: transparent !important;
         color: white;
+        
+        &:hover {
+            color: $primary-color;
+            background-color: white !important;
+        }
     }
 
     &2 {
         background-color: white !important;
         color: $primary-color;
+
+        &:hover {
+            color: white;
+            background-color: rgba(128, 80, 250, 0.9) !important;
+            border: 1px solid rgba(128, 80, 250, 0.9);
+        }
     }
 }
 

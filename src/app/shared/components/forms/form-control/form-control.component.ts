@@ -12,7 +12,7 @@ import {
 export class FormControlComponent implements OnInit, ControlValueAccessor {
 
   @ViewChild('input', { static: false }) input: ElementRef;
-  disabled;
+  @Input() disabled = false;
 
   @Input() type = 'text';
   @Input() isRequired = false;

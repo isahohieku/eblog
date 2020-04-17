@@ -11,7 +11,7 @@
 
 .noJumbo {
   height: 90px !important;
-  overflow: hidden !important;
+  // overflow: hidden !important;
   background:  rgba(128, 80, 250, 0.8) !important;
 }
 
@@ -36,6 +36,8 @@ ul {
 }
 
 #main-nav {
+  height: 90px;
+  z-index: 1000;
   background-color: transparent;
   transition: all 0.5s;
 }
@@ -82,11 +84,11 @@ ul {
 }
 
 .avatar {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
+  height: 50px !important;
+  width: 50px !important;
+  border-radius: 50% !important;
   overflow: hidden;
   background-image: url(../../../assets/img/avatar-icon.jpg);
-  background-position: center;
-  background-size: cover;
+  background-position: center !important;
+  background-size: cover !important;
 }

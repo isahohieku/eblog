@@ -21,17 +21,11 @@ export class HomeService {
   }
 
   getArticles(url): Observable<any> {
-    return this.http.get(`${this.util.baseUrl}${url}`, this.header)
-      .pipe(
-        map(res => res)
-      );
+    return this.http.get(`${this.util.baseUrl}${url}`, this.header);
   }
 
   getArticlesFeed(url): Observable<any> {
-    return this.http.get(`${this.util.baseUrl}${url}`, this.header)
-      .pipe(
-        map(res => res)
-      );
+    return this.http.get(`${this.util.baseUrl}${url}`, this.header);
   }
 
 }

@@ -28,11 +28,14 @@ export class EditorComponent implements OnInit, OnDestroy {
   article: Article;
   routeSubscription: Subscription;
   @ViewChild('f', { static: false }) form: NgForm;
+  disabled = false;
+  addingLoading: boolean;
 
   constructor(private crud: EditorService, private util: UtilService, private router: Router, private route: ActivatedRoute) {
     this.routeSubscription = this.route.params.subscribe((res: Params) => {
       this.slug = res.slug;
       if (this.slug) {
+        this.disabled = true;
         this.getArticle();
       }
     });
@@ -67,6 +70,7 @@ export class EditorComponent implements OnInit, OnDestroy {
       .subscribe((res: ArticleResponse) => {
         this.loading = false;
         this.article = res.article;
+        this.disabled = false;
 
         if (this.userObj.username === this.article.author.username) {
           this.tagList = res.article.tagList;
@@ -81,6 +85,9 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   addArticle() {
+    if (this.form.invalid || !this.tagList.length) {
+      return;
+    }
     const title = this.title;
     const description = this.description;
     const body = this.body;
@@ -111,23 +118,22 @@ export class EditorComponent implements OnInit, OnDestroy {
 
     let url = 'articles';
 
-    this.loading = true;
+    this.addingLoading = true;
     if (this.slug) {
       url = `${url}/${this.article.slug}`;
       this.crud.updateArticle(url, data).subscribe((res: ArticleResponse) => {
-        this.loading = false;
-        const articleUrl = `articles/${res.article.slug}`;
+        this.addingLoading = false;
+        const articleUrl = `/articles/${res.article.slug}`;
         this.router.navigateByUrl(articleUrl);
       },
-        e => { this.loading = false; console.log(e); });
+        e => { this.addingLoading = false; console.log(e); });
     } else {
-
       this.crud.addArticle(url, data).subscribe((res: ArticleResponse) => {
-        this.loading = false;
-        const articleUrl = `articles`;
+        this.addingLoading = false;
+        const articleUrl = `/articles/${res.article.slug}`;
         this.router.navigateByUrl(articleUrl);
       },
-        e => { this.loading = false; console.log(e); });
+        e => { this.addingLoading = false; console.log(e); });
     }
   }
 

@@ -48,7 +48,7 @@ export class ViewComponent implements OnInit {
         this.article = res.article;
         this.tags = res.article.tagList;
       },
-        e => { this.loading = false; console.log(e); }).unsubscribe();
+        e => { this.loading = false; console.log(e); });
   }
 
   getComments() {
@@ -60,7 +60,7 @@ export class ViewComponent implements OnInit {
         this.getCommentsLoading = false;
         this.comments = res.comments;
       },
-        e => { this.getCommentsLoading = false; console.log(e); }).unsubscribe();
+        e => { this.getCommentsLoading = false; console.log(e); });
   }
 
   favouriteArticle() {
@@ -77,12 +77,12 @@ export class ViewComponent implements OnInit {
         .subscribe((res: CommentsResponse) => {
           console.log(res);
         },
-          e => { console.log(e); }).unsubscribe() :
+          e => { console.log(e); }) :
       this.crud.unFavouriteArticle(url)
         .subscribe((res: CommentsResponse) => {
           console.log(res);
         },
-          e => { console.log(e); }).unsubscribe();
+          e => { console.log(e); });
   }
 
   commentAdded(comment: Comment) {
@@ -102,7 +102,7 @@ export class ViewComponent implements OnInit {
         this.deleteLoading = false;
         this.router.navigateByUrl('/articles');
       },
-        e => { this.deleteLoading = false; console.log(e); }).unsubscribe();
+        e => { this.deleteLoading = false; console.log(e); });
   }
 
 }
