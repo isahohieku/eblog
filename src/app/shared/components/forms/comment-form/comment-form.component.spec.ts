@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CommentFormComponent } from './comment-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgControl, FormControl } from '@angular/forms';
 import { CrudService } from 'src/app/core/services/crud.service';
 import { UtilService } from 'src/app/core/services/util.service';
 import { TextareaComponent } from '../textarea/textarea.component';
@@ -16,6 +16,14 @@ describe('CommentFormComponent', () => {
   let utilServiceSpy: jasmine.SpyObj<UtilService>;
 
   beforeEach(async(() => {
+    const NG_CONTROL_PROVIDER = {
+      provide: NgControl,
+      useClass: class extends NgControl {
+        control = new FormControl();
+        // tslint:disable-next-line: no-empty
+        viewToModelUpdate() {}
+      },
+    };
     crudServiceSpy = jasmine.createSpyObj('CrudService', [
       'postResource'
     ]);
@@ -27,9 +35,13 @@ describe('CommentFormComponent', () => {
       declarations: [ CommentFormComponent, TextareaComponent, LoaderComponent ],
       imports: [FormsModule],
       providers: [
+        NG_CONTROL_PROVIDER,
         { provide: CrudService, useValue: crudServiceSpy },
         { provide: UtilService, useValue: utilServiceSpy },
       ]
+    })
+    .overrideComponent(TextareaComponent, {
+      add: { providers: [NG_CONTROL_PROVIDER] },
     })
     .compileComponents();
   }));

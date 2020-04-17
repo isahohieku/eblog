@@ -1,8 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FormControlComponent } from './form-control.component';
-import { FormsModule, NgControl, ReactiveFormsModule, FormControlDirective, FormGroupDirective, FormControl } from '@angular/forms';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { FormsModule, NgControl, FormControl } from '@angular/forms';
 
 describe('FormControlComponent', () => {
   let component: FormControlComponent;
@@ -31,7 +30,6 @@ describe('FormControlComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FormControlComponent);
     component = fixture.componentInstance;
-    fixture.componentRef.injector.get(NgControl);
     fixture.detectChanges();
   });
 

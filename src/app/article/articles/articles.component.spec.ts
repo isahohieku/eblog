@@ -18,11 +18,9 @@ describe('ArticlesComponent', () => {
   let component: ArticlesComponent;
   let fixture: ComponentFixture<ArticlesComponent>;
   let crudServiceSpy: jasmine.SpyObj<ArticleService>;
-  let utilServiceSpy: jasmine.SpyObj<UtilService>;
 
   beforeEach(async(() => {
     localStorage.setItem('userObj', JSON.stringify(mockUser));
-    utilServiceSpy = jasmine.createSpyObj('UtilService', ['getUserObject']);
     crudServiceSpy = jasmine.createSpyObj('ArticleService', ['getArticles', 'getArticlesFeed']);
     crudServiceSpy.getArticles.and.returnValue(of([mockArticlesResponse]));
     crudServiceSpy.getArticlesFeed.and.returnValue(of([mockArticlesResponse]));
@@ -32,7 +30,6 @@ describe('ArticlesComponent', () => {
       imports: [RouterTestingModule, HttpClientTestingModule, NgxPaginationModule],
       providers: [
         { provide: ArticleService, useValue: crudServiceSpy },
-        { provide: UtilService, useValue: utilServiceSpy }
       ]
     })
       .compileComponents();
