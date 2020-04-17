@@ -1,39 +1,37 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
-import { CrudService } from '../core/services/crud.service';
+import { Component, OnInit } from '@angular/core';
 import { ArticlesResponse, Article } from '../core/models/article';
 import { UtilService } from '../core/services/util.service';
 import { User } from '../core/models/user';
+import { HomeService } from './home.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit {
 
   isLogin = false;
   loading: boolean;
   feedLoading: boolean;
   articles: Article[] = [];
   articlesFeed: Article[] = [];
-  loginStatusSubscription: Subscription;
   userObj: User;
   page = 1;
 
-  constructor(private auth: AuthService, private crud: CrudService, private util: UtilService) {
-    this.loginStatusSubscription = this.auth.listenToLoginStatus().subscribe((res: boolean) => this.isLogin = res);
+  constructor(private crud: HomeService, private util: UtilService) {
   }
 
   ngOnInit() {
     this.getObject();
     this.getArticles();
-    if (this.userObj !== null) {
-      setTimeout(() => {
-        this.getFeeds();
-      }, 100);
+
+    if (!this.userObj) {
+      return;
     }
+
+    this.getFeeds();
+
   }
 
   getObject() {
@@ -44,9 +42,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     const url = 'articles';
 
     this.loading = true;
-    this.crud.getResource(url)
+    this.crud.getArticles(url)
       .subscribe((res: ArticlesResponse) => { this.loading = false; this.articles = res.articles; },
-        e => {this.loading = false; console.log(e); });
+        e => { this.loading = false; console.log(e); });
   }
 
   pageChanged(e) {
@@ -57,13 +55,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     const url = 'articles/feed';
 
     this.feedLoading = true;
-    this.crud.getResource(url)
+    this.crud.getArticlesFeed(url)
       .subscribe((res: ArticlesResponse) => { this.feedLoading = false; this.articlesFeed = res.articles; },
-        e => {this.feedLoading = false; console.log(e); });
-  }
-
-  ngOnDestroy() {
-    this.loginStatusSubscription.unsubscribe();
+        e => { this.feedLoading = false; console.log(e); });
   }
 
 }

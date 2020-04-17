@@ -15,23 +15,23 @@ export class UtilService {
   constructor() {
   }
 
-  setUserObject(data) {
+  setUserObject(data: User): void {
     localStorage.setItem('userObj', JSON.stringify(data));
   }
 
-  getUserObject() {
+  getUserObject(): User|null {
     if (localStorage.getItem('userObj')) {
       return JSON.parse(localStorage.getItem('userObj')) as User;
     }
     return null;
   }
 
-  setToken(data) {
+  setToken(data: string): void {
     localStorage.setItem('token', JSON.stringify(data));
     this.token.next(data);
   }
 
-  getToken() {
+  getToken(): string {
     let token;
     token = this.token.value;
     if (localStorage.getItem('token')) {

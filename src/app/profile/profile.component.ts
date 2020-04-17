@@ -5,6 +5,7 @@ import { CrudService } from '../core/services/crud.service';
 import { User } from '../core/models/user';
 import { ArticlesResponse, Article } from '../core/models/article';
 import ProfileResponse from '../core/models/profile';
+import { ArticleService } from '../article/article.service';
 
 @Component({
   selector: 'app-profile',
@@ -18,7 +19,7 @@ export class ProfileComponent implements OnInit {
   user: User;
   articles: Article[];
 
-  constructor(private route: ActivatedRoute, private router: Router, private crud: CrudService) {
+  constructor(private route: ActivatedRoute, private router: Router, private crud: CrudService, private article: ArticleService) {
     this.routeSubscription = this.route.params.subscribe((res: Params) => {
       this.username = res.username;
       if (this.username) {
@@ -49,7 +50,7 @@ export class ProfileComponent implements OnInit {
     const url = 'articles';
 
     this.loading = true;
-    this.crud.getResource(url)
+    this.article.getArticles(url)
       .subscribe((res: ArticlesResponse) => {
         this.loading = false;
         this.articles = res.articles;

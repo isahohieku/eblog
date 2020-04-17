@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, flush } from '@angular/core/testing';
 
 import { ViewComponent } from './view.component';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -19,12 +19,29 @@ import { FormControlComponent } from 'src/app/shared/components/forms/form-contr
 import { PostCategoriesItemCardComponent } from 'src/app/shared/components/misc/post-categories-item-card/post-categories-item-card.component';
 import { PopularPostsCardComponent } from 'src/app/shared/components/cards/popular-posts-card/popular-posts-card.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { UtilService } from 'src/app/core/services/util.service';
+import { CrudService } from 'src/app/core/services/crud.service';
+import { of } from 'rxjs';
+import { mockUser, mockArticleResponse, mockCommentsResponse, mockComment } from 'src/app/shared/util/mock-user';
+import { Router } from '@angular/router';
+import { ArticleService } from '../article.service';
 
 describe('ViewComponent', () => {
   let component: ViewComponent;
   let fixture: ComponentFixture<ViewComponent>;
+  let crudServiceSpy: jasmine.SpyObj<ArticleService>;
+  let utilServiceSpy: jasmine.SpyObj<UtilService>;
 
   beforeEach(async(() => {
+    utilServiceSpy = jasmine.createSpyObj('UtilService', ['getUserObject']);
+    crudServiceSpy = jasmine.createSpyObj('ArticleService',
+      ['getArticle', 'getComments', 'deleteArticle', 'favouriteArticle', 'unFavouriteArticle']);
+    crudServiceSpy.getArticle.and.returnValue(of(mockArticleResponse));
+    crudServiceSpy.getComments.and.returnValue(of(mockCommentsResponse));
+    crudServiceSpy.deleteArticle.and.returnValue(of(mockArticleResponse));
+    crudServiceSpy.favouriteArticle.and.returnValue(of(mockArticleResponse));
+    crudServiceSpy.unFavouriteArticle.and.returnValue(of(mockArticleResponse));
+
     const NG_CONTROL_PROVIDER = {
       provide: NgControl,
       useClass: class extends NgControl {
@@ -51,11 +68,15 @@ describe('ViewComponent', () => {
         PostCategoriesItemCardComponent,
         PopularPostsCardComponent,
       ],
-      imports: [FormsModule, RouterTestingModule, HttpClientTestingModule]
+      imports: [FormsModule, RouterTestingModule, HttpClientTestingModule],
+      providers: [
+        { provide: ArticleService, useValue: crudServiceSpy },
+        { provide: UtilService, useValue: utilServiceSpy },
+      ]
     })
-    .overrideComponent(FormControlComponent, {
-      add: { providers: [NG_CONTROL_PROVIDER]}
-    })
+      .overrideComponent(FormControlComponent, {
+        add: { providers: [NG_CONTROL_PROVIDER] }
+      })
       .compileComponents();
   }));
 
@@ -67,5 +88,53 @@ describe('ViewComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should get article', () => {
+    localStorage.setItem('userObj', JSON.stringify(mockUser));
+    component.getArticle();
+
+    expect(crudServiceSpy.getArticle).toHaveBeenCalled();
+  });
+
+  it('should get comments', () => {
+    component.getComments();
+
+    expect(crudServiceSpy.getComments).toHaveBeenCalled();
+  });
+
+  it('should delete article', () => {
+    component.deleteArticle();
+
+    expect(crudServiceSpy.deleteArticle).toHaveBeenCalled();
+  });
+
+  it('should favourite article', () => {
+    component.favouriteArticle();
+
+    expect(crudServiceSpy.favouriteArticle).toHaveBeenCalled();
+  });
+
+  it('should unfavourite article', () => {
+    component.article.favorited = true;
+    component.favouriteArticle();
+
+    expect(crudServiceSpy.unFavouriteArticle).toHaveBeenCalled();
+  });
+
+  it('should add comment', () => {
+    const length = component.comments.length;
+    component.commentAdded(mockComment);
+
+    expect(component.comments.length).toBeGreaterThan(length);
+  });
+
+  it('should remove comment', () => {
+    const comments = Array(5).fill(mockComment);
+    component.comments = comments;
+
+    component.deleteComment(2);
+
+    expect(component.comments.length).toBeLessThan(5);
   });
 });

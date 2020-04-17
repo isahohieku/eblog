@@ -3,7 +3,7 @@
     <div class="container container-1 mt-5">
         <div class="row">
             <div class="col-8 pt-5">
-                <div *ngIf="userObj">
+                <div *ngIf="userObj?.username">
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
@@ -58,10 +58,10 @@
 
                 <div *ngIf="!userObj">
                     <app-post-card
-                        *ngFor="let article of articlesFeed | paginate: { itemsPerPage: 5, currentPage: page, id: 'notloggedin' }"
+                        *ngFor="let article of articles | paginate: { itemsPerPage: 5, currentPage: page, id: 'notloggedin' }"
                         [article]="article"></app-post-card>
 
-                    <div *ngIf="feedLoading" class="d-flex justify-content-center align-items-center p-5 my-5">
+                    <div *ngIf="loading" class="d-flex justify-content-center align-items-center p-5 my-5">
                         <app-loader [primary]="true"></app-loader>
                     </div>
 

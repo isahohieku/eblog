@@ -15,12 +15,24 @@ import { PopularPostsCardComponent } from '../shared/components/cards/popular-po
 import { PostCategoriesItemCardComponent } from '../shared/components/misc/post-categories-item-card/post-categories-item-card.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NgControl, FormControl } from '@angular/forms';
+import { CrudService } from '../core/services/crud.service';
+import { UtilService } from '../core/services/util.service';
+import { mockUser, mockArticlesResponse } from '../shared/util/mock-user';
+import { of } from 'rxjs';
+import { HomeService } from './home.service';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
+  let crudServiceSpy: jasmine.SpyObj<HomeService>;
+  let utilServiceSpy: jasmine.SpyObj<UtilService>;
 
   beforeEach(async(() => {
+    utilServiceSpy = jasmine.createSpyObj('UtilService', ['getUserObject']);
+    crudServiceSpy = jasmine.createSpyObj('HomeService', ['getArticles', 'getArticlesFeed']);
+    crudServiceSpy.getArticles.and.returnValue(of(mockArticlesResponse));
+    crudServiceSpy.getArticlesFeed.and.returnValue(of(mockArticlesResponse));
+
     const NG_CONTROL_PROVIDER = {
       provide: NgControl,
       useClass: class extends NgControl {
@@ -43,7 +55,11 @@ describe('HomeComponent', () => {
         PostMetaCardComponent,
         FormControlComponent
       ],
-      imports: [NgxPaginationModule, RouterTestingModule, HttpClientTestingModule]
+      imports: [NgxPaginationModule, RouterTestingModule, HttpClientTestingModule],
+      providers: [
+        { provide: HomeService, useValue: crudServiceSpy },
+        { provide: UtilService, useValue: utilServiceSpy }
+      ]
     })
       .overrideComponent(FormControlComponent, {
         add: { providers: [NG_CONTROL_PROVIDER] }
@@ -52,13 +68,6 @@ describe('HomeComponent', () => {
   }));
 
   beforeEach(() => {
-    localStorage.setItem('userObj', JSON.stringify({
-      username: 'a',
-      token: 'b',
-      password: 'c',
-      bio: 'd',
-      email: 'e'
-    }));
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -66,5 +75,23 @@ describe('HomeComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should get both global and user feed', () => {
+    component.getFeeds();
+    expect(crudServiceSpy.getArticlesFeed).toHaveBeenCalled();
+  });
+
+  it('should get only global feed', () => {
+    component.getArticles();
+    expect(crudServiceSpy.getArticles).toHaveBeenCalled();
+  });
+
+  it('should change page', () => {
+    const test = 1;
+    component.page = test;
+
+    component.pageChanged(4);
+    expect(component.page).not.toBe(test);
   });
 });

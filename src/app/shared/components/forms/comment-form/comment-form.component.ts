@@ -4,7 +4,7 @@ import { CrudService } from 'src/app/core/services/crud.service';
 import { UtilService } from 'src/app/core/services/util.service';
 import { User } from 'src/app/core/models/user';
 import { Author } from 'src/app/core/models/author';
-import { Comment, CommentsResponse, CommentResponse } from 'src/app/core/models/comment';
+import { Comment, CommentResponse } from 'src/app/core/models/comment';
 
 @Component({
   selector: 'app-comment-form',
@@ -17,6 +17,7 @@ export class CommentFormComponent implements OnInit {
   @Output() commentAdded = new EventEmitter<Comment>();
   loading: boolean;
   userObj: Author;
+  body = '';
 
   constructor(private crud: CrudService, private util: UtilService) { }
 
@@ -29,7 +30,7 @@ export class CommentFormComponent implements OnInit {
   }
 
   addComment() {
-    if (this.form.invalid) {
+    if (!this.body) {
       return;
     }
 
@@ -39,7 +40,7 @@ export class CommentFormComponent implements OnInit {
       createdAt: '',
       author: this.userObj,
       id: 0,
-      body: this.form.value.body,
+      body: this.body,
       updatedAt: ''
     };
 

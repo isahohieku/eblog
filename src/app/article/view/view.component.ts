@@ -6,6 +6,7 @@ import { Tag } from 'src/app/core/models/tags';
 import { UtilService } from 'src/app/core/services/util.service';
 import { User } from 'src/app/core/models/user';
 import { Comment, CommentsResponse } from 'src/app/core/models/comment';
+import { ArticleService } from '../article.service';
 
 @Component({
   selector: 'app-view',
@@ -23,7 +24,7 @@ export class ViewComponent implements OnInit {
   getCommentsLoading: boolean;
   comments: Comment[] = [];
 
-  constructor(private route: ActivatedRoute, private crud: CrudService, private util: UtilService, private router: Router) {
+  constructor(private route: ActivatedRoute, private crud: ArticleService, private util: UtilService, private router: Router) {
     this.route.params.subscribe((res: Params) => this.slug = res.slug);
   }
 
@@ -41,25 +42,25 @@ export class ViewComponent implements OnInit {
     const url = `articles/${this.slug}`;
 
     this.loading = true;
-    this.crud.getResource(url)
+    this.crud.getArticle(url)
       .subscribe((res: ArticleResponse) => {
         this.loading = false;
         this.article = res.article;
         this.tags = res.article.tagList;
       },
-        e => { this.loading = false; console.log(e); });
+        e => { this.loading = false; console.log(e); }).unsubscribe();
   }
 
   getComments() {
     const url = `articles/${this.slug}/comments`;
 
     this.getCommentsLoading = true;
-    this.crud.getResource(url)
+    this.crud.getComments(url)
       .subscribe((res: CommentsResponse) => {
         this.getCommentsLoading = false;
         this.comments = res.comments;
       },
-        e => { this.getCommentsLoading = false; console.log(e); });
+        e => { this.getCommentsLoading = false; console.log(e); }).unsubscribe();
   }
 
   favouriteArticle() {
@@ -72,16 +73,16 @@ export class ViewComponent implements OnInit {
 
 
     this.article.favorited ?
-      this.crud.postResource(url, data)
+      this.crud.favouriteArticle(url, data)
         .subscribe((res: CommentsResponse) => {
           console.log(res);
         },
-          e => { console.log(e); }) :
-      this.crud.deleteResource(url)
+          e => { console.log(e); }).unsubscribe() :
+      this.crud.unFavouriteArticle(url)
         .subscribe((res: CommentsResponse) => {
           console.log(res);
         },
-          e => { console.log(e); });
+          e => { console.log(e); }).unsubscribe();
   }
 
   commentAdded(comment: Comment) {
@@ -96,12 +97,12 @@ export class ViewComponent implements OnInit {
     const url = `articles/${this.slug}`;
 
     this.deleteLoading = true;
-    this.crud.deleteResource(url)
+    this.crud.deleteArticle(url)
       .subscribe((res: ArticleResponse) => {
         this.deleteLoading = false;
         this.router.navigateByUrl('/articles');
       },
-        e => { this.deleteLoading = false; console.log(e); });
+        e => { this.deleteLoading = false; console.log(e); }).unsubscribe();
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CrudService } from '../core/services/crud.service';
 import { Article, ArticleResponse } from '../core/models/article';
@@ -8,6 +8,7 @@ import { Author } from '../core/models/author';
 import { Tag } from '../core/models/tags';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { EditorService } from './editor.service';
 
 @Component({
   selector: 'app-editor',
@@ -26,8 +27,9 @@ export class EditorComponent implements OnInit, OnDestroy {
   slug: string;
   article: Article;
   routeSubscription: Subscription;
+  @ViewChild('f', { static: false }) form: NgForm;
 
-  constructor(private crud: CrudService, private util: UtilService, private router: Router, private route: ActivatedRoute) {
+  constructor(private crud: EditorService, private util: UtilService, private router: Router, private route: ActivatedRoute) {
     this.routeSubscription = this.route.params.subscribe((res: Params) => {
       this.slug = res.slug;
       if (this.slug) {
@@ -61,7 +63,7 @@ export class EditorComponent implements OnInit, OnDestroy {
     const url = `articles/${this.slug}`;
 
     this.loading = true;
-    this.crud.getResource(url)
+    this.crud.getArticle(url)
       .subscribe((res: ArticleResponse) => {
         this.loading = false;
         this.article = res.article;
@@ -78,8 +80,10 @@ export class EditorComponent implements OnInit, OnDestroy {
         e => { this.loading = false; console.log(e); });
   }
 
-  addArticle(form: NgForm) {
-    const { title, description, body } = form.value;
+  addArticle() {
+    const title = this.title;
+    const description = this.description;
+    const body = this.body;
     const tagList: Tag[] = this.tagList;
     const author: Author = {
       username: this.userObj.username,
@@ -108,18 +112,19 @@ export class EditorComponent implements OnInit, OnDestroy {
     let url = 'articles';
 
     this.loading = true;
-    if (!this.slug) {
-      this.crud.postResource(url, data).subscribe((res: ArticleResponse) => {
+    if (this.slug) {
+      url = `${url}/${this.article.slug}`;
+      this.crud.updateArticle(url, data).subscribe((res: ArticleResponse) => {
         this.loading = false;
         const articleUrl = `articles/${res.article.slug}`;
         this.router.navigateByUrl(articleUrl);
       },
         e => { this.loading = false; console.log(e); });
     } else {
-      url = `${url}/${this.article.slug}`;
-      this.crud.updateResource(url, data).subscribe((res: ArticleResponse) => {
+
+      this.crud.addArticle(url, data).subscribe((res: ArticleResponse) => {
         this.loading = false;
-        const articleUrl = `articles/${res.article.slug}`;
+        const articleUrl = `articles`;
         this.router.navigateByUrl(articleUrl);
       },
         e => { this.loading = false; console.log(e); });
