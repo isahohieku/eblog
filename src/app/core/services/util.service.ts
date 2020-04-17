@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../models/user';
+declare var $: any;
 
 @Injectable({
   providedIn: 'root'
@@ -15,27 +16,26 @@ export class UtilService {
   constructor() {
   }
 
-  setUserObject(data) {
+  setUserObject(data: User): void {
     localStorage.setItem('userObj', JSON.stringify(data));
   }
 
-  getUserObject() {
+  getUserObject(): User|null {
     if (localStorage.getItem('userObj')) {
       return JSON.parse(localStorage.getItem('userObj')) as User;
     }
     return null;
   }
 
-  setToken(data) {
-    localStorage.setItem('token', JSON.stringify(data));
+  setToken(data: string): void {
+    localStorage.setItem('token', data);
     this.token.next(data);
   }
 
-  getToken() {
+  getToken(): string {
     let token;
-    token = this.token.value;
     if (localStorage.getItem('token')) {
-      token = localStorage.getItem('token').split('"')[1];
+      token = localStorage.getItem('token');
     }
     return token;
   }

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col d-flex justify-content-start">
-            <div class="avatar"></div>
+            <div class="avatar" [ngStyle]="{'background-image': 'url(' + userAvatar + ')'}"></div>
             <div class="text-wrapper ml-3">
                 <div class="d-flex justify-content-between">
                     <div>
@@ -9,7 +9,7 @@
                         </h6>
                         <p class="text-secondary text-small mb-0 mt-1">{{ formatedDate }}</p>
                     </div>
-                    <button *ngIf="userObj.username === comment?.author?.username" [disabled]="deleteLoading" type="button" class="btn text-primary icon mousePointer ml-2"
+                    <button *ngIf="userObj?.username === comment?.author?.username" [disabled]="deleteLoading" type="button" class="btn text-primary icon mousePointer ml-2"
                         (click)="deleteComment()">
                         <span class="lnr lnr-trash" *ngIf="!deleteLoading"></span>
                         <i *ngIf="deleteLoading" class="fas fa-spinner fa-spin"></i>

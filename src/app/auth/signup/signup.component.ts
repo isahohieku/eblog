@@ -14,10 +14,16 @@ export class SignupComponent implements OnInit {
   emailPattern: string;
   usernamePattern: string;
   loading: boolean;
+  username = '';
+  email = '';
+  password = '';
 
   @ViewChild('f', { static: false }) form: NgForm;
 
   constructor(private util: UtilService, private crud: CrudService, private router: Router) {
+    if (this.util.getUserObject() !== null) {
+      this.router.navigate(['/']);
+    }
     this.emailPattern = this.util.emailValidator;
     this.usernamePattern = this.util.usernameValidator;
   }
@@ -34,15 +40,20 @@ export class SignupComponent implements OnInit {
 
     const data = {
       user: {
-        username: this.form.controls.username.value,
-        email: this.form.controls.email.value,
-        password: this.form.controls.password.value
+        username: this.username,
+        email: this.email,
+        password: this.password
       }
     };
 
     this.crud.postResource(url, data)
-      .subscribe((res: UserResponse) => { this.loading = false; this.router.navigateByUrl('/login'); }
-        , e => { this.loading = false; console.log(e); });
+      .subscribe((res: UserResponse) => {
+        if (Object.keys(res).length === 0 && res.constructor === Object) {
+          this.loading = false;
+          return;
+        }
+        this.loading = false; this.router.navigateByUrl('/login');
+      });
   }
 
 }

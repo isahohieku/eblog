@@ -1,7 +1,7 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, Self } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Self, ElementRef, forwardRef } from '@angular/core';
 import {
   ControlValueAccessor, AbstractControl,
-  ValidatorFn, Validators, NgControl
+  ValidatorFn, Validators, ValidationErrors, NG_VALUE_ACCESSOR, NG_VALIDATORS, NgControl
 } from '@angular/forms';
 
 @Component({
@@ -12,9 +12,9 @@ import {
 export class TextareaComponent implements OnInit, ControlValueAccessor {
 
   @ViewChild('input', { static: false }) input: ElementRef;
-  disabled;
+  @Input() disabled = false;
 
-  @Input() isRequired = false;
+  @Input() isRequired = true;
   @Input() textarea = false;
   @Input() label: string;
   @Input() placeholder: string;
@@ -22,19 +22,18 @@ export class TextareaComponent implements OnInit, ControlValueAccessor {
   @Input() customClass: string;
   control: AbstractControl;
 
-  constructor(@Self() public controlDir: NgControl) {
+  constructor(@Self() private controlDir: NgControl) {
     this.controlDir.valueAccessor = this;
   }
-
   ngOnInit() {
-    this.control = this.controlDir.control;
-    const validators: ValidatorFn[] = this.control.validator ? [this.control.validator] : [];
+    const control = this.controlDir.control;
+    const validators: ValidatorFn[] = control.validator ? [control.validator] : [];
     if (this.isRequired) {
       validators.push(Validators.required);
     }
 
-    this.control.setValidators(validators);
-    this.control.updateValueAndValidity();
+    control.setValidators(validators);
+    control.updateValueAndValidity();
   }
 
   onChange(event) { }

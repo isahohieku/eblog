@@ -5,8 +5,13 @@ import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AuthInterceptor } from '../auth/auth-interceptor/http-interceptor';
+import { environment } from '../../environments/environment.prod';
 
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ToastrModule } from 'ngx-toastr';
+import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
+import { FileUploadModule } from 'ng2-file-upload';
+import { Cloudinary as cloudinary_core } from 'cloudinary-core';
 
 import { StickyTopDirective } from './directives/sticky-top.directive';
 
@@ -21,7 +26,6 @@ import { FormControlComponent } from './components/forms/form-control/form-contr
 import { SearchWidgetComponent } from './components/widgets/search-widget/search-widget.component';
 import { LoaderComponent } from './components/misc/loader/loader.component';
 import { TextareaComponent } from './components/forms/textarea/textarea.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
 import { TagListComponent } from './components/cards/tag-list/tag-list.component';
 import { AuthorSmallComponent } from './components/cards/author-small/author-small.component';
 import { ParsedMdComponent } from './components/cards/parsed-md/parsed-md.component';
@@ -29,6 +33,14 @@ import { TagItemComponent } from './components/misc/tag-item/tag-item.component'
 import { CommentFormComponent } from './components/forms/comment-form/comment-form.component';
 import { CommentComponent } from './components/cards/comment/comment.component';
 import { ProfileCardComponent } from './components/cards/profile-card/profile-card.component';
+import { ImageUploadSingleComponent } from './image-upload-single/image-upload-single.component';
+import { ErrorComponent } from './components/error/error.component';
+
+const cloudinary = {
+  Cloudinary: cloudinary_core
+};
+
+const config: CloudinaryConfiguration = environment.cloudinaryConfigs;
 
 @NgModule({
   declarations: [
@@ -43,7 +55,6 @@ import { ProfileCardComponent } from './components/cards/profile-card/profile-ca
     FormControlComponent,
     SearchWidgetComponent,
     LoaderComponent,
-    PaginationComponent,
     TagListComponent,
     AuthorSmallComponent,
     ParsedMdComponent,
@@ -51,11 +62,11 @@ import { ProfileCardComponent } from './components/cards/profile-card/profile-ca
     CommentFormComponent,
     CommentComponent,
     ProfileCardComponent,
+    ImageUploadSingleComponent,
+    ErrorComponent,
 
     // Directives
     StickyTopDirective,
-
-
 
   ],
   imports: [
@@ -64,7 +75,11 @@ import { ProfileCardComponent } from './components/cards/profile-card/profile-ca
     ReactiveFormsModule,
     RouterModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ToastrModule.forRoot(),
+    // Cloudinary and File upload
+    CloudinaryModule.forRoot(cloudinary, config),
+    FileUploadModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
@@ -89,7 +104,6 @@ import { ProfileCardComponent } from './components/cards/profile-card/profile-ca
     FormControlComponent,
     SearchWidgetComponent,
     LoaderComponent,
-    PaginationComponent,
     TagListComponent,
     AuthorSmallComponent,
     ParsedMdComponent,
@@ -97,6 +111,8 @@ import { ProfileCardComponent } from './components/cards/profile-card/profile-ca
     CommentFormComponent,
     CommentComponent,
     ProfileCardComponent,
+    ImageUploadSingleComponent,
+    ErrorComponent,
 
     // Directives
     StickyTopDirective,

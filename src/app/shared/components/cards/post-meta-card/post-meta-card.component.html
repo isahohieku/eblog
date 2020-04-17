@@ -1,6 +1,7 @@
 <div class="wrapper px-4 d-flex align-items-center p-card">
     <!-- Avatar -->
-    <div class="avatar mousePointer" [routerLink]="['/profile/', author?.username]"></div>
+    <div [ngStyle]="{'background': 'url(' + userAvatar + ') no-repeat center'}" class="avatar mousePointer"
+        [routerLink]="['/profile/', author?.username]"></div>
 
     <!-- Text -->
     <div class=" ml-3">

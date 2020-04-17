@@ -1,0 +1,142 @@
+.icon {
+  border: 1px solid #8050fa;
+  background-color: white;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  transition: all 0.3s;
+
+  &:hover {
+      background-color: #8050fa !important;
+      color: white !important;
+  }
+
+  top: -130px;
+  right: 30px
+}
+
+.imageListWrapper {
+  width: 110px !important;
+  height: 110px !important;
+}
+
+.progress_wrapper {
+  top: 0px;
+  left: 0px;
+}
+
+.loader_overlay {
+  top: 0px;
+  left: 0px;
+  background-color: rgba(#000000, 0.2);
+}
+
+// -- vars
+$bg-color: #34495e;
+$default-size: 5em;
+$label-font-size: $default-size / 4;
+$label-font-size-redo: $default-size * 4;
+
+// -- mixins
+@mixin size($width, $height) {
+  height: $height;
+  width: $width;
+}
+
+@mixin draw-progress($progress, $color) {
+  .pie {
+    .half-circle {
+      border-color: $color;
+    }
+
+    .left-side {
+      transform: rotate($progress * 3.6deg);
+    }
+
+    @if $progress <= 50 {
+      // .right-side {
+      //   display: none;
+      // }
+    } @else {
+      // clip: rect(auto, auto, auto, auto);
+
+      // .right-side {
+      //   transform: rotate(180deg);
+      // }
+    }
+  }
+}
+
+.charts-container {
+  &:after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+}
+
+.pie-wrapper {
+  @include size($default-size, $default-size);
+  float: left;
+  margin: 15px;
+  position: relative;
+
+  &:nth-child(3n + 1) {
+    clear: both;
+  }
+
+  .pie {
+    @include size(100%, 100%);
+    left: 0;
+    position: absolute;
+    top: 0;
+
+    .half-circle {
+      @include size(100%, 100%);
+      border: ($default-size / 10) solid #3498db;
+      border-radius: 50%;
+      clip: rect(0, $default-size / 2, $default-size, 0);
+      left: 0;
+      position: absolute;
+      top: 0;
+    }
+  }
+
+  .shadow {
+    @include size(100%, 100%);
+    border: $default-size / 10 solid #edf2f5;
+    border-radius: 50%;
+  }
+
+  &.style-2 {
+    .label {
+      background: none;
+      color: #f9f9f9;
+
+      .smaller {
+        color: #eeeeee;
+      }
+    }
+  }
+
+  &.progress-95 {
+    @include draw-progress(10, #43a503);
+  }
+}
+
+.right-side_torched {
+  display: none !important;
+}
+
+.right-side_torched2 {
+    transform: rotate(180deg) !important;
+  }
+
+.clip_part {
+  clip: rect(auto, auto, auto, auto) !important;
+}
+
+.pie_clip_part {
+  clip: rect(0, $default-size, $default-size, $default-size / 2);
+}

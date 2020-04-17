@@ -8,7 +8,7 @@
 <div class="container container-1">
     <div class="row">
         <div class="col">
-            <app-author></app-author>
+            <app-author [author]="userObj"></app-author>
         </div>
         <div class="col-8">
             <form #f="ngForm" (ngSubmit)="updateData(f)" class="form mx-auto mb-5">
@@ -26,14 +26,14 @@
                 
                 <p class="text-small text-primary mt-4 mb-0">Bio</p>
                 <div class="input-wrapper-2">
-                    <app-textarea [isRequired]="true" [placeholder]="'Short bio'" [(ngModel)]="bio" name="bio"
+                    <app-textarea [placeholder]="'Short bio'" [(ngModel)]="bio" name="bio"
                         [customClass]="'input-style w-100 bg-white tex'"></app-textarea>
                 </div>
 
                 <p class="text-small text-primary mt-4 mb-0">Password</p>
                 <div class="input-wrapper">
                     <app-form-control [type]="'password'"
-                        [placeholder]="'Enter new password'" ngModel name="password"
+                        [placeholder]="'Enter new password'" [(ngModel)]="password" name="password"
                         [customClass]="'input-style w-100 bg-white'"></app-form-control>
                 </div>
 

@@ -17,17 +17,21 @@ export class LoginComponent implements OnInit {
   emailPattern: string;
   loading: boolean;
 
+  email = '';
+  password = '';
+
   @ViewChild('f', { static: false }) form: NgForm;
 
   constructor(
     private util: UtilService,
-    private crud: CrudService,
     private auth: AuthService,
     private router: Router) {
     this.emailPattern = this.util.emailValidator;
+    if (this.util.getUserObject() !== null) {
+      this.router.navigate(['/']);
+    }
   }
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   login() {
     if (this.form.invalid) {
@@ -38,19 +42,23 @@ export class LoginComponent implements OnInit {
 
     const data = {
       user: {
-        email: this.form.controls.email.value,
-        password: this.form.controls.password.value
+        email: this.email,
+        password: this.password
       }
     };
 
-    this.crud.postResource(url, data)
+    this.auth.loginUser(url, data)
       .subscribe((res: UserResponse) => {
+        if (Object.keys(res).length === 0 && res.constructor === Object) {
+          this.loading = false;
+          return;
+        }
         this.util.setToken(res.user.token);
         this.util.setUserObject(res.user);
         this.auth.setLoginStatus(true);
         this.loading = false;
         this.router.navigateByUrl('/');
-      }, e => { this.loading = false; console.log(e); });
+      });
   }
 
 }

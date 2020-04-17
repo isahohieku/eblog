@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CrudService } from 'src/app/core/services/crud.service';
 import { Article } from 'src/app/core/models/article';
 import parseMd from '../../../util/parser';
 
@@ -11,14 +10,16 @@ import parseMd from '../../../util/parser';
 export class ParsedMdComponent implements OnInit {
 
   @Input() article: Article;
-  body: string;
+  body = '';
 
-  constructor(private crud: CrudService) {
+  constructor() {
 
   }
 
   ngOnInit() {
-    this.body = parseMd(this.article.body);
+    if (this.article) {
+      this.body = parseMd(this.article.body);
+    }
   }
 
 }

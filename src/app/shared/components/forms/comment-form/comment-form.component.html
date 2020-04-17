@@ -3,7 +3,7 @@
         <div class="col px-0">
             <form #f="ngForm" (ngSubmit)="addComment()">
                 <div class="input-wrapper-2 mt-4">
-                    <app-textarea [isRequired]="true" [placeholder]="'Enter comment'" ngModel
+                    <app-textarea [isRequired]="true" [placeholder]="'Enter comment'" [(ngModel)]="body"
                         name="body" [customClass]="'input-style w-100 bg-white comment-tex'"></app-textarea>
                 </div>
 

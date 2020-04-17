@@ -1,10 +1,10 @@
-<nav class="position-fixed w-100 d-flex align-items-center" id="main-nav" style="height: 90px;">
+<nav class="position-fixed w-100 d-flex align-items-center" id="main-nav">
     <div class="w-100">
         <div class="container-1 mx-auto">
             <div class="row">
                 <div class="col d-flex justify-content-between">
                     <!-- Favicon -->
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center mousePointer" routerLink="/">
                         <div>
                             <img src="assets/img/lion.png" class="d-inline-block" alt="Lion head Favicon" height="50">
                         </div>
@@ -41,7 +41,7 @@
                                     <a class="btn transparent-btn p-2 text-white text-semi-small" role="button"
                                         id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">
-                                        <div class="avatar"></div>
+                                        <div class="avatar" [ngStyle]="{'background': 'url(' + userAvatar + ') no-repeat center'}"></div>
                                     </a>
 
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">

@@ -1,0 +1,31 @@
+.wrapper {
+    height: 100vh;
+    height: 100vh;
+    background-color: #eee;
+}
+
+.container-1 {
+    height: 80%;
+    width: 1170px;
+    box-shadow: 1px 18px 50px -17px rgba(0, 0, 0, 0.63);
+}
+
+.bg-primary2 {
+    background-color: #a594f9;
+}
+
+.left-pane {
+    background: linear-gradient(0deg, rgba(128, 80, 250, 0.8), rgba(128, 80, 250, 0.8)),
+        url(../../../../assets/img/blog.jpg) no-repeat center;
+    height: 100vh;
+    background-size: cover;
+}
+
+.drop-shadow {
+    box-shadow: 0px 13px 38px -7px rgba(0, 0, 0, 0.58);
+    border: 0;
+}
+
+h4 {
+    font-size: 180px;
+}

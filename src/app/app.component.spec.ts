@@ -1,13 +1,41 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { LayoutModule } from './layout/layout.module';
+import { SharedModule } from './shared/shared.module';
+import { MainModule } from './main/main.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { APP_BASE_HREF } from '@angular/common';
+import { NgControl, FormControl } from '@angular/forms';
+import { FormControlComponent } from './shared/components/forms/form-control/form-control.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
+    const NG_CONTROL_PROVIDER = {
+      provide: NgControl,
+      useClass: class extends NgControl {
+        control = new FormControl();
+        // tslint:disable-next-line: no-empty
+        viewToModelUpdate() { }
+      },
+    };
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
       ],
-    }).compileComponents();
+      imports: [
+        BrowserModule,
+        MainModule,
+        SharedModule.forRoot(),
+        LayoutModule
+      ],
+      providers: [
+        { provide: APP_BASE_HREF, useValue: '/' },
+      ]
+    })
+    .overrideComponent(FormControlComponent, {
+      add: { providers: [NG_CONTROL_PROVIDER] }
+    })
+    .compileComponents();
   }));
 
   it('should create the app', () => {
@@ -16,16 +44,4 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'eblog'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('eblog');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('eblog app is running!');
-  });
 });

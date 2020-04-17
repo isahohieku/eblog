@@ -3,7 +3,7 @@
     <div class="container container-1 mt-5">
         <div class="row">
             <div class="col-8 pt-5">
-                <div *ngIf="userObj">
+                <div *ngIf="userObj?.username">
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
@@ -22,6 +22,14 @@
 
                             <div *ngIf="feedLoading" class="d-flex justify-content-center align-items-center p-5 my-5">
                                 <app-loader [primary]="true"></app-loader>
+                            </div>
+
+                            <div class="container" *ngIf="!feedLoading && !articlesFeed?.length">
+                                <div class="row">
+                                    <div class="col py-5">
+                                        <h6 class="text-center text-secondary">No Articles found</h6>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Pagination -->
@@ -44,6 +52,14 @@
                                 <app-loader [primary]="true"></app-loader>
                             </div>
 
+                            <div class="container" *ngIf="!loading && !articles?.length">
+                                <div class="row">
+                                    <div class="col py-5">
+                                        <h6 class="text-center text-secondary">No Articles found</h6>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Pagination -->
                             <div class="d-flex justify-content-center mb-5" *ngIf="!loading">
                                 <pagination-controls (pageChange)="pageChanged($event)" maxSize="9"
@@ -58,11 +74,19 @@
 
                 <div *ngIf="!userObj">
                     <app-post-card
-                        *ngFor="let article of articlesFeed | paginate: { itemsPerPage: 5, currentPage: page, id: 'notloggedin' }"
+                        *ngFor="let article of articles | paginate: { itemsPerPage: 5, currentPage: page, id: 'notloggedin' }"
                         [article]="article"></app-post-card>
 
-                    <div *ngIf="feedLoading" class="d-flex justify-content-center align-items-center p-5 my-5">
+                    <div *ngIf="loading" class="d-flex justify-content-center align-items-center p-5 my-5">
                         <app-loader [primary]="true"></app-loader>
+                    </div>
+
+                    <div class="container" *ngIf="!loading && !articles?.length">
+                        <div class="row">
+                            <div class="col py-5">
+                                <h6 class="text-center text-secondary">No Articles found</h6>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Pagination -->
@@ -78,7 +102,7 @@
             <div class="col">
                 <app-search-widget></app-search-widget>
                 <app-author></app-author>
-                <app-popular-posts></app-popular-posts>
+                <!-- <app-popular-posts></app-popular-posts> -->
                 <app-popular-categories></app-popular-categories>
             </div>
         </div>
