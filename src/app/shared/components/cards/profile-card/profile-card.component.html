@@ -1,7 +1,7 @@
 <div class="wrapper">
     <div [ngStyle]="{'background': 'url(' + userAvatar + ') no-repeat center'}" class="avatar d-flex justify-content-center align-items-end">
         <!-- Change Avatar -->
-        <app-image-upload-single *ngIf="(userObj !== null) && (userObj?.username !== user?.username)" (binary)="convertedImage($event)" (uploadEnd)="uploaded($event)"></app-image-upload-single>
+        <app-image-upload-single *ngIf="(userObj !== null) && (userObj?.username === user?.username)" (binary)="convertedImage($event)" (uploadEnd)="uploaded($event)"></app-image-upload-single>
         <!-- Follow -->
         <button *ngIf="(userObj !== null) && (userObj?.username !== user?.username)" [disabled]="followLoading"
             class="btn bg-primary w-80 border-0 text-white mb-3 text-semi-small text-uppercase"
