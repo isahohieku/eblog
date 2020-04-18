@@ -11,7 +11,7 @@ import { UtilService } from '../../core/services/util.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  private token: any;
+  private token: string;
 
   constructor(private util: UtilService) { this.token = this.util.getToken(); }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

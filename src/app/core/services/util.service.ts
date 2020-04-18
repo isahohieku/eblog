@@ -29,13 +29,14 @@ export class UtilService {
 
   setToken(data: string): void {
     localStorage.setItem('token', data);
+    console.log('token', data);
     this.token.next(data);
   }
 
   getToken(): string {
     let token;
     if (localStorage.getItem('token')) {
-      token = localStorage.getItem('token');
+      token = JSON.parse(localStorage.getItem('token'));
     }
     return token;
   }
