@@ -7,7 +7,7 @@ export class StickyTopDirective {
 
   constructor() { }
 
-  @HostListener('window:scroll', ['$event']) scroll() {
+  @HostListener('window:scroll') scroll() {
     const nav = document.getElementById('main-nav');
 
     if ((scrollY > 90) && !nav.classList.contains('sticky')) {

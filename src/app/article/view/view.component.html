@@ -7,7 +7,7 @@
                 <div class="row" *ngIf="userObj?.username && !loading">
                     <div class="col d-flex justify-content-end">
                         <!-- Favourite Article -->
-                        <button [disabled]="favouriteLoading" type="button"
+                        <button type="button"
                             class="btn text-primary icon mousePointer ml-2" [ngClass]="{'favourite': article?.favorited}"
                             (click)="favouriteArticle()">
                             <span class="lnr lnr-heart"></span>

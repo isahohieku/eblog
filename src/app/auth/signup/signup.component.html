@@ -16,7 +16,7 @@
             <div class="wrap w-60">
                 <h4 class="text-center text-uppercase text-white mb-5">Sign up</h4>
 
-                <form #f="ngForm" (ngSubmit)="signUp(f)">
+                <form #f="ngForm" (ngSubmit)="signUp()">
                     <div class="">
                         <app-form-control [type]="'username'" [isRequired]="true" [placeholder]="'Username'" [(ngModel)]="username"
                             name="username" [pattern]="usernamePattern" [customClass]="'input-style w-100 bg-white'">

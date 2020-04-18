@@ -11,7 +11,7 @@
             <app-author [author]="userObj"></app-author>
         </div>
         <div class="col-8">
-            <form #f="ngForm" (ngSubmit)="updateData(f)" class="form mx-auto mb-5">
+            <form #f="ngForm" (ngSubmit)="updateData()" class="form mx-auto mb-5">
                 <p class="text-small text-primary mb-0">Username</p>
                 <div class="input-wrapper">
                     <app-form-control [disabled]="true" [type]="'text'" [placeholder]="'Username'" [(ngModel)]="username"

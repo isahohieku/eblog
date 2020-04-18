@@ -5,7 +5,7 @@
                 Article</h3>
             <h3 *ngIf="loading" class="mt-5 text-playfair text-center">Fetching Article...</h3>
 
-            <form #f="ngForm" (ngSubmit)="addArticle(f)" class="form mx-auto my-5">
+            <form #f="ngForm" (ngSubmit)="addArticle()" class="form mx-auto my-5">
                 <div class="input-wrapper">
                     <app-form-control [isRequired]="true" [type]="'text'" [placeholder]="'Enter article title'"
                         [(ngModel)]="title" name="title" [customClass]="'input-style w-100 bg-white'"

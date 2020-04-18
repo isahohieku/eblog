@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, Self, forwardRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Self, forwardRef, Optional } from '@angular/core';
 import {
   ControlValueAccessor, AbstractControl,
   ValidatorFn, Validators, NgControl, NG_VALUE_ACCESSOR, NG_VALIDATORS, Validator, ValidationErrors
@@ -23,7 +23,7 @@ export class FormControlComponent implements OnInit, ControlValueAccessor {
   @Input() customClass: string;
   control: AbstractControl;
 
-  constructor(@Self() private controlDir: NgControl) {
+  constructor(@Optional() @Self() public controlDir: NgControl) {
     this.controlDir.valueAccessor = this;
   }
 

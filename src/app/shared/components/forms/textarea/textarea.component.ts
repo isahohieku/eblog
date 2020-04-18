@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, Self, ElementRef, forwardRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Self, ElementRef, forwardRef, Optional } from '@angular/core';
 import {
   ControlValueAccessor, AbstractControl,
   ValidatorFn, Validators, ValidationErrors, NG_VALUE_ACCESSOR, NG_VALIDATORS, NgControl
@@ -22,7 +22,7 @@ export class TextareaComponent implements OnInit, ControlValueAccessor {
   @Input() customClass: string;
   control: AbstractControl;
 
-  constructor(@Self() private controlDir: NgControl) {
+  constructor(@Optional() @Self() public controlDir: NgControl) {
     this.controlDir.valueAccessor = this;
   }
   ngOnInit() {
