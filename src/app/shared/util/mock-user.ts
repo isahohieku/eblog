@@ -27,7 +27,7 @@ export const mockComment: Comment = {
     slug: 'Hello-World-sdfsdf'
 };
 
-export const mockUserRespone: UserResponse = {
+export const mockUserResponse: UserResponse = {
     user: {
         ...mockUser
     }

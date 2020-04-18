@@ -17,9 +17,8 @@ export class PostMetaCardComponent implements OnInit {
 
   ngOnInit() {
     const date = new Date(this.date);
-    const time = getTime(date);
     this.formatedDate = `${date.getDate()} ${getMonthFull(date.getMonth())}, ${date.getFullYear()}`;
-    if (this.author.image) {
+    if (this.author && this.author.image) {
       this.userAvatar = this.author.image;
     }
   }

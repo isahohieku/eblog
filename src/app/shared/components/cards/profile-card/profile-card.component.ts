@@ -25,7 +25,8 @@ export class ProfileCardComponent implements OnInit, OnChanges {
 
   getUserObject() {
     this.userObj = this.util.getUserObject();
-    if ((this.userObj === null) && (this.userObj.username === this.user.username) && (this.userObj.image !== '')) {
+    if ((this.userObj !== null) && (this.user !== undefined) &&
+      (this.userObj.username === this.user.username) && (this.userObj.image !== '')) {
       if (this.user.image !== '') {
         this.userAvatar = this.userObj.image;
       }
@@ -34,7 +35,7 @@ export class ProfileCardComponent implements OnInit, OnChanges {
       }
     }
 
-    if (this.user.image) {
+    if (this.user !== undefined) {
       if (this.user.image !== '') {
         this.userAvatar = this.user.image;
       }
@@ -55,7 +56,7 @@ export class ProfileCardComponent implements OnInit, OnChanges {
     if (this.user.following) {
       this.crud.deleteResource(url)
         .subscribe((res: ProfileResponse) => {
-          if (Object.keys(res).length === 0 && res.constructor === Object) {
+          if (Object.keys(res).length === 0) {
             return;
           }
           this.user = res.profile;
@@ -66,7 +67,7 @@ export class ProfileCardComponent implements OnInit, OnChanges {
 
     this.crud.postResource(url, data)
       .subscribe((res: ProfileResponse) => {
-        if (Object.keys(res).length === 0 && res.constructor === Object) {
+        if (Object.keys(res).length === 0) {
           return;
         }
         this.user = res.profile;
@@ -89,7 +90,7 @@ export class ProfileCardComponent implements OnInit, OnChanges {
     this.updateLoading = true;
     this.crud.updateResource(url, data)
       .subscribe((res: UserResponse) => {
-        if (Object.keys(res).length === 0 && res.constructor === Object) {
+        if (Object.keys(res).length === 0) {
           this.updateLoading = false;
           return;
         }
@@ -106,11 +107,13 @@ export class ProfileCardComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.user.currentValue) {
       this.user = changes.user.currentValue;
-      if (this.user.image !== '') {
-        this.userAvatar = this.user.image;
-      }
-      if (this.user.bio !== '') {
-        this.bio = this.user.bio;
+      if (this.user !== undefined) {
+        if (this.user.image !== '') {
+          this.userAvatar = this.user.image;
+        }
+        if (this.user.bio !== '') {
+          this.bio = this.user.bio;
+        }
       }
     }
   }

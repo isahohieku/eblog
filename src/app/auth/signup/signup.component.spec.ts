@@ -10,7 +10,7 @@ import { CrudService } from 'src/app/core/services/crud.service';
 import { UtilService } from 'src/app/core/services/util.service';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
-import { mockUser, mockUserRespone } from 'src/app/shared/util/mock-user';
+import { mockUser, mockUserResponse } from 'src/app/shared/util/mock-user';
 
 describe('SignupComponent', () => {
   let component: SignupComponent;
@@ -29,7 +29,7 @@ describe('SignupComponent', () => {
       },
     };
     crudServiceSpy = jasmine.createSpyObj('CrudService', ['postResource']);
-    utilServiceSpy = jasmine.createSpyObj('UtilService', ['setToken']);
+    utilServiceSpy = jasmine.createSpyObj('UtilService', ['setToken, getUserObject']);
     routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
     TestBed.configureTestingModule({
       declarations: [ SignupComponent, FormControlComponent, LoaderComponent ],
@@ -57,7 +57,7 @@ describe('SignupComponent', () => {
   });
 
   it('should signup', () => {
-    crudServiceSpy.postResource.and.returnValue(of(mockUserRespone));
+    crudServiceSpy.postResource.and.returnValue(of(mockUserResponse));
 
     component.username = mockUser.username;
     component.email = mockUser.email;

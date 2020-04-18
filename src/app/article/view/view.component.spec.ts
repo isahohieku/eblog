@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed, fakeAsync, flush } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ViewComponent } from './view.component';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -20,17 +20,27 @@ import { PostCategoriesItemCardComponent } from 'src/app/shared/components/misc/
 import { PopularPostsCardComponent } from 'src/app/shared/components/cards/popular-posts-card/popular-posts-card.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UtilService } from 'src/app/core/services/util.service';
-import { CrudService } from 'src/app/core/services/crud.service';
 import { of } from 'rxjs';
 import { mockUser, mockArticleResponse, mockCommentsResponse, mockComment } from 'src/app/shared/util/mock-user';
-import { Router } from '@angular/router';
 import { ArticleService } from '../article.service';
+import { ToastrModule } from 'ngx-toastr';
+import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
+import { Cloudinary as cloudinary_core } from 'cloudinary-core';
 
 describe('ViewComponent', () => {
   let component: ViewComponent;
   let fixture: ComponentFixture<ViewComponent>;
   let crudServiceSpy: jasmine.SpyObj<ArticleService>;
   let utilServiceSpy: jasmine.SpyObj<UtilService>;
+
+  const cloudinary = {
+    Cloudinary: cloudinary_core
+  };
+
+  const config: CloudinaryConfiguration = {
+    cloud_name: 'hello'
+  };
+
 
   beforeEach(async(() => {
     utilServiceSpy = jasmine.createSpyObj('UtilService', ['getUserObject']);
@@ -68,13 +78,23 @@ describe('ViewComponent', () => {
         PostCategoriesItemCardComponent,
         PopularPostsCardComponent,
       ],
-      imports: [FormsModule, RouterTestingModule, HttpClientTestingModule],
+      imports: [
+        FormsModule,
+        RouterTestingModule,
+        HttpClientTestingModule,
+        ToastrModule.forRoot(),
+        CloudinaryModule,
+        CloudinaryModule.forRoot(cloudinary, config)
+      ],
       providers: [
         { provide: ArticleService, useValue: crudServiceSpy },
         { provide: UtilService, useValue: utilServiceSpy },
       ]
     })
       .overrideComponent(FormControlComponent, {
+        add: { providers: [NG_CONTROL_PROVIDER] }
+      })
+      .overrideComponent(TextareaComponent, {
         add: { providers: [NG_CONTROL_PROVIDER] }
       })
       .compileComponents();

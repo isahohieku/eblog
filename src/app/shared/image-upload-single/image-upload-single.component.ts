@@ -82,7 +82,6 @@ export class ImageUploadSingleComponent implements OnInit, OnChanges {
       // Upload Started
       this.upload.setSettingsProfileImageUploadingStatus(true);
 
-      // console.log('Image upload started');
       // Add Cloudinary's unsigned upload preset to the upload form
       form.append('upload_preset', this.cloudinary.config().upload_preset);
       // Add built-in and custom tags for displaying the uploaded photo in the list

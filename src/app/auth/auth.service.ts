@@ -32,7 +32,7 @@ export class AuthService {
     };
    }
 
-  setLoginStatus(value) {
+  setLoginStatus(value: boolean) {
     this.login.next(value);
   }
 
@@ -40,7 +40,11 @@ export class AuthService {
     return this.login.asObservable();
   }
 
-  loginUser(url, data): Observable<any> {
+  getLoginStatus(): boolean {
+    return this.login.value;
+  }
+
+  loginUser(url: string, data): Observable<any> {
     return this.http.post(`${this.util.baseUrl}${url}`, data, this.header)
       .pipe(catchError(this.errorHandler.handleError('')));
   }

@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
 
     this.auth.loginUser(url, data)
       .subscribe((res: UserResponse) => {
-        if (Object.keys(res).length === 0 && res.constructor === Object) {
+        if (Object.keys(res).length === 0) {
           this.loading = false;
           return;
         }

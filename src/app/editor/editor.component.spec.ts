@@ -10,7 +10,7 @@ import { TagItemComponent } from '../shared/components/misc/tag-item/tag-item.co
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
-import { mockArticleResponse, mockArticle, mockAuthor, mockUser } from '../shared/util/mock-user';
+import { mockArticleResponse, mockArticle, mockAuthor, mockUser, mockTagList } from '../shared/util/mock-user';
 import { EditorService } from './editor.service';
 
 describe('EditorComponent', () => {
@@ -45,6 +45,9 @@ describe('EditorComponent', () => {
       .overrideComponent(FormControlComponent, {
         add: { providers: [NG_CONTROL_PROVIDER] }
       })
+      .overrideComponent(TextareaComponent, {
+        add: { providers: [NG_CONTROL_PROVIDER] }
+      })
       .compileComponents();
   }));
 
@@ -71,6 +74,7 @@ describe('EditorComponent', () => {
     component.description = mockArticle.description;
     component.body = mockArticle.body;
     component.userObj = mockUser;
+    component.tagList = mockTagList;
     component.addArticle();
 
     expect(crudServiceSpy.addArticle).toHaveBeenCalled();
@@ -83,6 +87,7 @@ describe('EditorComponent', () => {
     component.description = mockArticle.description;
     component.body = mockArticle.body;
     component.userObj = mockUser;
+    component.tagList = mockTagList;
     component.addArticle();
 
     expect(crudServiceSpy.updateArticle).toHaveBeenCalled();

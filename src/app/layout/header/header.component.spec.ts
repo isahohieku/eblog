@@ -1,14 +1,13 @@
-import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { HeaderComponent } from './header.component';
 import { StickyTopDirective } from 'src/app/shared/directives/sticky-top.directive';
 import { ReplaySubject } from 'rxjs';
-import { RouterEvent, NavigationEnd, Router, RouterModule } from '@angular/router';
-import { APP_BASE_HREF } from '@angular/common';
-import { NO_ERRORS_SCHEMA, Component } from '@angular/core';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { HomeComponent } from 'src/app/home/home.component';
+import { RouterEvent, NavigationEnd } from '@angular/router';
+import { Component } from '@angular/core';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-outlet',
@@ -43,8 +42,11 @@ describe('HeaderComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [HeaderComponent, StickyTopDirective, RouterOutletComponent, DummyComponent],
-      imports: [RouterTestingModule],
-      // providers: [{ provide: Router, useValue: routerMock }],
+      imports: [RouterTestingModule, HttpClientTestingModule, ToastrModule.forRoot()],
+      providers: [
+        ToastrService,
+        // { provide: Router, useValue: routerMock }
+      ],
     })
       .compileComponents();
   }));

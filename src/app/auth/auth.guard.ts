@@ -6,33 +6,23 @@ import { AuthService } from 'src/app/auth/auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate, OnDestroy {
+export class AuthGuard implements CanActivate {
   subscription: Subscription;
   loginStatus: boolean;
 
   constructor(
     private auth: AuthService,
     private router: Router) {
-    this.listenToUserObjChange();
   }
 
-  listenToUserObjChange() {
-    this.auth.listenToLoginStatus().subscribe(res => this.loginStatus = res);
-  }
+  canActivate(): Observable<boolean> | Promise<boolean> | boolean {
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-
-    if (!this.loginStatus) {
+    if (!this.auth.getLoginStatus()) {
       localStorage.clear();
-      return this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/login');
+      return false;
     }
 
     return true;
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
   }
 }

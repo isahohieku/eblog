@@ -7,6 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
 import { NgControl, FormControl } from '@angular/forms';
 import { FormControlComponent } from './shared/components/forms/form-control/form-control.component';
+import { TextareaComponent } from './shared/components/forms/textarea/textarea.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -33,6 +34,9 @@ describe('AppComponent', () => {
       ]
     })
     .overrideComponent(FormControlComponent, {
+      add: { providers: [NG_CONTROL_PROVIDER] }
+    })
+    .overrideComponent(TextareaComponent, {
       add: { providers: [NG_CONTROL_PROVIDER] }
     })
     .compileComponents();

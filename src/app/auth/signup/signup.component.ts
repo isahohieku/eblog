@@ -21,11 +21,11 @@ export class SignupComponent implements OnInit {
   @ViewChild('f', { static: false }) form: NgForm;
 
   constructor(private util: UtilService, private crud: CrudService, private router: Router) {
+    this.emailPattern = this.util.emailValidator;
+    this.usernamePattern = this.util.usernameValidator;
     if (this.util.getUserObject() !== null) {
       this.router.navigate(['/']);
     }
-    this.emailPattern = this.util.emailValidator;
-    this.usernamePattern = this.util.usernameValidator;
   }
 
   ngOnInit() {
@@ -48,7 +48,7 @@ export class SignupComponent implements OnInit {
 
     this.crud.postResource(url, data)
       .subscribe((res: UserResponse) => {
-        if (Object.keys(res).length === 0 && res.constructor === Object) {
+        if (Object.keys(res).length === 0) {
           this.loading = false;
           return;
         }

@@ -15,11 +15,11 @@ import { PopularPostsCardComponent } from '../shared/components/cards/popular-po
 import { PostCategoriesItemCardComponent } from '../shared/components/misc/post-categories-item-card/post-categories-item-card.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NgControl, FormControl } from '@angular/forms';
-import { CrudService } from '../core/services/crud.service';
 import { UtilService } from '../core/services/util.service';
 import { mockUser, mockArticlesResponse } from '../shared/util/mock-user';
 import { of } from 'rxjs';
 import { HomeService } from './home.service';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -55,7 +55,7 @@ describe('HomeComponent', () => {
         PostMetaCardComponent,
         FormControlComponent
       ],
-      imports: [NgxPaginationModule, RouterTestingModule, HttpClientTestingModule],
+      imports: [NgxPaginationModule, RouterTestingModule, HttpClientTestingModule, ToastrModule.forRoot()],
       providers: [
         { provide: HomeService, useValue: crudServiceSpy },
         { provide: UtilService, useValue: utilServiceSpy }

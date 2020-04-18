@@ -20,6 +20,7 @@ import { FormControlComponent } from '../components/forms/form-control/form-cont
 import { HttpClientTestingModule } from '@angular/common/http/testing/';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgControl, FormControl } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('StickyTopDirective', () => {
 
@@ -55,7 +56,7 @@ describe('StickyTopDirective', () => {
         PostMetaCardComponent,
         FormControlComponent
       ],
-      imports: [RouterTestingModule, HttpClientTestingModule, NgxPaginationModule],
+      imports: [RouterTestingModule, HttpClientTestingModule, NgxPaginationModule, ToastrModule.forRoot()],
       providers: [
         { provide: ComponentFixtureAutoDetect, useValue: true }
       ]

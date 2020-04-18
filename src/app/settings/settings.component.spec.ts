@@ -7,7 +7,7 @@ import { AuthorComponent } from '../shared/components/widgets/author/author.comp
 import { FormsModule, ReactiveFormsModule, NgControl, FormControl } from '@angular/forms';
 import { LoaderComponent } from '../shared/components/misc/loader/loader.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { mockUser, mockUserRespone } from '../shared/util/mock-user';
+import { mockUser, mockUserResponse } from '../shared/util/mock-user';
 import { CrudService } from '../core/services/crud.service';
 import { UtilService } from '../core/services/util.service';
 import { of } from 'rxjs';
@@ -40,6 +40,9 @@ describe('SettingsComponent', () => {
       .overrideComponent(FormControlComponent, {
         add: { providers: [NG_CONTROL_PROVIDER] }
       })
+      .overrideComponent(TextareaComponent, {
+        add: { providers: [NG_CONTROL_PROVIDER] }
+      })
       .compileComponents();
   }));
 
@@ -56,7 +59,7 @@ describe('SettingsComponent', () => {
   });
 
   it('should update', () => {
-    crudServiceSpy.updateResource.and.returnValue(of(mockUserRespone));
+    crudServiceSpy.updateResource.and.returnValue(of(mockUserResponse));
 
     component.updateData();
     expect(crudServiceSpy.updateResource).toHaveBeenCalled();

@@ -75,12 +75,10 @@ export class ViewComponent implements OnInit {
     this.article.favorited ?
       this.crud.favouriteArticle(url, data)
         .subscribe((res: CommentsResponse) => {
-          console.log(res);
         },
           e => { console.log(e); }) :
       this.crud.unFavouriteArticle(url)
         .subscribe((res: CommentsResponse) => {
-          console.log(res);
         },
           e => { console.log(e); });
   }

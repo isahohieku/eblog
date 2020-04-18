@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 
 import { CrudService } from './crud.service';
 import { mockArticleResponse, mockArticle } from 'src/app/shared/util/mock-user';
+import { ToastrService, ToastrModule } from 'ngx-toastr';
 
 describe('CrudService', () => {
   let httpTestingController: HttpTestingController;
@@ -11,8 +12,8 @@ describe('CrudService', () => {
   const baseUrl = 'https://eblog-api.encentrals.com/api/';
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-      providers: [CrudService]
+      imports: [HttpClientTestingModule, ToastrModule.forRoot()],
+      providers: [CrudService, ToastrService]
     });
 
     httpTestingController = TestBed.get(HttpTestingController);

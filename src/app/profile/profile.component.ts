@@ -43,7 +43,9 @@ export class ProfileComponent implements OnInit {
       .subscribe((res: ProfileResponse) => {
         this.loading = false;
         this.user = res.profile;
-        this.header = this.user.image;
+        if (this.user !== undefined) {
+          this.header = this.user.image;
+        }
       },
         e => { this.loading = false; console.log(e); });
   }

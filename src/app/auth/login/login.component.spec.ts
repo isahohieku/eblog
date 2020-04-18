@@ -1,30 +1,30 @@
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
-import { FormsModule, NgControl, NgForm, FormControl } from '@angular/forms';
+import { FormsModule, NgControl, FormControl } from '@angular/forms';
 import { FormControlComponent } from 'src/app/shared/components/forms/form-control/form-control.component';
 import { LoaderComponent } from 'src/app/shared/components/misc/loader/loader.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AuthService } from '../auth.service';
-import { CrudService } from 'src/app/core/services/crud.service';
 import { UtilService } from 'src/app/core/services/util.service';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { mockUser } from 'src/app/shared/util/mock-user';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let authServiceSpy: jasmine.SpyObj<AuthService>;
-  let crudServiceSpy: jasmine.SpyObj<CrudService>;
   let utilServiceSpy: jasmine.SpyObj<UtilService>;
-  let routerSpy: jasmine.SpyObj<Router>;
+  // let routerSpy: jasmine.SpyObj<Router>;
 
   beforeEach(async(() => {
-    authServiceSpy = jasmine.createSpyObj('AuthService', ['setLoginStatus']);
-    crudServiceSpy = jasmine.createSpyObj('CrudService', ['postResource']);
-    utilServiceSpy = jasmine.createSpyObj('UtilService', ['setToken', 'setUserObject']);
-    routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
+    authServiceSpy = jasmine.createSpyObj('AuthService', ['setLoginStatus', 'loginUser']);
+    utilServiceSpy = jasmine.createSpyObj('UtilService', ['setToken', 'setUserObject', 'getUserObject']);
+    // routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
+
+    authServiceSpy.loginUser.and.returnValue(of(mockUser));
 
     const NG_CONTROL_PROVIDER = {
       provide: NgControl,
@@ -37,12 +37,11 @@ describe('LoginComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [LoginComponent, FormControlComponent, LoaderComponent],
-      imports: [FormsModule, HttpClientTestingModule],
+      imports: [FormsModule, HttpClientTestingModule, RouterTestingModule],
       providers: [
-        { provide: CrudService, useValue: crudServiceSpy },
         { provide: AuthService, useValue: authServiceSpy },
         { provide: UtilService, useValue: utilServiceSpy },
-        { provide: Router, useValue: routerSpy }
+        // { provide: Router, useValue: routerSpy }
       ],
     })
       .overrideComponent(FormControlComponent, {
@@ -62,7 +61,7 @@ describe('LoginComponent', () => {
   });
 
   it('should login', () => {
-    crudServiceSpy.postResource.and.returnValue(of({ user: mockUser }));
+    authServiceSpy.loginUser.and.returnValue(of({ user: mockUser }));
 
     component.email = mockUser.email;
     component.password = 'password';
@@ -71,11 +70,11 @@ describe('LoginComponent', () => {
 
     component.login();
 
-    expect(crudServiceSpy.postResource).toHaveBeenCalled();
+    expect(authServiceSpy.loginUser).toHaveBeenCalled();
     expect(authServiceSpy.setLoginStatus).toHaveBeenCalled();
     expect(utilServiceSpy.setToken).toHaveBeenCalled();
     expect(utilServiceSpy.setUserObject).toHaveBeenCalled();
-    expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/');
+    // expect(routerSpy.navigateByUrl).toHaveBeenCalledWith('/');
 
   });
 

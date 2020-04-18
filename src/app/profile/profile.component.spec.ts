@@ -10,7 +10,10 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ArticleService } from '../article/article.service';
 import { CrudService } from '../core/services/crud.service';
 import { of } from 'rxjs';
-import { mockArticlesResponse, mockProfileResponse } from '../shared/util/mock-user';
+import { mockArticlesResponse, mockUserResponse } from '../shared/util/mock-user';
+import { ToastrModule } from 'ngx-toastr';
+import { ImageUploadSingleComponent } from '../shared/image-upload-single/image-upload-single.component';
+import { ActivatedRoute } from '@angular/router';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -19,14 +22,16 @@ describe('ProfileComponent', () => {
   let articleServiceSpy: jasmine.SpyObj<ArticleService>;
 
   beforeEach(async(() => {
-    articleServiceSpy = jasmine.createSpyObj('CrudService', ['getResource']);
-    crudServiceSpy = jasmine.createSpyObj('ArticleService', ['getArticles']);
-    articleServiceSpy.getArticles.and.returnValue(of([mockArticlesResponse]));
-    crudServiceSpy.getResource.and.returnValue(of([mockProfileResponse]));
+    crudServiceSpy = jasmine.createSpyObj('CrudService', ['getResource']);
+    articleServiceSpy = jasmine.createSpyObj('ArticleService', ['getArticles']);
+    articleServiceSpy.getArticles.and.returnValue(of(mockArticlesResponse));
+    crudServiceSpy.getResource.and.returnValue(of(mockUserResponse));
     TestBed.configureTestingModule({
-      declarations: [ ProfileComponent, PostMetaCardComponent, PostCardComponent, ProfileCardComponent, LoaderComponent ],
-      imports: [RouterTestingModule, HttpClientTestingModule],
+      declarations: [ ProfileComponent, PostMetaCardComponent, PostCardComponent,
+        ProfileCardComponent, ImageUploadSingleComponent, LoaderComponent ],
+      imports: [RouterTestingModule, HttpClientTestingModule, ToastrModule.forRoot()],
       providers: [
+        { provide: ActivatedRoute, useValue: { params: of({username: 'another'}) }},
         { provide: ArticleService, useValue: articleServiceSpy },
         { provide: CrudService, useValue: crudServiceSpy }
       ]

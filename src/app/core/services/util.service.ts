@@ -20,7 +20,7 @@ export class UtilService {
     localStorage.setItem('userObj', JSON.stringify(data));
   }
 
-  getUserObject(): User|null {
+  getUserObject(): User | null {
     if (localStorage.getItem('userObj')) {
       return JSON.parse(localStorage.getItem('userObj')) as User;
     }

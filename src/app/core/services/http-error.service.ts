@@ -3,12 +3,18 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, of } from 'rxjs';
 
+export type HandleError =
+  <T> (operation?: string, result?: T) => (error: HttpErrorResponse) => Observable<T>;
+
 @Injectable({
   providedIn: 'root'
 })
 export class HttpErrorService {
 
   constructor(private toastr: ToastrService) { }
+
+  createHandleError = () => <T>
+    (operation = 'operation', result = null as T) => this.handleError(operation, result)
 
   handleError<T>(operation = 'operation', result = {} as T) {
 
@@ -24,8 +30,6 @@ export class HttpErrorService {
           message = e.message;
         }
       }
-
-      console.log(e);
 
       // Throw an Error Toast
       this.toastr.error(message, operation);
