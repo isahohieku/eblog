@@ -1,0 +1,27 @@
+.post-figure {
+    height: 350px;
+    overflow: hidden;
+    background-image: url(../../../assets/img/jumbotron.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.icon {
+    border: 1px solid #8050fa;
+    background-color: transparent;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    padding: 0;
+    transition: all 0.3s;
+
+    &:hover {
+        background-color: #8050fa !important;
+        color: white !important;
+    }
+}
+
+.favourite {
+    background-color: #8050fa !important;
+    color: white !important;
+}

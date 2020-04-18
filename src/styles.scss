@@ -1,10 +1,189 @@
-/* You can add global styles to this file, and also import other style files */
+// Fonts
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap");
 
 // Variables
 $primary-color: #8050fa;
 $secondary-color: #888888;
+$secondary-color-2: #eee;
+$secondary-color-3: #dddddd;
 $dark-color: #222222;
 
+body {
+    font-family: "Roboto", "Open Sans", sans-serif !important;
+    p {
+        line-height: 24px;
+    }
+}
+
+.mousePointer {
+    cursor: pointer;
+}
+
+@font-face {
+    font-family: Playfair;
+    src: url(./assets/font/PlayfairDisplay-Regular.otf) format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Playfair;
+    src: url(./assets/font/PlayfairDisplay-Black.otf) format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Playfair;
+    src: url(./assets/font/PlayfairDisplay-Bold.otf) format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+.w-90 {
+    width: 90% !important;
+}
+.w-80 {
+    width: 80% !important;
+}
+.w-75 {
+    width: 75% !important;
+}
+.w-70 {
+    width: 70% !important;
+}
+.w-60 {
+    width: 60% !important;
+}
+.w-50 {
+    width: 50% !important;
+}
+.w-40 {
+    width: 40% !important;
+}
+.w-25 {
+    width: 25% !important;
+}
+.w-20 {
+    width: 20% !important;
+}
+
+.w-15 {
+    width: 15% !important;
+}
+
+@media (min-width: 576px) {
+    .w-sm-100 {
+        width: 100% !important;
+    }
+    .w-sm-80 {
+        width: 80% !important;
+    }
+    .w-sm-75 {
+        width: 75% !important;
+    }
+    .w-sm-60 {
+        width: 60% !important;
+    }
+    .w-sm-50 {
+        width: 50% !important;
+    }
+    .w-sm-40 {
+        width: 40% !important;
+    }
+    .w-sm-25 {
+        width: 25% !important;
+    }
+    .w-sm-20 {
+        width: 20% !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .w-md-100 {
+        width: 100% !important;
+    }
+    .w-md-80 {
+        width: 80% !important;
+    }
+    .w-md-75 {
+        width: 75% !important;
+    }
+    .w-md-60 {
+        width: 60% !important;
+    }
+    .w-md-50 {
+        width: 50% !important;
+    }
+    .w-md-40 {
+        width: 40% !important;
+    }
+    .w-md-25 {
+        width: 25% !important;
+    }
+    .w-md-20 {
+        width: 20% !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .w-lg-100 {
+        width: 100% !important;
+    }
+    .w-lg-80 {
+        width: 80% !important;
+    }
+    .w-lg-75 {
+        width: 75% !important;
+    }
+    .w-lg-60 {
+        width: 60% !important;
+    }
+    .w-lg-50 {
+        width: 50% !important;
+    }
+    .w-lg-40 {
+        width: 40% !important;
+    }
+    .w-lg-25 {
+        width: 25% !important;
+    }
+    .w-lg-20 {
+        width: 20% !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .w-xl-100 {
+        width: 100% !important;
+    }
+    .w-xl-80 {
+        width: 80% !important;
+    }
+    .w-xl-75 {
+        width: 75% !important;
+    }
+    .w-xl-60 {
+        width: 60% !important;
+    }
+    .w-xl-50 {
+        width: 50% !important;
+    }
+    .w-xl-40 {
+        width: 40% !important;
+    }
+    .w-xl-25 {
+        width: 25% !important;
+    }
+    .w-xl-20 {
+        width: 20% !important;
+    }
+}
+
+// Text
 .text- {
     &primary {
         color: $primary-color !important;
@@ -12,4 +191,269 @@ $dark-color: #222222;
     &secondary {
         color: $secondary-color !important;
     }
+    &secondary-2 {
+        color: $secondary-color-2 !important;
+    }
+
+    &small {
+        font-size: 12px !important;
+    }
+
+    &semi-small {
+        font-size: 14px !important;
+    }
+
+    &-large {
+        font-size: 18px !important;
+    }
+
+    &playfair {
+        font-family: Playfair;
+    }
+
+    &underline {
+        text-decoration: underline !important;
+    }
+}
+
+// Background
+.bg- {
+    &primary {
+        background-color: $primary-color !important;
+    }
+    &secondary {
+        background-color: $secondary-color !important;
+    }
+    &dark {
+        background-color: $dark-color !important;
+    }
+    &white {
+        background-color: white !important;
+    }
+}
+
+// Container
+.container {
+    &-1 {
+        max-width: 1170px !important;
+    }
+}
+
+// Opacity
+@mixin opacity($op) {
+    @for $opac from 1 through $op {
+        &-#{$opac} {
+            opacity: $opac / 10;
+        }
+    }
+}
+.opacity {
+    @include opacity((10));
+}
+
+.wrapper {
+    background: #fff;
+    border-radius: 5px;
+}
+
+.widget-wrapper {
+    border: 1px solid $secondary-color-2;
+}
+
+.lnr {
+    display: inline-block;
+    fill: currentColor;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.05em;
+}
+
+// Buttons
+.btn {
+    border-radius: 100px;
+    border: 1px solid #e9e9e9;
+    background-color: #f9f9ff;
+    line-height: 38px;
+    padding: 0 30px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+a,
+a:active,
+a:focus,
+a:link {
+    text-decoration: none;
+    color: black;
+    outline: none;
+}
+
+a.bg-primary:focus,
+a.bg-primary:hover,
+button.bg-primary:focus,
+button.bg-primary:hover {
+    background-color: $primary-color !important;
+}
+
+h3 {
+    a:hover {
+        color: $primary-color;
+    }
+}
+
+.input-style,
+.input-style:focus {
+    padding: 13px 20px;
+    font-size: 14px;
+    border: none;
+    width: 90%;
+    background: transparent;
+    box-shadow: none;
+}
+
+.tex,
+.comment-tex {
+    border-radius: 10px;
+    height: 300px !important;
+}
+
+.comment-tex {
+    height: 100px !important;
+    background: #f9f9ff !important;
+    border: 1px solid #e9e9e9 !important;
+}
+
+.rounded-btn {
+    padding: 0 !important;
+    color: white;
+    background-color: $primary-color;
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+}
+
+.cta- {
+    &1 {
+        border: 1px solid white;
+        background-color: transparent !important;
+        color: white;
+        
+        &:hover {
+            color: $primary-color;
+            background-color: white !important;
+        }
+    }
+
+    &2 {
+        background-color: white !important;
+        color: $primary-color;
+
+        &:hover {
+            color: white;
+            background-color: rgba(128, 80, 250, 0.9) !important;
+            border: 1px solid rgba(128, 80, 250, 0.9);
+        }
+    }
+}
+
+.sticky {
+    top: 0;
+    left: 0;
+    background: rgba(128, 80, 250, 0.9) !important;
+    position: fixed !important;
+    z-index: 1000;
+}
+
+.nav-tabs {
+    border: 0;
+}
+
+.nav-link {
+    padding-left: 50px;
+    padding-right: 50px;
+    transition: all 0.3s;
+    text-transform: uppercase;
+}
+
+.nav-tabs .nav-link {
+    border-radius: 50px !important;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    color: white;
+    background-color: $primary-color;
+    border: 0;
+}
+
+.ngx-pagination a,
+.ngx-pagination button, .ngx-pagination button:active {
+    border: 0;
+    color: $secondary-color !important;
+    box-shadow: none !important;
+}
+
+.ngx-pagination .current {
+    background-color: $primary-color !important;
+    color: white !important;
+}
+
+.ngx-pagination .current:hover {
+    background-color: $primary-color;
+    color: white;
+}
+
+.ngx-pagination .pagination-previous a::before,
+.ngx-pagination .pagination-previous.disabled::before {
+    content: "\e879" !important;
+    display: inline-block;
+    fill: currentColor;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.05em;
+    font-family: Linearicons-Free;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    margin-right: 0 !important;
+}
+
+.ngx-pagination .pagination-next a::after,
+.ngx-pagination .pagination-next.disabled::after {
+    content: "\e87a" !important;
+    display: inline-block;
+    fill: currentColor;
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.05em;
+    font-family: Linearicons-Free;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    margin-left: 0 !important;
+}
+
+.ngx-pagination a:hover,
+.ngx-pagination button:hover {
+    background-color: $primary-color !important;
+    color: white !important;
+    text-decoration: none !important;
+    outline: none !important;
+}
+
+.ngx-pagination a,
+.ngx-pagination button:active {
+    box-shadow: none !important;
+}
+
+.ngx-pagination li:focus {
+    outline: none !important;
 }

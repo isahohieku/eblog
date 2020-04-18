@@ -1,0 +1,23 @@
+<div class="wrapper">
+    <div [ngStyle]="{'background': 'url(' + userAvatar + ') no-repeat center'}" class="avatar d-flex justify-content-center align-items-end">
+        <!-- Change Avatar -->
+        <app-image-upload-single *ngIf="(userObj !== null) && (userObj?.username !== user?.username)" (binary)="convertedImage($event)" (uploadEnd)="uploaded($event)"></app-image-upload-single>
+        <!-- Follow -->
+        <button *ngIf="(userObj !== null) && (userObj?.username !== user?.username)" [disabled]="followLoading"
+            class="btn bg-primary w-80 border-0 text-white mb-3 text-semi-small text-uppercase"
+            (click)="follow()">{{ user?.following ? 'Unfollow ' : 'Follow '}}
+            <i class="fas fa-spinner fa-spin" *ngIf="followLoading"></i></button>
+    </div>
+
+    <!-- Body -->
+    <div class="about p-4">
+        <h6 class="text-uppercase text-secondary font-weight-bolder">Bio</h6>
+
+        <!-- Bio -->
+        <p class="text-secondary text-semi-small mt-4">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia est voluptates iste reiciendis nisi,
+            nesciunt, cumque sit unde quos recusandae illo? Ab, commodi ipsa quidem harum iusto quae adipisci aut!
+        </p>
+    </div>
+
+</div>

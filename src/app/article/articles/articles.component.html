@@ -1,0 +1,103 @@
+<div class="container container-1 mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-8">
+            <div *ngIf="userObj?.username">
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
+                            role="tab" aria-controls="nav-home" aria-selected="true">Feed</a>
+                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                            role="tab" aria-controls="nav-profile" aria-selected="false">Global</a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active pt-5" id="nav-home" role="tabpanel"
+                        aria-labelledby="nav-home-tab">
+                        <!-- Feed -->
+                        <app-post-card
+                            *ngFor="let article of articlesFeed | paginate: { itemsPerPage: 5, currentPage: page, id: 'feed' }"
+                            [article]="article"></app-post-card>
+
+                        <div *ngIf="feedLoading" class="d-flex justify-content-center align-items-center p-5 my-5">
+                            <app-loader [primary]="true"></app-loader>
+                        </div>
+
+                        <!-- No Articles -->
+                        <div class="container" *ngIf="!feedLoading && !articlesFeed?.length">
+                            <div class="row">
+                                <div class="col py-5">
+                                    <h6 class="text-center text-secondary">No Articles found</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="d-flex justify-content-center mb-5" *ngIf="!feedLoading">
+                            <pagination-controls (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
+                                autoHide="true" responsive="true" screenReaderPaginationLabel="Pagination"
+                                previousLabel="" nextLabel="" screenReaderPageLabel="page"
+                                screenReaderCurrentLabel="You're on page" id="feed">
+                            </pagination-controls>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade pt-5" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        <!-- Global -->
+                        <app-post-card
+                            *ngFor="let article of articles | paginate: { itemsPerPage: 5, currentPage: page, id: 'global' }"
+                            [article]="article"></app-post-card>
+
+                        <div *ngIf="loading" class="d-flex justify-content-center align-items-center p-5 my-5">
+                            <app-loader [primary]="true"></app-loader>
+                        </div>
+
+                        <!-- No Articles -->
+                        <div class="container" *ngIf="!loading && !articles?.length">
+                            <div class="row">
+                                <div class="col py-5">
+                                    <h6 class="text-center text-secondary">No Articles found</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="d-flex justify-content-center mb-5" *ngIf="!loading">
+                            <pagination-controls (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
+                                autoHide="true" responsive="true" screenReaderPaginationLabel="Pagination"
+                                previousLabel="" nextLabel="" screenReaderPageLabel="page"
+                                screenReaderCurrentLabel="You're on page" id="global">
+                            </pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="!userObj">
+                <app-post-card
+                    *ngFor="let article of articles | paginate: { itemsPerPage: 5, currentPage: page, id: 'notloggedin' }"
+                    [article]="article"></app-post-card>
+
+                <div *ngIf="loading" class="d-flex justify-content-center align-items-center p-5 my-5">
+                    <app-loader [primary]="true"></app-loader>
+                </div>
+
+                <!-- No Articles -->
+                <div class="container" *ngIf="!loading && !articles?.length">
+                    <div class="row">
+                        <div class="col py-5">
+                            <h6 class="text-center text-secondary">No Articles found</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="d-flex justify-content-center mb-5" *ngIf="!feedLoading">
+                    <pagination-controls (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
+                        autoHide="true" responsive="true" screenReaderPaginationLabel="Pagination" previousLabel=""
+                        nextLabel="" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"
+                        id="notloggedin">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

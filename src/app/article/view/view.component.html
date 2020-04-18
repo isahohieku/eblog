@@ -1,0 +1,84 @@
+<!-- Main body -->
+<main class="my-5">
+    <div class="container container-1 mt-5">
+        <div class="row mt-5">
+            <div class="col-8">
+                <!-- Delete or modify -->
+                <div class="row" *ngIf="userObj?.username && !loading">
+                    <div class="col d-flex justify-content-end">
+                        <!-- Favourite Article -->
+                        <button [disabled]="favouriteLoading" type="button"
+                            class="btn text-primary icon mousePointer ml-2" [ngClass]="{'favourite': article?.favorited}"
+                            (click)="favouriteArticle()">
+                            <span class="lnr lnr-heart"></span>
+                        </button>
+                        <!-- Edit Article -->
+                        <a class="btn text-primary icon mousePointer ml-2" *ngIf="(article?.author?.username === userObj?.username) && article?.slug"
+                            [routerLink]="['/editor/', article?.slug]">
+                            <span class="lnr lnr-pencil"></span>
+                        </a>
+                        <!-- Delete Article -->
+                        <button [disabled]="deleteLoading" type="button" class="btn text-primary icon mousePointer ml-2"
+                            (click)="deleteArticle()" *ngIf="article?.author?.username === userObj?.username">
+                            <span class="lnr lnr-trash" *ngIf="!deleteLoading"></span>
+                            <i *ngIf="deleteLoading" class="fas fa-spinner fa-spin"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Figure -->
+                <div class="wrapper post-figure" *ngIf="!loading"></div>
+                <!-- title -->
+                <h2 class="w-75 text-playfair mt-2">{{ article?.title }}</h2>
+                <!-- Taglist and author small card -->
+                <div class="container mt-4">
+                    <div class="row">
+                        <div class="col pl-0">
+                            <!-- Tag list -->
+                            <app-tag-list *ngIf="tags?.length" [tags]="tags"></app-tag-list>
+                        </div>
+                        <div class="col d-flex justify-content-end">
+                            <!-- Author card -->
+                            <app-author-small *ngIf="article?.author" [date]="article?.createdAt" [author]="article?.author"></app-author-small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Parsed article body -->
+                <div class="container mt-4">
+                    <div class="row">
+                        <div class="col px-0">
+                            <app-parsed-md *ngIf="article" [article]="article"></app-parsed-md>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comments -->
+                <div class="mt-4" *ngIf="userObj?.username && !loading">
+                    <app-comment *ngFor="let comment of comments; let i = index" [comment]="comment"
+                        (commentDeleted)="deleteComment(i)"></app-comment>
+                </div>
+
+                <!-- Comment form -->
+                <div class="container mt-4" *ngIf="userObj?.username && !loading">
+                    <div class="row">
+                        <div class="col px-0">
+                            <app-comment-form [slug]="slug" (commentAdded)="commentAdded($event)"></app-comment-form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loader -->
+                <div class="justify-content-center align-items-center py-4 d-flex"  *ngIf="loading">
+                    <app-loader [primary]="true"></app-loader>
+                </div>
+
+            </div>
+            <div class="col">
+                <app-search-widget></app-search-widget>
+                <app-author></app-author>
+                <!-- <app-popular-posts></app-popular-posts> -->
+                <app-popular-categories></app-popular-categories>
+            </div>
+        </div>
+    </div>
+</main>

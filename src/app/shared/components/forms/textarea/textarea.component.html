@@ -1,0 +1,7 @@
+<p class="error text-danger text-small text-right mb-0" *ngIf="controlDir && !controlDir.control.valid 
+             && controlDir.control.touched">{{errorMsg}}</p>
+<div class="input-wrapper"
+    [ngClass]="{'border border-danger': controlDir && !controlDir.control.valid && controlDir.control.touched }">
+    <textarea class="form-control border-0" #input (input)="onChange($event.target.value)" (blur)="onTouched()"
+        [disabled]="disabled" [placeholder]="placeholder" [ngClass]="customClass"></textarea>
+</div>

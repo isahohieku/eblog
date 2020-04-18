@@ -1,0 +1,15 @@
+footer {
+    padding: 120px 0;
+}
+
+.image {
+    height: 58px;
+    width: 50px;
+    margin-right: 10px;
+    // margin-bottom: 10px;
+    overflow: hidden;
+    background-image: url(../../../assets/img/jumbotron.jpg);
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+}

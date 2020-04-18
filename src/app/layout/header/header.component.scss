@@ -1,0 +1,94 @@
+.jumbo {
+  background: linear-gradient(0deg, rgba(128, 80, 250, 0.8), rgba(128, 80, 250, 0.8)), url(../../../assets/img/jumbotron.jpg) no-repeat center;
+  height: 100vh;
+  background-size: cover;
+  transition: all .3s;
+}
+
+.resize {
+  height: 40vh !important;
+}
+
+.noJumbo {
+  height: 90px !important;
+  // overflow: hidden !important;
+  background:  rgba(128, 80, 250, 0.8) !important;
+}
+
+h1 {
+  font-size: 60px;
+  font-weight: 300;
+  line-height: 72px;
+}
+
+ul {
+  margin: 0;
+
+  li {
+    list-style: none;
+    display: inline-block;
+    margin: 0px 20px;
+  }
+}
+.transparent-btn {
+  border: none !important;
+  background-color: transparent !important;
+}
+
+#main-nav {
+  height: 90px;
+  z-index: 1000;
+  background-color: transparent;
+  transition: all 0.5s;
+}
+
+.dropdown-menu {
+  border-radius: 4px !important;
+  z-index: 1000;
+  border: 0;
+  background-color: #fefefe;
+  -webkit-box-shadow: 0px 10px 15px -9px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 10px 15px -9px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 10px 15px -9px rgba(0, 0, 0, 0.75);
+}
+
+.dropdown-menu-arrow {
+  top: -25px;
+  left: 15px;
+  width: 0;
+  height: 0;
+  position: relative;
+}
+
+.dropdown-menu-arrow:before,
+.dropdown-menu-arrow:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-width: 7px 8px;
+  border-style: solid;
+  border-color: transparent;
+  z-index: 1001;
+}
+.dropdown-menu-arrow:after {
+  bottom: -18px;
+  right: -8px;
+  border-bottom-color: #fff;
+}
+.dropdown-menu-arrow:before {
+  bottom: -17px;
+  right: -8px;
+  border-bottom-color: rgba(0, 0, 0, 0.15);
+}
+
+.avatar {
+  height: 50px !important;
+  width: 50px !important;
+  border-radius: 50% !important;
+  overflow: hidden;
+  background-image: url(../../../assets/img/avatar-icon.jpg);
+  background-position: center !important;
+  background-size: cover !important;
+}

@@ -1,0 +1,50 @@
+<div class="wrapper bg-primary d-flex align-items-center">
+
+    <div class="container-1 d-flex m-auto">
+        <!-- The logo part -->
+        <div class="w-50 h-100 bg-white left-pane d-flex align-items-center justify-content-center">
+            <!-- Favicon -->
+            <div class="mousePointer" [routerLink]="['/']">
+                <div class="mx-auto" style="width: 150px;">
+                    <img src="assets/img/lion.png" class="d-inline-block" alt="Lion head Favicon" height="150">
+                </div>
+                <h4 class="mb-0 text-white text-center text-playfair">Eblog</h4>
+            </div>
+        </div>
+        <!-- The form -->
+        <div class="w-50 h-100 bg-primary2 d-flex align-items-center justify-content-center">
+            <div class="wrap w-60">
+                <h4 class="text-center text-uppercase text-white mb-5">Sign up</h4>
+
+                <form #f="ngForm" (ngSubmit)="signUp(f)">
+                    <div class="">
+                        <app-form-control [type]="'username'" [isRequired]="true" [placeholder]="'Username'" [(ngModel)]="username"
+                            name="username" [pattern]="usernamePattern" [customClass]="'input-style w-100 bg-white'">
+                        </app-form-control>
+                    </div>
+
+                    <div class="mt-4">
+                        <app-form-control [type]="'email'" [isRequired]="true" [placeholder]="'Email address'" [(ngModel)]="email"
+                            name="email" [pattern]="emailPattern" [customClass]="'input-style w-100 bg-white'">
+                        </app-form-control>
+                    </div>
+
+                    <div class="mt-4">
+                        <app-form-control [type]="'password'" [isRequired]="true" [placeholder]="'Password'" [(ngModel)]="password"
+                            name="password" [customClass]="'input-style w-100 bg-white'"></app-form-control>
+                    </div>
+
+                    <div class="btn-wrap d-flex justify-content-end">
+                        <span class="text-white mt-2 text-small">Have an account?</span>
+                        <a [routerLink]="['/login']" class="text-white mt-2 ml-2 text-underline text-small"> Sign in</a>
+                    </div>
+
+                    <div class="btn-wrap d-flex justify-content-center">
+                        <button [disabled]="loading" class="btn bg-primary text-white border-0 mt-5 mx-auto text-uppercase w-50 py-1">Sign up
+                            <app-loader *ngIf="loading"></app-loader></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

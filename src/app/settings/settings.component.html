@@ -1,0 +1,48 @@
+<div class="container container-1">
+    <div class="row">
+        <div class="col">
+            <h3 class="text-playfair my-5 text-primary">User profile</h3>
+        </div>
+    </div>
+</div>
+<div class="container container-1">
+    <div class="row">
+        <div class="col">
+            <app-author [author]="userObj"></app-author>
+        </div>
+        <div class="col-8">
+            <form #f="ngForm" (ngSubmit)="updateData(f)" class="form mx-auto mb-5">
+                <p class="text-small text-primary mb-0">Username</p>
+                <div class="input-wrapper">
+                    <app-form-control [disabled]="true" [type]="'text'" [placeholder]="'Username'" [(ngModel)]="username"
+                        name="username" [customClass]="'input-style w-100 bg-white'"></app-form-control>
+                </div>
+
+                <p class="text-small text-primary mt-4 mb-0">Email</p>
+                <div class="input-wrapper">
+                    <app-form-control [disabled]="true" [type]="'text'" [placeholder]="'Email'"
+                    [(ngModel)]="email" name="email" [customClass]="'input-style w-100 bg-white'"></app-form-control>
+                </div>
+                
+                <p class="text-small text-primary mt-4 mb-0">Bio</p>
+                <div class="input-wrapper-2">
+                    <app-textarea [placeholder]="'Short bio'" [(ngModel)]="bio" name="bio"
+                        [customClass]="'input-style w-100 bg-white tex'"></app-textarea>
+                </div>
+
+                <p class="text-small text-primary mt-4 mb-0">Password</p>
+                <div class="input-wrapper">
+                    <app-form-control [type]="'password'"
+                        [placeholder]="'Enter new password'" [(ngModel)]="password" name="password"
+                        [customClass]="'input-style w-100 bg-white'"></app-form-control>
+                </div>
+
+                <div class="btn-wrap d-flex justify-content-center">
+                    <button [disabled]="loading"
+                        class="btn bg-primary text-white border-0 mt-5 mx-auto text-uppercase w-40">Update Settings
+                        <app-loader *ngIf="loading"></app-loader></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

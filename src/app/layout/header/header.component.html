@@ -1,1 +1,74 @@
-<p>header works!</p>
+<nav class="position-fixed w-100 d-flex align-items-center" id="main-nav">
+    <div class="w-100">
+        <div class="container-1 mx-auto">
+            <div class="row">
+                <div class="col d-flex justify-content-between">
+                    <!-- Favicon -->
+                    <div class="d-flex align-items-center mousePointer" routerLink="/">
+                        <div>
+                            <img src="assets/img/lion.png" class="d-inline-block" alt="Lion head Favicon" height="50">
+                        </div>
+                        <h4 class="ml-2 mb-0 text-white text-playfair">Eblog</h4>
+                    </div>
+
+                    <!-- Links -->
+                    <div class="d-flex align-items-center">
+                        <ul>
+                            <li *ngFor="let item of routes">
+                                <a class="text-white text-uppercase text-small font-weight-bold" [routerLink]="[item?.route]" routerLinkActive="router-link-active" >{{ item.title }}</a>
+                            </li>
+                            <!-- Login -->
+                            <li class="mr-1" *ngIf="!isLogin">
+                                <button type="button" class="btn cta-1 text-small text-uppercase font-weight-bold"
+                                    [routerLink]="['/login']">Login</button>
+                            </li>
+                            <!-- Signup -->
+                            <li class="mx-1" *ngIf="!isLogin">
+                                <button type="button" class="btn cta-2 text-small text-uppercase font-weight-bold"
+                                    [routerLink]="['/signup']">Sign up</button>
+                            </li>
+                            <!-- After sign in -->
+                            <li *ngIf="isLogin">
+                                <!-- Add article -->
+                                <a class="text-white text-uppercase text-small font-weight-bold" [routerLink]="['/editor']" routerLinkActive="router-link-active" >
+                                    Add Article
+                                </a>
+                            </li>
+
+                            <li *ngIf="isLogin">
+                                <!-- User Dropdown -->
+                                <div class="dropdown mousePointer">
+                                    <a class="btn transparent-btn p-2 text-white text-semi-small" role="button"
+                                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <div class="avatar" [ngStyle]="{'background': 'url(' + userAvatar + ') no-repeat center'}"></div>
+                                    </a>
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <span class="dropdown-menu-arrow"></span>
+                                        <a class="dropdown-item text-small text-primary" [routerLink]="['/profile', userObj?.username]">
+                                            <span class="lnr lnr-user"></span> Profile
+                                        </a>
+                                        <a class="dropdown-item text-small text-primary" [routerLink]="['/settings']">
+                                            <span class="lnr lnr-cog"></span> Settings
+                                        </a>
+                                        <a class="dropdown-item text-small text-primary mousePointer" (click)="logout()">
+                                            <span class="lnr lnr-power-switch"></span> Logout
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Jumbotron -->
+<div class="jumbo w-100 d-flex justify-content-center" [ngClass]="{'resize': resizeJumbo, 'noJumbo': noJumbo}">
+    <div class="w-75 align-self-center">
+        <h1 class="text-center text-capitalize text-white text-playfair" *ngIf="!noJumbo">The beautiful art of blogging</h1>
+    </div>
+</div>
