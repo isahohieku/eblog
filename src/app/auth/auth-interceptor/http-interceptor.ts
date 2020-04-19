@@ -11,16 +11,12 @@ import { UtilService } from '../../core/services/util.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  private token: string;
 
-  constructor(private util: UtilService) { this.token = this.util.getToken(); }
+  constructor(private util: UtilService) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!this.token) {
-      return next.handle(request);
-    }
     request = request.clone({
       setHeaders: {
-        Authorization: this.token
+        Authorization: this.util.getToken()
       }
     });
     return next.handle(request);
