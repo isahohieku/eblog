@@ -40,7 +40,7 @@ describe('AuthInterceptor', () => {
             }));
     });
 
-    fdescribe('No Auth Token available', () => {
+    describe('No Auth Token available', () => {
         it('does not include Authorization header in request',
             inject([HttpClient, HttpTestingController], (http: HttpClient, httpMock: HttpTestingController) => {
 
