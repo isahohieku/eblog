@@ -27,12 +27,12 @@ const config: CloudinaryConfiguration = environment.cloudinaryConfigs;
     ...directives,
   ],
   imports: [
+    // Modules
     ...modules,
     // Cloudinary and File upload
     CloudinaryModule.forRoot(cloudinary, config),
     // Toastr
     ToastrModule.forRoot(),
-
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

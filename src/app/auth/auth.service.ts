@@ -11,7 +11,11 @@ import { HttpErrorService } from '../core/services/http-error.service';
 })
 export class AuthService {
 
-  private header: { headers: HttpHeaders; };
+  private header = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    })
+  };
   private login: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
@@ -26,11 +30,7 @@ export class AuthService {
     } else {
       this.setLoginStatus(true);
     }
-
-    this.header = {
-      headers: new HttpHeaders()
-    };
-   }
+  }
 
   setLoginStatus(value: boolean) {
     this.login.next(value);
