@@ -48,7 +48,6 @@ describe('AuthInterceptor', () => {
 
                 const req = httpMock.expectOne(r => r.url === '/data' && r.method === 'GET');
                 const authorization = req.request.headers.get('Authorization');
-                console.log(authorization);
                 expect(req.request.method).toEqual('GET');
                 expect(authorization).toBeFalsy();
 
