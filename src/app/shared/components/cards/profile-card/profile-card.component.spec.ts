@@ -57,23 +57,28 @@ describe('ProfileCardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should get userObject if profile does not belong to user', () => {
+  it('should check if profile does not belong to user', () => {
     component.user = mockUser;
     component.user.image = 'helo';
     component.userObj = mockUser;
 
     component.getUserObject();
+    component.userObj.username = 'danhere';
+
+    expect(component.user.username).not.toEqual(component.userObj.username);
   });
 
-  it('should get userObject if profile does not belongs to user', () => {
+  it('should check if profile belongs to user and user has bio', () => {
+    component.getUserObject();
     component.user = mockUser;
     component.user.image = 'helo';
-    component.userObj = mockUser;
     component.userObj.image = 'helo';
-    component.userObj.bio = 'hello World';
+    component.userObj.bio = 'Just me';
     component.bio = 'hi';
 
-    component.getUserObject();
+    expect(component.user.username).toEqual(component.userObj.username);
+    expect(component.user.bio).toEqual(component.userObj.bio);
+    expect(component.user.image).toEqual(component.userObj.image);
   });
 
   it('should create', () => {
