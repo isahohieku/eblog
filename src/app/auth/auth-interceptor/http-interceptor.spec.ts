@@ -40,15 +40,17 @@ describe('AuthInterceptor', () => {
             }));
     });
 
-    describe('No Auth Token available', () => {
+    fdescribe('No Auth Token available', () => {
         it('does not include Authorization header in request',
             inject([HttpClient, HttpTestingController], (http: HttpClient, httpMock: HttpTestingController) => {
 
                 http.get('/data').subscribe(response => expect(response).toBeTruthy());
 
                 const req = httpMock.expectOne(r => r.url === '/data' && r.method === 'GET');
+                const authorization = req.request.headers.get('Authorization');
+                console.log(authorization);
                 expect(req.request.method).toEqual('GET');
-                expect(req.request.headers.has('Authorization')).toBeFalsy();
+                expect(authorization).toBeFalsy();
 
                 req.flush({ hello: 'world' });
                 httpMock.verify();

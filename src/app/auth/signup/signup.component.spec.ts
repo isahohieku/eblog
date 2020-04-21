@@ -29,7 +29,7 @@ describe('SignupComponent', () => {
       },
     };
     crudServiceSpy = jasmine.createSpyObj('CrudService', ['postResource']);
-    utilServiceSpy = jasmine.createSpyObj('UtilService', ['setToken, getUserObject']);
+    utilServiceSpy = jasmine.createSpyObj('UtilService', ['setToken', 'getUserObject']);
     routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
     TestBed.configureTestingModule({
       declarations: [ SignupComponent, FormControlComponent, LoaderComponent ],
