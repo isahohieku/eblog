@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   articlesFeed: Article[] = [];
   userObj: User;
   page = 1;
+  pageGlobal = 1;
 
   constructor(private crud: HomeService, private util: UtilService) {
   }
@@ -51,6 +52,10 @@ export class HomeComponent implements OnInit {
 
   pageChanged(e) {
     this.page = e;
+  }
+
+  pageGlobalChanged(e) {
+    this.pageGlobal = e;
   }
 
   getFeeds() {

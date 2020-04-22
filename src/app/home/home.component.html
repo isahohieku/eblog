@@ -45,7 +45,7 @@
                             aria-labelledby="nav-profile-tab">
                             <!-- Global -->
                             <app-post-card
-                                *ngFor="let article of articles | paginate: { itemsPerPage: 5, currentPage: page, id: 'global' }"
+                                *ngFor="let article of articles | paginate: { itemsPerPage: 5, currentPage: pageGlobal, id: 'global' }"
                                 [article]="article"></app-post-card>
 
                             <div *ngIf="loading" class="d-flex justify-content-center align-items-center p-5 my-5">
@@ -62,7 +62,7 @@
 
                             <!-- Pagination -->
                             <div class="d-flex justify-content-center mb-5" *ngIf="!loading">
-                                <pagination-controls (pageChange)="pageChanged($event)" maxSize="9"
+                                <pagination-controls (pageChange)="pageGlobalChanged($event)" maxSize="9"
                                     directionLinks="true" autoHide="true" responsive="true"
                                     screenReaderPaginationLabel="Pagination" previousLabel="" nextLabel=""
                                     screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page" id="global">
@@ -74,7 +74,7 @@
 
                 <div *ngIf="!userObj">
                     <app-post-card
-                        *ngFor="let article of articles | paginate: { itemsPerPage: 5, currentPage: page, id: 'notloggedin' }"
+                        *ngFor="let article of articles | paginate: { itemsPerPage: 5, currentPage: pageGlobal, id: 'notloggedin' }"
                         [article]="article"></app-post-card>
 
                     <div *ngIf="loading" class="d-flex justify-content-center align-items-center p-5 my-5">
@@ -91,7 +91,7 @@
 
                     <!-- Pagination -->
                     <div class="d-flex justify-content-center mb-5" *ngIf="!feedLoading">
-                        <pagination-controls (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true"
+                        <pagination-controls (pageChange)="pageGlobalChanged($event)" maxSize="9" directionLinks="true"
                             autoHide="true" responsive="true" screenReaderPaginationLabel="Pagination" previousLabel=""
                             nextLabel="" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page"
                             id="notloggedin">

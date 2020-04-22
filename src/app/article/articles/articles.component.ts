@@ -12,6 +12,7 @@ import { ArticleService } from '../article.service';
 })
 export class ArticlesComponent implements OnInit {
   page = 1;
+  pageGlobal = 1;
   articles: Article[] = [];
   articlesFeed: Article[] = [];
   loading: boolean;
@@ -52,6 +53,10 @@ export class ArticlesComponent implements OnInit {
 
   pageChanged(e) {
     this.page = e;
+  }
+
+  pageGlobalChanged(e) {
+    this.pageGlobal = e;
   }
 
 }
