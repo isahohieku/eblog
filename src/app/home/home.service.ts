@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { UtilService } from '../core/services/util.service';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { first, catchError } from 'rxjs/operators';
+import { HttpErrorService } from '../core/services/http-error.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class HomeService {
 
   constructor(
     private http: HttpClient,
-    private util: UtilService
+    private util: UtilService,
+    private errorHandler: HttpErrorService
   ) {
     this.header = {
       headers: new HttpHeaders()
@@ -21,11 +23,19 @@ export class HomeService {
   }
 
   getArticles(url): Observable<any> {
-    return this.http.get(`${this.util.baseUrl}${url}`, this.header);
+    return this.http.get(`${this.util.baseUrl}${url}`, this.header)
+      .pipe(
+        first(),
+        catchError(this.errorHandler.handleError(''))
+      );
   }
 
   getArticlesFeed(url): Observable<any> {
-    return this.http.get(`${this.util.baseUrl}${url}`, this.header);
+    return this.http.get(`${this.util.baseUrl}${url}`, this.header)
+      .pipe(
+        first(),
+        catchError(this.errorHandler.handleError(''))
+      );
   }
 
 }

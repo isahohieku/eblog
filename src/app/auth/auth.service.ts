@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { UtilService } from '../core/services/util.service';
 import { Router } from '@angular/router';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
+import { catchError, first } from 'rxjs/operators';
 import { HttpErrorService } from '../core/services/http-error.service';
 
 @Injectable({
@@ -46,7 +46,12 @@ export class AuthService {
 
   loginUser(url: string, data): Observable<any> {
     return this.http.post(`${this.util.baseUrl}${url}`, data, this.header)
-      .pipe(catchError(this.errorHandler.handleError('')));
+      .pipe(first(), catchError(this.errorHandler.handleError('')));
+  }
+
+  signupUser(url: string, data): Observable<any> {
+    return this.http.post(`${this.util.baseUrl}${url}`, data, this.header)
+      .pipe(first(), catchError(this.errorHandler.handleError('')));
   }
 
   logout() {

@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UtilService } from 'src/app/core/services/util.service';
-import { CrudService } from 'src/app/core/services/crud.service';
 import { Router } from '@angular/router';
 import UserResponse from 'src/app/core/models/user';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
 
   @ViewChild('f', { static: false }) form: NgForm;
 
-  constructor(private util: UtilService, private crud: CrudService, private router: Router) {
+  constructor(private util: UtilService, private auth: AuthService, private router: Router) {
     this.emailPattern = this.util.emailValidator;
     this.usernamePattern = this.util.usernameValidator;
     if (this.util.getUserObject() !== null) {
@@ -46,7 +46,7 @@ export class SignupComponent implements OnInit {
       }
     };
 
-    this.crud.postResource(url, data)
+    this.auth.signupUser(url, data)
       .subscribe((res: UserResponse) => {
         if (Object.keys(res).length === 0) {
           this.loading = false;
